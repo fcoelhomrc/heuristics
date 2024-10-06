@@ -172,3 +172,78 @@
 [2024-10-06 19:03:15,577][INFO] Step 23: size: 23, coverage: 100.00%, cost: 743.0
 [2024-10-06 19:03:15,577][INFO] Size: 23 -> 23
 [2024-10-06 19:03:15,577][INFO] Cost: 743.0 -> 743.0
+[2024-10-06 22:17:52,970][INFO] Step 1: size: 1, coverage: 9.67%, cost: 21.0
+[2024-10-06 22:17:52,980][INFO] Step 2: size: 2, coverage: 18.67%, cost: 38.0
+[2024-10-06 22:17:52,990][INFO] Step 3: size: 3, coverage: 27.00%, cost: 78.0
+[2024-10-06 22:17:53,000][INFO] Step 4: size: 4, coverage: 34.67%, cost: 118.0
+[2024-10-06 22:17:53,011][INFO] Step 5: size: 5, coverage: 42.00%, cost: 131.0
+[2024-10-06 22:17:53,021][INFO] Step 6: size: 6, coverage: 49.00%, cost: 147.0
+[2024-10-06 22:17:53,031][INFO] Step 7: size: 7, coverage: 55.33%, cost: 188.0
+[2024-10-06 22:17:53,041][INFO] Step 8: size: 8, coverage: 61.00%, cost: 261.0
+[2024-10-06 22:17:53,051][INFO] Step 9: size: 9, coverage: 66.00%, cost: 272.0
+[2024-10-06 22:17:53,061][INFO] Step 10: size: 10, coverage: 70.67%, cost: 308.0
+[2024-10-06 22:17:53,071][INFO] Step 11: size: 11, coverage: 75.00%, cost: 344.0
+[2024-10-06 22:17:53,080][INFO] Step 12: size: 12, coverage: 78.67%, cost: 375.0
+[2024-10-06 22:17:53,090][INFO] Step 13: size: 13, coverage: 82.00%, cost: 386.0
+[2024-10-06 22:17:53,100][INFO] Step 14: size: 14, coverage: 85.33%, cost: 410.0
+[2024-10-06 22:17:53,110][INFO] Step 15: size: 15, coverage: 88.33%, cost: 471.0
+[2024-10-06 22:17:53,120][INFO] Step 16: size: 16, coverage: 91.00%, cost: 543.0
+[2024-10-06 22:17:53,130][INFO] Step 17: size: 17, coverage: 93.00%, cost: 641.0
+[2024-10-06 22:17:53,140][INFO] Step 18: size: 18, coverage: 94.67%, cost: 642.0
+[2024-10-06 22:17:53,150][INFO] Step 19: size: 19, coverage: 96.33%, cost: 665.0
+[2024-10-06 22:17:53,160][INFO] Step 20: size: 20, coverage: 98.00%, cost: 718.0
+[2024-10-06 22:17:53,170][INFO] Step 21: size: 21, coverage: 99.00%, cost: 734.0
+[2024-10-06 22:17:53,180][INFO] Step 22: size: 22, coverage: 99.67%, cost: 742.0
+[2024-10-06 22:17:53,191][INFO] Step 23: size: 23, coverage: 100.00%, cost: 743.0
+[2024-10-06 22:17:53,191][INFO] Size: 23 -> 23
+[2024-10-06 22:17:53,191][INFO] Cost: 743.0 -> 743.0
+[2024-10-06 22:20:29,873][INFO] Step 1: size: 1, coverage: 9.67%, cost: 21.0
+[2024-10-06 22:20:29,883][INFO] Step 2: size: 2, coverage: 18.67%, cost: 38.0
+[2024-10-06 22:20:29,894][INFO] Step 3: size: 3, coverage: 27.00%, cost: 78.0
+[2024-10-06 22:20:29,904][INFO] Step 4: size: 4, coverage: 34.67%, cost: 118.0
+[2024-10-06 22:20:29,914][INFO] Step 5: size: 5, coverage: 42.00%, cost: 131.0
+[2024-10-06 22:20:29,924][INFO] Step 6: size: 6, coverage: 49.00%, cost: 147.0
+[2024-10-06 22:20:29,934][INFO] Step 7: size: 7, coverage: 55.33%, cost: 188.0
+[2024-10-06 22:20:29,945][INFO] Step 8: size: 8, coverage: 61.00%, cost: 261.0
+[2024-10-06 22:20:29,954][INFO] Step 9: size: 9, coverage: 66.00%, cost: 272.0
+[2024-10-06 22:20:29,964][INFO] Step 10: size: 10, coverage: 70.67%, cost: 308.0
+[2024-10-06 22:20:29,974][INFO] Step 11: size: 11, coverage: 75.00%, cost: 344.0
+[2024-10-06 22:20:29,984][INFO] Step 12: size: 12, coverage: 78.67%, cost: 375.0
+[2024-10-06 22:20:29,994][INFO] Step 13: size: 13, coverage: 82.00%, cost: 386.0
+[2024-10-06 22:20:30,004][INFO] Step 14: size: 14, coverage: 85.33%, cost: 410.0
+[2024-10-06 22:20:30,014][INFO] Step 15: size: 15, coverage: 88.33%, cost: 471.0
+[2024-10-06 22:20:30,023][INFO] Step 16: size: 16, coverage: 91.00%, cost: 543.0
+[2024-10-06 22:20:30,033][INFO] Step 17: size: 17, coverage: 93.00%, cost: 641.0
+[2024-10-06 22:20:30,043][INFO] Step 18: size: 18, coverage: 94.67%, cost: 642.0
+[2024-10-06 22:20:30,054][INFO] Step 19: size: 19, coverage: 96.33%, cost: 665.0
+[2024-10-06 22:20:30,064][INFO] Step 20: size: 20, coverage: 98.00%, cost: 718.0
+[2024-10-06 22:20:30,074][INFO] Step 21: size: 21, coverage: 99.00%, cost: 734.0
+[2024-10-06 22:20:30,084][INFO] Step 22: size: 22, coverage: 99.67%, cost: 742.0
+[2024-10-06 22:20:30,095][INFO] Step 23: size: 23, coverage: 100.00%, cost: 743.0
+[2024-10-06 22:20:30,095][INFO] Size: 23 -> 23
+[2024-10-06 22:20:30,095][INFO] Cost: 743.0 -> 743.0
+[2024-10-06 22:20:54,302][INFO] Step 1: size: 1, coverage: 9.67%, cost: 21.0
+[2024-10-06 22:20:54,312][INFO] Step 2: size: 2, coverage: 18.67%, cost: 38.0
+[2024-10-06 22:20:54,322][INFO] Step 3: size: 3, coverage: 27.00%, cost: 78.0
+[2024-10-06 22:20:54,332][INFO] Step 4: size: 4, coverage: 34.67%, cost: 118.0
+[2024-10-06 22:20:54,343][INFO] Step 5: size: 5, coverage: 42.00%, cost: 131.0
+[2024-10-06 22:20:54,353][INFO] Step 6: size: 6, coverage: 49.00%, cost: 147.0
+[2024-10-06 22:20:54,363][INFO] Step 7: size: 7, coverage: 55.33%, cost: 188.0
+[2024-10-06 22:20:54,373][INFO] Step 8: size: 8, coverage: 61.00%, cost: 261.0
+[2024-10-06 22:20:54,383][INFO] Step 9: size: 9, coverage: 66.00%, cost: 272.0
+[2024-10-06 22:20:54,393][INFO] Step 10: size: 10, coverage: 70.67%, cost: 308.0
+[2024-10-06 22:20:54,403][INFO] Step 11: size: 11, coverage: 75.00%, cost: 344.0
+[2024-10-06 22:20:54,413][INFO] Step 12: size: 12, coverage: 78.67%, cost: 375.0
+[2024-10-06 22:20:54,423][INFO] Step 13: size: 13, coverage: 82.00%, cost: 386.0
+[2024-10-06 22:20:54,432][INFO] Step 14: size: 14, coverage: 85.33%, cost: 410.0
+[2024-10-06 22:20:54,442][INFO] Step 15: size: 15, coverage: 88.33%, cost: 471.0
+[2024-10-06 22:20:54,452][INFO] Step 16: size: 16, coverage: 91.00%, cost: 543.0
+[2024-10-06 22:20:54,462][INFO] Step 17: size: 17, coverage: 93.00%, cost: 641.0
+[2024-10-06 22:20:54,472][INFO] Step 18: size: 18, coverage: 94.67%, cost: 642.0
+[2024-10-06 22:20:54,482][INFO] Step 19: size: 19, coverage: 96.33%, cost: 665.0
+[2024-10-06 22:20:54,492][INFO] Step 20: size: 20, coverage: 98.00%, cost: 718.0
+[2024-10-06 22:20:54,502][INFO] Step 21: size: 21, coverage: 99.00%, cost: 734.0
+[2024-10-06 22:20:54,513][INFO] Step 22: size: 22, coverage: 99.67%, cost: 742.0
+[2024-10-06 22:20:54,523][INFO] Step 23: size: 23, coverage: 100.00%, cost: 743.0
+[2024-10-06 22:20:54,523][INFO] Size: 23 -> 23
+[2024-10-06 22:20:54,523][INFO] Cost: 743.0 -> 743.0

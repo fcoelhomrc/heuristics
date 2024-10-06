@@ -52,6 +52,26 @@ for inst_name in available_inst:
     results[f"{heuristic}-cost"].append(cost)
     results[f"{heuristic}-cost-re"].append(cost_RE)
 
+
+
+heuristic = "random-greedy"
+results[f"{heuristic}-cost"] = []
+results[f"{heuristic}-cost-re"] = []
+
+if not os.path.exists(path := os.path.join(OUTPUT_DIR, heuristic)):
+    os.mkdir(path)
+for inst_name in available_inst:
+    inst = dl.load_instance(inst_name)
+
+    solver = RandomGreedySolver(instance=inst)
+    log_path = os.path.join(OUTPUT_DIR, heuristic, f"{inst_name}.log")
+    solver.configure_logger(path=log_path)
+    sol, cost = solver.greedy_heuristic()
+    sol_RE, cost_RE = solver.clean_redundant()
+
+    results[f"{heuristic}-cost"].append(cost)
+    results[f"{heuristic}-cost-re"].append(cost_RE)
+
 results_df = pd.DataFrame.from_dict(
     results
 )

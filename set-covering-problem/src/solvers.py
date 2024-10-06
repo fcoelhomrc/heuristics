@@ -1,3 +1,5 @@
+from random import Random
+
 from utils import DataLoader, Instance, State
 import numpy as np
 import logging
@@ -117,6 +119,39 @@ class BetterGreedySolver(GreedySolver):
         return total_new_covers / np.asarray(weights)
 
 
+class RandomGreedySolver(BetterGreedySolver):
+
+    SEED = 42
+    RNG = np.random.default_rng(seed=SEED)
+
+    def __init__(self, instance: Instance, logger: logging.Logger = None):
+        super().__init__(instance, logger)
+        self.prob = 0.1  # prob of picking among top candidates
+        self.top_threshold = 0.8  # %best score to be considered top candidate
+        self.total_random_steps = 0
+
+    def greedy_step(self):
+        score = self.compute_greedy_score()
+
+        if RandomGreedySolver.RNG.uniform() < self.prob:
+            threshold = self.top_threshold * score
+            top_candidates = np.nonzero(score > threshold)
+            self.total_random_steps += 1
+            return RandomGreedySolver.RNG.choice(top_candidates)[0]
+        else:
+            return score.argmax()
+
+    def get_total_random_steps(self):
+        if self.inst.get_state() == State.SOLVED:
+            self.logger.info(f"Solved solution used {self.total_random_steps} random steps")
+        return self.total_random_steps
+
+    def greedy_heuristic(self):
+        sol, cost = super().greedy_heuristic()
+        _ = self.get_total_random_steps()
+        return sol, cost
+
+
 if __name__== "__main__":
     dl = DataLoader()
     inst = dl.load_instance("42")
@@ -135,7 +170,13 @@ if __name__== "__main__":
     # sol_greedy, cost_greedy = solver.greedy_heuristic()
     # print(sol_greedy, cost_greedy)
 
-    solver = BetterGreedySolver(instance=inst)
+    # solver = BetterGreedySolver(instance=inst)
+    # sol_greedy, cost_greedy = solver.greedy_heuristic()
+    # p_sol_greedy, p_cost_greedy = solver.clean_redundant()
+    # print(sol_greedy, cost_greedy)
+    # print(p_sol_greedy, p_cost_greedy)
+
+    solver = RandomGreedySolver(instance=inst)
     sol_greedy, cost_greedy = solver.greedy_heuristic()
     p_sol_greedy, p_cost_greedy = solver.clean_redundant()
     print(sol_greedy, cost_greedy)

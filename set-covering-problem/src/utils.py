@@ -20,14 +20,14 @@ class Instance:
         self.covered_by = []  # which subsets cover each row
         
         self.weights = np.zeros(self.n_cols)  # costs
-        self.mat = np.zeros((self.n_rows, self.n_cols))  # boolean array representation
+        self.mat = np.zeros((self.n_rows, self.n_cols), dtype=bool)  # boolean array representation
 
         self.sol = []  # which subsets are included in solution
         self.sol_coverage = np.zeros(self.n_rows)  # how many times solution covers each element
     
 
     def update_sol_coverage(self):
-        self.sol_coverage = self.mat[:, self.sol].sum(axis=0).flatten()
+        self.sol_coverage = self.mat[:, self.sol].sum(axis=1).flatten()
 
     def check_sol_coverage(self):
         self.update_sol_coverage()
@@ -36,6 +36,10 @@ class Instance:
     def get_coverage_percent(self):
         self.update_sol_coverage()
         return (self.sol_coverage > 0).sum() / self.n_rows
+
+    def get_coverage_per_element(self):
+        self.update_sol_coverage()
+        return self.sol_coverage
 
     def get_sol_cost(self):
         return self.weights[self.sol].sum()
@@ -52,6 +56,30 @@ class Instance:
 
     def set_mat(self, mat):
         self.mat = mat
+
+    def get_cols(self):
+        return self.n_cols
+
+    def get_rows(self):
+        return self.n_rows
+
+    def get_sol(self):
+        return self.sol
+
+    def get_mat(self):
+        return self.mat
+
+    def increment_sol(self, i):
+        self.sol.append(i)
+
+    def prune_sol(self, i):
+        self.sol.remove(i)
+
+    def get_weights(self):
+        return self.weights
+
+    def get_state(self):
+        return self.state
 
 class DataLoader:
     DATA_DIR = "../data"
@@ -73,7 +101,7 @@ class DataLoader:
             os.path.basename(name)[3:-4] for name in glob(os.path.join(
                 DataLoader.DATA_DIR, "*.txt"))
         ]
-        return names
+        return sorted(names)
 
     def load_instance(self, name):
         if name not in self.available_instances:
@@ -84,7 +112,6 @@ class DataLoader:
             header = self.process_line(f)
             n_rows, n_cols = header[0], header[1]
             instance = Instance(n_cols=n_cols, n_rows=n_rows)
-            #TODO: load data...
 
             weights = self.load_weights(f, n_cols=n_cols)
             instance.set_weights(weights)
@@ -138,7 +165,7 @@ class DataLoader:
 
     @staticmethod
     def compute_mat(n_cols, n_rows, total_covered_by, covered_by):
-        mat = np.zeros((n_rows, n_cols), dtype=int)
+        mat = np.zeros((n_rows, n_cols), dtype=bool)
         for row in range(n_rows):
             row_covered_by = covered_by[row]
             for col in row_covered_by:
@@ -158,4 +185,13 @@ if __name__== "__main__":
     print(len(inst.total_covered_by))
     print(len(inst.covered_by))
     print(inst.mat.shape)
-    print(inst.mat[:, :3])
+
+    inst.sol = [0, 1, 2]
+    print(inst.get_coverage_percent())
+    print(inst.check_sol_coverage())
+    print(inst.get_sol_cost())
+
+    inst.sol = [i for i in range(inst.n_cols)]
+    print(inst.get_coverage_percent())
+    print(inst.check_sol_coverage())
+    print(inst.get_sol_cost())

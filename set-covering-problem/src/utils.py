@@ -121,37 +121,24 @@ class DataLoader:
         total_covered_by = []
         covered_by = []
 
-        last_value = None
         while len(covered_by) < n_rows:
-            values = self.process_line(f)
+            total = self.process_line(f)
 
-            if values is None:
+            if total is None:
                 break  # end of file
 
-            if len(values) > 1:
-                if len(last_value) > 1:
-                    covered_by[-1].extend(values)
-                else:
-                    covered_by.append(values)
+            if len(total) == 1:
+                total_covered_by.extend(total)
+                temp = []
+                while len(temp) < total[0]:
+                    temp.extend(self.process_line(f))
+                covered_by.append(temp)
 
-            elif len(values) == 1:
-                if last_value is None:
-                    total_covered_by.extend(values)
-                elif len(last_value) > 1:
-                    total_covered_by.extend(values)
-                elif len(last_value) == 1:
-                    covered_by[-1].extend(values)
-                else:
-                    pass
-            else:
-                pass
-
-            last_value = values
         return total_covered_by, covered_by
 
     @staticmethod
     def compute_mat(n_cols, n_rows, total_covered_by, covered_by):
-        mat = np.zeros((n_rows, n_cols))
+        mat = np.zeros((n_rows, n_cols), dtype=int)
         for row in range(n_rows):
             row_covered_by = covered_by[row]
             for col in row_covered_by:
@@ -171,3 +158,4 @@ if __name__== "__main__":
     print(len(inst.total_covered_by))
     print(len(inst.covered_by))
     print(inst.mat.shape)
+    print(inst.mat[:, :3])

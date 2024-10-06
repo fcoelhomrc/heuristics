@@ -50,6 +50,9 @@ class Instance:
         self.total_covered_by.extend(total_covered_by)
         self.covered_by.extend(covered_by)
 
+    def set_mat(self, mat):
+        self.mat = mat
+
 class DataLoader:
     DATA_DIR = "../data"
 
@@ -90,6 +93,11 @@ class DataLoader:
             instance.set_row_coverage(
                 total_covered_by=total_covered_by, covered_by=covered_by
             )
+
+            mat = self.compute_mat(n_cols=n_cols, n_rows=n_rows,
+                                   total_covered_by=total_covered_by,
+                                   covered_by=covered_by)
+            instance.set_mat(mat)
 
             instance.set_state(State.LOADED)
             return instance
@@ -141,7 +149,19 @@ class DataLoader:
             last_value = values
         return total_covered_by, covered_by
 
+    @staticmethod
+    def compute_mat(n_cols, n_rows, total_covered_by, covered_by):
+        mat = np.zeros((n_rows, n_cols))
+        for row in range(n_rows):
+            row_covered_by = covered_by[row]
+            for col in row_covered_by:
+                mat[row, col - 1] = 1
 
+        mat_sum = mat.sum(axis=-1)
+        tcb = np.array(total_covered_by)
+
+        assert np.all(mat.sum(axis=-1) == np.array(total_covered_by))
+        return mat
 
 if __name__== "__main__":
     dl = DataLoader()
@@ -150,3 +170,4 @@ if __name__== "__main__":
     print(len(inst.weights))
     print(len(inst.total_covered_by))
     print(len(inst.covered_by))
+    print(inst.mat.shape)

@@ -27,7 +27,7 @@ class Instance:
     
 
     def update_sol_coverage(self):
-        self.sol_coverage = self.mat[:, self.sol].sum(axis=1).flatten()
+            self.sol_coverage = self.mat[:, self.sol].sum(axis=1).flatten()
 
     def check_sol_coverage(self):
         self.update_sol_coverage()

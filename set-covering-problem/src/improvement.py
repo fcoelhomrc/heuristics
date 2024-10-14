@@ -1,3 +1,6 @@
+from locale import currency
+from re import search
+
 from utils import DataLoader, Instance, State
 import numpy as np
 import logging
@@ -24,107 +27,86 @@ class BestNeighbor:
         self.inst = self.solver.inst # Reduce verbosity in this implementation
         self.initial_sol = self.inst.get_sol()
 
-        self.max_iter = 10
-        self.moves_per_iter = 1000
+        self.max_iter = 10000
+        self.moves_per_iter = 100
 
         self.incumbent_sol = self.initial_sol.copy()
-        self.incumbent_sol_cost = self.get_cost(self.incumbent_sol)
-
-        self.neighborhood = []
-
+        self.neighbor = None
         self.best_neighbor = None
-        self.best_neighbor_cost = None
 
-        self.improvement_heuristic_elapsed_time = None
+        self.improvement_step_elapsed_time = None
 
-    def update(self):
-        return self.inst.get_sol()
+    def random_swap(self, to_swap: list):
+        sol = to_swap.copy()
+        sol_in = BestNeighbor.RNG.integers(0, self.inst.get_cols(), size=1)
+        sol_out = BestNeighbor.RNG.choice(sol, size=1)
 
-    def get_cost(self, sol):
-        self.inst.set_sol(sol)
-        return self.inst.get_sol_cost()
+        sol.remove(sol_out[0])
+        sol.append(sol_in[0])
+        return sol
 
-    def insert_move(self, col):
-        self.inst.increment_sol(col)
+    def gen_neighbor(self, move):
+        self.neighbor = move(self.incumbent_sol)
+        self.inst.set_sol(self.neighbor)
+        cost = self.inst.get_sol_cost()
+        is_valid = self.inst.check_sol_coverage()
+        return cost, is_valid
 
-    def remove_move(self, col):
-        self.inst.prune_sol(col)
-
-    def swap_move(self, col_in, col_out):
-        self.inst.increment_sol(col_in[0])
-        self.inst.prune_sol(col_out[0])
-
-    def sample_from_solution(self, n=1):
-        return BestNeighbor.RNG.choice(self.inst.get_sol(), size=n)
-
-    def sample_from_all(self, n=1):
-        return BestNeighbor.RNG.integers(0, self.inst.get_rows(), size=n)
-
-    def build_neighborhood(self):
-        for i in range(self.moves_per_iter):
-
-            self.swap_move(col_in=self.sample_from_all(),
-                           col_out=self.sample_from_solution())
-            self.neighborhood.append(self.update())
-
-    def explore_neighborhood(self):
-        neighborhood_size = len(self.neighborhood)
-        assert neighborhood_size > 0
-        costs = []
-        for i in range(neighborhood_size):
-            neighbor = self.neighborhood[i]
-            self.inst.set_sol(neighbor)
-
-            if self.inst.check_sol_coverage():
-                costs.append([i, self.get_cost(neighbor)])
-
-        if len(costs) > 0:
-            costs = np.array(costs)
-            min_cost_index = costs[:, 1].argmin()
-
-            self.best_neighbor = self.neighborhood[costs[costs[min_cost_index, 0]]]
-            self.best_neighbor_cost = costs[min_cost_index, 1]
-        else:
-            self.best_neighbor = None
-            self.best_neighbor_cost = None
-
-    def run(self):
-        self.logger.info(f"Running improvement heuristic for {self.max_iter} steps")
-        start_time = perf_counter()
-        for i in range(self.max_iter):
-            self.build_neighborhood()
-            self.explore_neighborhood()
-
-            print(f"{self.incumbent_sol_cost} -> {self.best_neighbor_cost}")
-
-            self.logger.info(f"Step {i} - Cost: {self.incumbent_sol_cost}"
-                             f" -> Best Neighbor: {self.best_neighbor_cost}")
-            if self.best_neighbor is None or self.best_neighbor_cost is None:
-                continue
-            if self.best_neighbor_cost < self.incumbent_sol_cost:
-                self.incumbent_sol = self.best_neighbor
-                self.incumbent_sol_cost = self.best_neighbor_cost
-
-                self.inst.set_sol(self.incumbent_sol)
-               # _ = self.solver.redundancy_elimination()  # Perform CE between each step
-        self.improvement_heuristic_elapsed_time = start_time - perf_counter()
+    def search_neighbors(self, move):
 
         self.inst.set_sol(self.incumbent_sol)
+        current_cost = self.inst.get_sol_cost()
 
+        for i in range(self.moves_per_iter):
+            self.reset_neighbors()
+            self.inst.set_sol(self.incumbent_sol)
+
+            cost, is_valid = self.gen_neighbor(move)
+            if is_valid and cost < current_cost:
+                self.best_neighbor = self.neighbor
+                current_cost = cost
+
+        if self.best_neighbor is None:
+            self.inst.set_sol(self.incumbent_sol)
+        else:
+            self.inst.set_sol(self.best_neighbor)
+
+        assert self.inst.check_sol_coverage()
+
+        _, cost = self.solver.redundancy_elimination()
+        self.incumbent_sol = self.inst.get_sol()
+        assert self.inst.check_sol_coverage()
+        return current_cost
+
+    def run(self):
+
+        move = self.random_swap
+
+        start_time = perf_counter()
+
+        for i in range(self.max_iter):
+            cost = self.search_neighbors(move=move)
+            self.logger.info(f"Step {i}: cost -> {cost}")
+
+        self.improvement_step_elapsed_time = perf_counter() - start_time
         assert self.inst.check_sol_coverage()
         self.inst.set_state(State.IMPROVED)
 
-        return np.asarray(self.inst.get_sol()), self.inst.get_sol_cost()
+        return self.inst.get_sol(), self.inst.get_sol_cost()
 
     def get_elapsed_times(self):
         elapsed_times = {
-            "improvement-heuristic": self.improvement_heuristic_elapsed_time
+            "improvement-step": self.improvement_step_elapsed_time
         }
         return elapsed_times
 
+    def reset_neighbors(self):
+        self.neighbor = None
+        self.best_neighbor = None
+
 if __name__== "__main__":
     dl = DataLoader()
-    inst = dl.load_instance("42")
+    inst = dl.load_instance("d4")
 
     solver = PriorityGreedySolver(instance=inst)
     sol_greedy, cost_greedy = solver.greedy_heuristic()
@@ -137,7 +119,7 @@ if __name__== "__main__":
 
     print(improver.inst.get_state())
 
-    print(sol_greedy, cost_greedy)
-    print(p_sol_greedy, p_cost_greedy)
-    print(sol_improved, cost_improved)
+    print(len(sol_greedy), cost_greedy)
+    print(len(p_sol_greedy), p_cost_greedy)
+    print(len(sol_improved), cost_improved)
     print(improver.get_elapsed_times())

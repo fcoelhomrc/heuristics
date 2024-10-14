@@ -91,6 +91,9 @@ class GreedySolver:
 
         self._prune_solution_for_redundancy_elimination(candidates, sol)
 
+        if len(candidates) < 1:  # No suitable candidates found, exit.
+            return np.asarray(self.inst.get_sol()), self.inst.get_sol_cost()
+
         candidates_ranks = []
 
         self._rank_candidates_for_redundancy_elimination(candidates, candidates_ranks, mat, weights)

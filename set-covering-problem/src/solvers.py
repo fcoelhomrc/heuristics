@@ -1,5 +1,3 @@
-from logging import critical
-
 from utils import DataLoader, Instance, State
 import numpy as np
 import logging

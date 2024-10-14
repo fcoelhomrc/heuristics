@@ -8,6 +8,7 @@ class State(Enum):
     NOT_LOADED = 0
     LOADED = 1
     SOLVED = 2
+    IMPROVED = 3
 
 class Instance:
   
@@ -65,6 +66,9 @@ class Instance:
 
     def get_sol(self):
         return self.sol
+
+    def set_sol(self, sol: list):
+        self.sol = sol
 
     def get_mat(self):
         return self.mat

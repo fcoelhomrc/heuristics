@@ -1,0 +1,243 @@
+[2024-10-13 15:18:46,564][INFO] Step 1: size: 1, coverage: 9.67%, cost: 15.0
+[2024-10-13 15:18:46,575][INFO] Step 2: size: 2, coverage: 18.67%, cost: 55.0
+[2024-10-13 15:18:46,586][INFO] Step 3: size: 3, coverage: 27.33%, cost: 67.0
+[2024-10-13 15:18:46,597][INFO] Step 4: size: 4, coverage: 35.00%, cost: 123.0
+[2024-10-13 15:18:46,609][INFO] Step 5: size: 5, coverage: 42.00%, cost: 223.0
+[2024-10-13 15:18:46,620][INFO] Step 6: size: 6, coverage: 48.33%, cost: 283.0
+[2024-10-13 15:18:46,631][INFO] Step 7: size: 7, coverage: 54.00%, cost: 290.0
+[2024-10-13 15:18:46,641][INFO] Step 8: size: 8, coverage: 59.33%, cost: 332.0
+[2024-10-13 15:18:46,652][INFO] Step 9: size: 9, coverage: 64.33%, cost: 423.0
+[2024-10-13 15:18:46,663][INFO] Step 10: size: 10, coverage: 68.67%, cost: 489.0
+[2024-10-13 15:18:46,673][INFO] Step 11: size: 11, coverage: 72.67%, cost: 504.0
+[2024-10-13 15:18:46,683][INFO] Step 12: size: 12, coverage: 76.33%, cost: 506.0
+[2024-10-13 15:18:46,694][INFO] Step 13: size: 13, coverage: 79.67%, cost: 522.0
+[2024-10-13 15:18:46,706][INFO] Step 14: size: 14, coverage: 82.67%, cost: 530.0
+[2024-10-13 15:18:46,717][INFO] Step 15: size: 15, coverage: 85.33%, cost: 537.0
+[2024-10-13 15:18:46,728][INFO] Step 16: size: 16, coverage: 87.67%, cost: 539.0
+[2024-10-13 15:18:46,740][INFO] Step 17: size: 17, coverage: 90.00%, cost: 626.0
+[2024-10-13 15:18:46,752][INFO] Step 18: size: 18, coverage: 92.00%, cost: 633.0
+[2024-10-13 15:18:46,763][INFO] Step 19: size: 19, coverage: 94.00%, cost: 647.0
+[2024-10-13 15:18:46,773][INFO] Step 20: size: 20, coverage: 95.67%, cost: 732.0
+[2024-10-13 15:18:46,784][INFO] Step 21: size: 21, coverage: 97.00%, cost: 745.0
+[2024-10-13 15:18:46,796][INFO] Step 22: size: 22, coverage: 98.00%, cost: 747.0
+[2024-10-13 15:18:46,808][INFO] Step 23: size: 23, coverage: 99.00%, cost: 773.0
+[2024-10-13 15:18:46,819][INFO] Step 24: size: 24, coverage: 99.67%, cost: 774.0
+[2024-10-13 15:18:46,829][INFO] Step 25: size: 25, coverage: 100.00%, cost: 775.0
+[2024-10-13 15:18:46,830][INFO] Size: 25 -> 25
+[2024-10-13 15:18:46,830][INFO] Cost: 775.0 -> 775.0
+[2024-10-13 15:40:43,225][INFO] Step 1: size: 1, coverage: 6.33%, cost: 49.0
+[2024-10-13 15:40:43,241][INFO] Step 2: size: 2, coverage: 10.33%, cost: 99.0
+[2024-10-13 15:40:43,256][INFO] Step 3: size: 3, coverage: 13.33%, cost: 186.0
+[2024-10-13 15:40:43,272][INFO] Step 4: size: 4, coverage: 19.00%, cost: 228.0
+[2024-10-13 15:40:43,288][INFO] Step 5: size: 5, coverage: 24.33%, cost: 270.0
+[2024-10-13 15:40:43,304][INFO] Step 6: size: 6, coverage: 30.33%, cost: 341.0
+[2024-10-13 15:40:43,320][INFO] Step 7: size: 7, coverage: 33.00%, cost: 357.0
+[2024-10-13 15:40:43,336][INFO] Step 8: size: 8, coverage: 37.33%, cost: 368.0
+[2024-10-13 15:40:43,352][INFO] Step 9: size: 9, coverage: 41.33%, cost: 434.0
+[2024-10-13 15:40:43,369][INFO] Step 10: size: 10, coverage: 43.00%, cost: 513.0
+[2024-10-13 15:40:43,385][INFO] Step 11: size: 11, coverage: 47.00%, cost: 538.0
+[2024-10-13 15:40:43,402][INFO] Step 12: size: 12, coverage: 50.67%, cost: 540.0
+[2024-10-13 15:40:43,419][INFO] Step 13: size: 13, coverage: 53.00%, cost: 625.0
+[2024-10-13 15:40:43,435][INFO] Step 14: size: 14, coverage: 54.67%, cost: 659.0
+[2024-10-13 15:40:43,452][INFO] Step 15: size: 15, coverage: 56.33%, cost: 682.0
+[2024-10-13 15:40:43,469][INFO] Step 16: size: 16, coverage: 58.00%, cost: 707.0
+[2024-10-13 15:40:43,486][INFO] Step 17: size: 17, coverage: 61.00%, cost: 724.0
+[2024-10-13 15:40:43,503][INFO] Step 18: size: 18, coverage: 64.67%, cost: 813.0
+[2024-10-13 15:40:43,519][INFO] Step 19: size: 19, coverage: 67.00%, cost: 891.0
+[2024-10-13 15:40:43,535][INFO] Step 20: size: 20, coverage: 68.67%, cost: 965.0
+[2024-10-13 15:40:43,552][INFO] Step 21: size: 21, coverage: 71.00%, cost: 979.0
+[2024-10-13 15:40:43,568][INFO] Step 22: size: 22, coverage: 72.00%, cost: 1027.0
+[2024-10-13 15:40:43,584][INFO] Step 23: size: 23, coverage: 73.00%, cost: 1080.0
+[2024-10-13 15:40:43,600][INFO] Step 24: size: 24, coverage: 74.67%, cost: 1086.0
+[2024-10-13 15:40:43,616][INFO] Step 25: size: 25, coverage: 76.33%, cost: 1149.0
+[2024-10-13 15:40:43,632][INFO] Step 26: size: 26, coverage: 78.00%, cost: 1188.0
+[2024-10-13 15:40:43,648][INFO] Step 27: size: 27, coverage: 78.33%, cost: 1254.0
+[2024-10-13 15:40:43,664][INFO] Step 28: size: 28, coverage: 78.67%, cost: 1297.0
+[2024-10-13 15:40:43,680][INFO] Step 29: size: 29, coverage: 79.33%, cost: 1356.0
+[2024-10-13 15:40:43,697][INFO] Step 30: size: 30, coverage: 80.33%, cost: 1362.0
+[2024-10-13 15:40:43,713][INFO] Step 31: size: 31, coverage: 82.00%, cost: 1445.0
+[2024-10-13 15:40:43,730][INFO] Step 32: size: 32, coverage: 83.33%, cost: 1509.0
+[2024-10-13 15:40:43,746][INFO] Step 33: size: 33, coverage: 84.67%, cost: 1550.0
+[2024-10-13 15:40:43,763][INFO] Step 34: size: 34, coverage: 85.00%, cost: 1620.0
+[2024-10-13 15:40:43,779][INFO] Step 35: size: 35, coverage: 85.33%, cost: 1698.0
+[2024-10-13 15:40:43,795][INFO] Step 36: size: 36, coverage: 86.33%, cost: 1733.0
+[2024-10-13 15:40:43,812][INFO] Step 37: size: 37, coverage: 87.33%, cost: 1802.0
+[2024-10-13 15:40:43,828][INFO] Step 38: size: 38, coverage: 88.33%, cost: 1901.0
+[2024-10-13 15:40:43,845][INFO] Step 39: size: 39, coverage: 89.00%, cost: 1962.0
+[2024-10-13 15:40:43,861][INFO] Step 40: size: 40, coverage: 90.00%, cost: 1990.0
+[2024-10-13 15:40:43,878][INFO] Step 41: size: 41, coverage: 90.67%, cost: 2054.0
+[2024-10-13 15:40:43,896][INFO] Step 42: size: 42, coverage: 91.00%, cost: 2130.0
+[2024-10-13 15:40:43,912][INFO] Step 43: size: 43, coverage: 91.33%, cost: 2200.0
+[2024-10-13 15:40:43,929][INFO] Step 44: size: 44, coverage: 91.67%, cost: 2276.0
+[2024-10-13 15:40:43,946][INFO] Step 45: size: 45, coverage: 92.67%, cost: 2365.0
+[2024-10-13 15:40:43,962][INFO] Step 46: size: 46, coverage: 93.67%, cost: 2435.0
+[2024-10-13 15:40:43,979][INFO] Step 47: size: 47, coverage: 94.00%, cost: 2493.0
+[2024-10-13 15:40:43,996][INFO] Step 48: size: 48, coverage: 94.33%, cost: 2593.0
+[2024-10-13 15:40:44,013][INFO] Step 49: size: 49, coverage: 94.67%, cost: 2626.0
+[2024-10-13 15:40:44,030][INFO] Step 50: size: 50, coverage: 95.00%, cost: 2674.0
+[2024-10-13 15:40:44,047][INFO] Step 51: size: 51, coverage: 95.33%, cost: 2725.0
+[2024-10-13 15:40:44,064][INFO] Step 52: size: 52, coverage: 95.67%, cost: 2774.0
+[2024-10-13 15:40:44,082][INFO] Step 53: size: 53, coverage: 96.33%, cost: 2862.0
+[2024-10-13 15:40:44,099][INFO] Step 54: size: 54, coverage: 96.67%, cost: 2885.0
+[2024-10-13 15:40:44,116][INFO] Step 55: size: 55, coverage: 97.00%, cost: 2948.0
+[2024-10-13 15:40:44,133][INFO] Step 56: size: 56, coverage: 97.67%, cost: 3004.0
+[2024-10-13 15:40:44,150][INFO] Step 57: size: 57, coverage: 98.00%, cost: 3078.0
+[2024-10-13 15:40:44,168][INFO] Step 58: size: 58, coverage: 98.33%, cost: 3136.0
+[2024-10-13 15:40:44,185][INFO] Step 59: size: 59, coverage: 99.00%, cost: 3216.0
+[2024-10-13 15:40:44,202][INFO] Step 60: size: 60, coverage: 99.33%, cost: 3281.0
+[2024-10-13 15:40:44,221][INFO] Step 61: size: 61, coverage: 99.67%, cost: 3332.0
+[2024-10-13 15:40:44,239][INFO] Step 62: size: 62, coverage: 100.00%, cost: 3404.0
+[2024-10-13 15:40:44,239][INFO] Solved solution used 62 random steps
+[2024-10-13 15:40:44,239][INFO] Current randomization probability: 0.0
+[2024-10-13 15:40:44,239][INFO] Solved solution used 62 random steps
+[2024-10-13 15:40:44,241][INFO] Size: 62 -> 54
+[2024-10-13 15:40:44,241][INFO] Cost: 3404.0 -> 3015.0
+[2024-10-13 15:59:21,134][INFO] Step 1: size: 1, coverage: 3.67%, cost: 5.0, rand. prob: 0.9633333333333334
+[2024-10-13 15:59:21,149][INFO] Step 2: size: 2, coverage: 7.00%, cost: 63.0, rand. prob: 0.9299999999999999
+[2024-10-13 15:59:21,165][INFO] Step 3: size: 3, coverage: 11.67%, cost: 78.0, rand. prob: 0.8833333333333333
+[2024-10-13 15:59:21,181][INFO] Step 4: size: 4, coverage: 15.33%, cost: 153.0, rand. prob: 0.8466666666666667
+[2024-10-13 15:59:21,198][INFO] Step 5: size: 5, coverage: 19.33%, cost: 201.0, rand. prob: 0.8066666666666666
+[2024-10-13 15:59:21,215][INFO] Step 6: size: 6, coverage: 24.00%, cost: 267.0, rand. prob: 0.76
+[2024-10-13 15:59:21,231][INFO] Step 7: size: 7, coverage: 27.67%, cost: 297.0, rand. prob: 0.7233333333333334
+[2024-10-13 15:59:21,248][INFO] Step 8: size: 8, coverage: 33.67%, cost: 298.0, rand. prob: 0.6633333333333333
+[2024-10-13 15:59:21,265][INFO] Step 9: size: 9, coverage: 36.67%, cost: 303.0, rand. prob: 0.6333333333333333
+[2024-10-13 15:59:21,281][INFO] Step 10: size: 10, coverage: 41.00%, cost: 338.0, rand. prob: 0.5900000000000001
+[2024-10-13 15:59:21,298][INFO] Step 11: size: 11, coverage: 46.00%, cost: 339.0, rand. prob: 0.54
+[2024-10-13 15:59:21,314][INFO] Step 12: size: 12, coverage: 49.33%, cost: 342.0, rand. prob: 0.5066666666666666
+[2024-10-13 15:59:21,331][INFO] Step 13: size: 13, coverage: 53.33%, cost: 343.0, rand. prob: 0.4666666666666667
+[2024-10-13 15:59:21,347][INFO] Step 14: size: 14, coverage: 56.67%, cost: 371.0, rand. prob: 0.43333333333333335
+[2024-10-13 15:59:21,365][INFO] Step 15: size: 15, coverage: 59.67%, cost: 372.0, rand. prob: 0.4033333333333333
+[2024-10-13 15:59:21,381][INFO] Step 16: size: 16, coverage: 62.33%, cost: 373.0, rand. prob: 0.3766666666666667
+[2024-10-13 15:59:21,398][INFO] Step 17: size: 17, coverage: 64.33%, cost: 420.0, rand. prob: 0.3566666666666667
+[2024-10-13 15:59:21,414][INFO] Step 18: size: 18, coverage: 66.00%, cost: 433.0, rand. prob: 0.33999999999999997
+[2024-10-13 15:59:21,430][INFO] Step 19: size: 19, coverage: 68.33%, cost: 434.0, rand. prob: 0.31666666666666665
+[2024-10-13 15:59:21,447][INFO] Step 20: size: 20, coverage: 70.33%, cost: 435.0, rand. prob: 0.29666666666666663
+[2024-10-13 15:59:21,464][INFO] Step 21: size: 21, coverage: 72.00%, cost: 436.0, rand. prob: 0.28
+[2024-10-13 15:59:21,480][INFO] Step 22: size: 22, coverage: 73.67%, cost: 437.0, rand. prob: 0.2633333333333333
+[2024-10-13 15:59:21,496][INFO] Step 23: size: 23, coverage: 74.00%, cost: 529.0, rand. prob: 0.26
+[2024-10-13 15:59:21,513][INFO] Step 24: size: 24, coverage: 75.67%, cost: 530.0, rand. prob: 0.2433333333333333
+[2024-10-13 15:59:21,530][INFO] Step 25: size: 25, coverage: 77.33%, cost: 531.0, rand. prob: 0.22666666666666668
+[2024-10-13 15:59:21,547][INFO] Step 26: size: 26, coverage: 79.00%, cost: 532.0, rand. prob: 0.20999999999999996
+[2024-10-13 15:59:21,563][INFO] Step 27: size: 27, coverage: 80.67%, cost: 589.0, rand. prob: 0.19333333333333336
+[2024-10-13 15:59:21,579][INFO] Step 28: size: 28, coverage: 82.00%, cost: 590.0, rand. prob: 0.18000000000000005
+[2024-10-13 15:59:21,595][INFO] Step 29: size: 29, coverage: 84.33%, cost: 592.0, rand. prob: 0.15666666666666662
+[2024-10-13 15:59:21,611][INFO] Step 30: size: 30, coverage: 85.33%, cost: 593.0, rand. prob: 0.1466666666666666
+[2024-10-13 15:59:21,627][INFO] Step 31: size: 31, coverage: 86.33%, cost: 594.0, rand. prob: 0.13666666666666671
+[2024-10-13 15:59:21,643][INFO] Step 32: size: 32, coverage: 87.00%, cost: 595.0, rand. prob: 0.13
+[2024-10-13 15:59:21,659][INFO] Step 33: size: 33, coverage: 88.00%, cost: 612.0, rand. prob: 0.12
+[2024-10-13 15:59:21,676][INFO] Step 34: size: 34, coverage: 88.67%, cost: 613.0, rand. prob: 0.11333333333333329
+[2024-10-13 15:59:21,691][INFO] Step 35: size: 35, coverage: 90.00%, cost: 615.0, rand. prob: 0.09999999999999998
+[2024-10-13 15:59:21,707][INFO] Step 36: size: 36, coverage: 91.33%, cost: 617.0, rand. prob: 0.08666666666666667
+[2024-10-13 15:59:21,723][INFO] Step 37: size: 37, coverage: 92.33%, cost: 619.0, rand. prob: 0.07666666666666666
+[2024-10-13 15:59:21,739][INFO] Step 38: size: 38, coverage: 93.33%, cost: 621.0, rand. prob: 0.06666666666666665
+[2024-10-13 15:59:21,754][INFO] Step 39: size: 39, coverage: 94.33%, cost: 623.0, rand. prob: 0.05666666666666664
+[2024-10-13 15:59:21,770][INFO] Step 40: size: 40, coverage: 95.67%, cost: 626.0, rand. prob: 0.043333333333333335
+[2024-10-13 15:59:21,786][INFO] Step 41: size: 41, coverage: 96.00%, cost: 627.0, rand. prob: 0.040000000000000036
+[2024-10-13 15:59:21,801][INFO] Step 42: size: 42, coverage: 96.33%, cost: 628.0, rand. prob: 0.036666666666666625
+[2024-10-13 15:59:21,817][INFO] Step 43: size: 43, coverage: 96.67%, cost: 629.0, rand. prob: 0.033333333333333326
+[2024-10-13 15:59:21,833][INFO] Step 44: size: 44, coverage: 97.67%, cost: 632.0, rand. prob: 0.023333333333333317
+[2024-10-13 15:59:21,849][INFO] Step 45: size: 45, coverage: 98.00%, cost: 634.0, rand. prob: 0.020000000000000018
+[2024-10-13 15:59:21,865][INFO] Step 46: size: 46, coverage: 98.33%, cost: 636.0, rand. prob: 0.01666666666666672
+[2024-10-13 15:59:21,880][INFO] Step 47: size: 47, coverage: 98.67%, cost: 638.0, rand. prob: 0.013333333333333308
+[2024-10-13 15:59:21,896][INFO] Step 48: size: 48, coverage: 99.00%, cost: 640.0, rand. prob: 0.010000000000000009
+[2024-10-13 15:59:21,912][INFO] Step 49: size: 49, coverage: 99.33%, cost: 642.0, rand. prob: 0.00666666666666671
+[2024-10-13 15:59:21,928][INFO] Step 50: size: 50, coverage: 99.67%, cost: 645.0, rand. prob: 0.0033333333333332993
+[2024-10-13 15:59:21,944][INFO] Step 51: size: 51, coverage: 100.00%, cost: 649.0, rand. prob: 0.0
+[2024-10-13 15:59:21,945][INFO] Size: 51 -> 50
+[2024-10-13 15:59:21,945][INFO] Cost: 649.0 -> 601.0
+[2024-10-13 16:05:19,592][INFO] Step 1: size: 1, coverage: 5.33%, cost: 59.0, rand. prob: 0.9466666666666667
+[2024-10-13 16:05:19,608][INFO] Step 2: size: 2, coverage: 10.00%, cost: 84.0, rand. prob: 0.9
+[2024-10-13 16:05:19,624][INFO] Step 3: size: 3, coverage: 13.67%, cost: 180.0, rand. prob: 0.8633333333333333
+[2024-10-13 16:05:19,640][INFO] Step 4: size: 4, coverage: 17.00%, cost: 228.0, rand. prob: 0.83
+[2024-10-13 16:05:19,656][INFO] Step 5: size: 5, coverage: 22.33%, cost: 267.0, rand. prob: 0.7766666666666666
+[2024-10-13 16:05:19,672][INFO] Step 6: size: 6, coverage: 27.33%, cost: 301.0, rand. prob: 0.7266666666666667
+[2024-10-13 16:05:19,689][INFO] Step 7: size: 7, coverage: 32.67%, cost: 373.0, rand. prob: 0.6733333333333333
+[2024-10-13 16:05:19,705][INFO] Step 8: size: 8, coverage: 38.33%, cost: 374.0, rand. prob: 0.6166666666666667
+[2024-10-13 16:05:19,722][INFO] Step 9: size: 9, coverage: 43.33%, cost: 375.0, rand. prob: 0.5666666666666667
+[2024-10-13 16:05:19,739][INFO] Step 10: size: 10, coverage: 47.67%, cost: 376.0, rand. prob: 0.5233333333333333
+[2024-10-13 16:05:19,755][INFO] Step 11: size: 11, coverage: 49.33%, cost: 404.0, rand. prob: 0.5066666666666666
+[2024-10-13 16:05:19,772][INFO] Step 12: size: 12, coverage: 53.33%, cost: 405.0, rand. prob: 0.4666666666666667
+[2024-10-13 16:05:19,789][INFO] Step 13: size: 13, coverage: 57.33%, cost: 406.0, rand. prob: 0.42666666666666664
+[2024-10-13 16:05:19,805][INFO] Step 14: size: 14, coverage: 60.33%, cost: 407.0, rand. prob: 0.3966666666666666
+[2024-10-13 16:05:19,821][INFO] Step 15: size: 15, coverage: 63.00%, cost: 408.0, rand. prob: 0.37
+[2024-10-13 16:05:19,837][INFO] Step 16: size: 16, coverage: 65.33%, cost: 409.0, rand. prob: 0.3466666666666667
+[2024-10-13 16:05:19,854][INFO] Step 17: size: 17, coverage: 67.67%, cost: 410.0, rand. prob: 0.32333333333333336
+[2024-10-13 16:05:19,870][INFO] Step 18: size: 18, coverage: 69.67%, cost: 411.0, rand. prob: 0.30333333333333334
+[2024-10-13 16:05:19,886][INFO] Step 19: size: 19, coverage: 71.67%, cost: 412.0, rand. prob: 0.2833333333333333
+[2024-10-13 16:05:19,902][INFO] Step 20: size: 20, coverage: 73.33%, cost: 413.0, rand. prob: 0.2666666666666667
+[2024-10-13 16:05:19,918][INFO] Step 21: size: 21, coverage: 76.67%, cost: 415.0, rand. prob: 0.23333333333333328
+[2024-10-13 16:05:19,934][INFO] Step 22: size: 22, coverage: 78.00%, cost: 416.0, rand. prob: 0.21999999999999997
+[2024-10-13 16:05:19,950][INFO] Step 23: size: 23, coverage: 79.33%, cost: 417.0, rand. prob: 0.20666666666666667
+[2024-10-13 16:05:19,966][INFO] Step 24: size: 24, coverage: 82.00%, cost: 419.0, rand. prob: 0.18000000000000005
+[2024-10-13 16:05:19,982][INFO] Step 25: size: 25, coverage: 84.33%, cost: 421.0, rand. prob: 0.15666666666666662
+[2024-10-13 16:05:19,998][INFO] Step 26: size: 26, coverage: 85.33%, cost: 422.0, rand. prob: 0.1466666666666666
+[2024-10-13 16:05:20,014][INFO] Step 27: size: 27, coverage: 86.33%, cost: 423.0, rand. prob: 0.13666666666666671
+[2024-10-13 16:05:20,029][INFO] Step 28: size: 28, coverage: 89.00%, cost: 426.0, rand. prob: 0.10999999999999999
+[2024-10-13 16:05:20,045][INFO] Step 29: size: 29, coverage: 89.67%, cost: 427.0, rand. prob: 0.10333333333333339
+[2024-10-13 16:05:20,061][INFO] Step 30: size: 30, coverage: 90.33%, cost: 428.0, rand. prob: 0.09666666666666668
+[2024-10-13 16:05:20,076][INFO] Step 31: size: 31, coverage: 91.33%, cost: 430.0, rand. prob: 0.08666666666666667
+[2024-10-13 16:05:20,092][INFO] Step 32: size: 32, coverage: 92.33%, cost: 432.0, rand. prob: 0.07666666666666666
+[2024-10-13 16:05:20,108][INFO] Step 33: size: 33, coverage: 93.33%, cost: 434.0, rand. prob: 0.06666666666666665
+[2024-10-13 16:05:20,123][INFO] Step 34: size: 34, coverage: 94.33%, cost: 436.0, rand. prob: 0.05666666666666664
+[2024-10-13 16:05:20,139][INFO] Step 35: size: 35, coverage: 95.33%, cost: 438.0, rand. prob: 0.046666666666666634
+[2024-10-13 16:05:20,154][INFO] Step 36: size: 36, coverage: 95.67%, cost: 439.0, rand. prob: 0.043333333333333335
+[2024-10-13 16:05:20,170][INFO] Step 37: size: 37, coverage: 96.00%, cost: 440.0, rand. prob: 0.040000000000000036
+[2024-10-13 16:05:20,186][INFO] Step 38: size: 38, coverage: 96.33%, cost: 441.0, rand. prob: 0.036666666666666625
+[2024-10-13 16:05:20,201][INFO] Step 39: size: 39, coverage: 97.00%, cost: 443.0, rand. prob: 0.030000000000000027
+[2024-10-13 16:05:20,217][INFO] Step 40: size: 40, coverage: 97.67%, cost: 446.0, rand. prob: 0.023333333333333317
+[2024-10-13 16:05:20,233][INFO] Step 41: size: 41, coverage: 98.00%, cost: 448.0, rand. prob: 0.020000000000000018
+[2024-10-13 16:05:20,249][INFO] Step 42: size: 42, coverage: 98.33%, cost: 450.0, rand. prob: 0.01666666666666672
+[2024-10-13 16:05:20,265][INFO] Step 43: size: 43, coverage: 98.67%, cost: 452.0, rand. prob: 0.013333333333333308
+[2024-10-13 16:05:20,280][INFO] Step 44: size: 44, coverage: 99.00%, cost: 454.0, rand. prob: 0.010000000000000009
+[2024-10-13 16:05:20,296][INFO] Step 45: size: 45, coverage: 99.67%, cost: 459.0, rand. prob: 0.0033333333333332993
+[2024-10-13 16:05:20,312][INFO] Step 46: size: 46, coverage: 100.00%, cost: 462.0, rand. prob: 0.0
+[2024-10-13 16:05:20,313][INFO] Size: 46 -> 44
+[2024-10-13 16:05:20,313][INFO] Cost: 462.0 -> 460.0
+[2024-10-13 16:10:49,982][INFO] Step 1: size: 1, coverage: 5.33%, cost: 59.0, rand. prob: 0.9466666666666667
+[2024-10-13 16:10:49,998][INFO] Step 2: size: 2, coverage: 10.00%, cost: 84.0, rand. prob: 0.9
+[2024-10-13 16:10:50,013][INFO] Step 3: size: 3, coverage: 13.67%, cost: 180.0, rand. prob: 0.8633333333333333
+[2024-10-13 16:10:50,029][INFO] Step 4: size: 4, coverage: 17.00%, cost: 228.0, rand. prob: 0.83
+[2024-10-13 16:10:50,044][INFO] Step 5: size: 5, coverage: 22.33%, cost: 267.0, rand. prob: 0.7766666666666666
+[2024-10-13 16:10:50,060][INFO] Step 6: size: 6, coverage: 27.33%, cost: 301.0, rand. prob: 0.7266666666666667
+[2024-10-13 16:10:50,076][INFO] Step 7: size: 7, coverage: 32.67%, cost: 373.0, rand. prob: 0.6733333333333333
+[2024-10-13 16:10:50,092][INFO] Step 8: size: 8, coverage: 38.33%, cost: 374.0, rand. prob: 0.6166666666666667
+[2024-10-13 16:10:50,108][INFO] Step 9: size: 9, coverage: 43.33%, cost: 375.0, rand. prob: 0.5666666666666667
+[2024-10-13 16:10:50,124][INFO] Step 10: size: 10, coverage: 47.67%, cost: 376.0, rand. prob: 0.5233333333333333
+[2024-10-13 16:10:50,140][INFO] Step 11: size: 11, coverage: 49.33%, cost: 404.0, rand. prob: 0.5066666666666666
+[2024-10-13 16:10:50,156][INFO] Step 12: size: 12, coverage: 53.33%, cost: 405.0, rand. prob: 0.4666666666666667
+[2024-10-13 16:10:50,172][INFO] Step 13: size: 13, coverage: 57.33%, cost: 406.0, rand. prob: 0.42666666666666664
+[2024-10-13 16:10:50,188][INFO] Step 14: size: 14, coverage: 60.33%, cost: 407.0, rand. prob: 0.3966666666666666
+[2024-10-13 16:10:50,204][INFO] Step 15: size: 15, coverage: 63.00%, cost: 408.0, rand. prob: 0.37
+[2024-10-13 16:10:50,220][INFO] Step 16: size: 16, coverage: 65.33%, cost: 409.0, rand. prob: 0.3466666666666667
+[2024-10-13 16:10:50,235][INFO] Step 17: size: 17, coverage: 67.67%, cost: 410.0, rand. prob: 0.32333333333333336
+[2024-10-13 16:10:50,251][INFO] Step 18: size: 18, coverage: 69.67%, cost: 411.0, rand. prob: 0.30333333333333334
+[2024-10-13 16:10:50,266][INFO] Step 19: size: 19, coverage: 71.67%, cost: 412.0, rand. prob: 0.2833333333333333
+[2024-10-13 16:10:50,282][INFO] Step 20: size: 20, coverage: 73.33%, cost: 413.0, rand. prob: 0.2666666666666667
+[2024-10-13 16:10:50,298][INFO] Step 21: size: 21, coverage: 76.67%, cost: 415.0, rand. prob: 0.23333333333333328
+[2024-10-13 16:10:50,313][INFO] Step 22: size: 22, coverage: 78.00%, cost: 416.0, rand. prob: 0.21999999999999997
+[2024-10-13 16:10:50,329][INFO] Step 23: size: 23, coverage: 79.33%, cost: 417.0, rand. prob: 0.20666666666666667
+[2024-10-13 16:10:50,344][INFO] Step 24: size: 24, coverage: 82.00%, cost: 419.0, rand. prob: 0.18000000000000005
+[2024-10-13 16:10:50,359][INFO] Step 25: size: 25, coverage: 84.33%, cost: 421.0, rand. prob: 0.15666666666666662
+[2024-10-13 16:10:50,375][INFO] Step 26: size: 26, coverage: 85.33%, cost: 422.0, rand. prob: 0.1466666666666666
+[2024-10-13 16:10:50,390][INFO] Step 27: size: 27, coverage: 86.33%, cost: 423.0, rand. prob: 0.13666666666666671
+[2024-10-13 16:10:50,405][INFO] Step 28: size: 28, coverage: 89.00%, cost: 426.0, rand. prob: 0.10999999999999999
+[2024-10-13 16:10:50,420][INFO] Step 29: size: 29, coverage: 89.67%, cost: 427.0, rand. prob: 0.10333333333333339
+[2024-10-13 16:10:50,436][INFO] Step 30: size: 30, coverage: 90.33%, cost: 428.0, rand. prob: 0.09666666666666668
+[2024-10-13 16:10:50,451][INFO] Step 31: size: 31, coverage: 91.33%, cost: 430.0, rand. prob: 0.08666666666666667
+[2024-10-13 16:10:50,466][INFO] Step 32: size: 32, coverage: 92.33%, cost: 432.0, rand. prob: 0.07666666666666666
+[2024-10-13 16:10:50,481][INFO] Step 33: size: 33, coverage: 93.33%, cost: 434.0, rand. prob: 0.06666666666666665
+[2024-10-13 16:10:50,496][INFO] Step 34: size: 34, coverage: 94.33%, cost: 436.0, rand. prob: 0.05666666666666664
+[2024-10-13 16:10:50,511][INFO] Step 35: size: 35, coverage: 95.33%, cost: 438.0, rand. prob: 0.046666666666666634
+[2024-10-13 16:10:50,526][INFO] Step 36: size: 36, coverage: 95.67%, cost: 439.0, rand. prob: 0.043333333333333335
+[2024-10-13 16:10:50,541][INFO] Step 37: size: 37, coverage: 96.00%, cost: 440.0, rand. prob: 0.040000000000000036
+[2024-10-13 16:10:50,557][INFO] Step 38: size: 38, coverage: 96.33%, cost: 441.0, rand. prob: 0.036666666666666625
+[2024-10-13 16:10:50,572][INFO] Step 39: size: 39, coverage: 97.00%, cost: 443.0, rand. prob: 0.030000000000000027
+[2024-10-13 16:10:50,587][INFO] Step 40: size: 40, coverage: 97.67%, cost: 446.0, rand. prob: 0.023333333333333317
+[2024-10-13 16:10:50,603][INFO] Step 41: size: 41, coverage: 98.00%, cost: 448.0, rand. prob: 0.020000000000000018
+[2024-10-13 16:10:50,618][INFO] Step 42: size: 42, coverage: 98.33%, cost: 450.0, rand. prob: 0.01666666666666672
+[2024-10-13 16:10:50,633][INFO] Step 43: size: 43, coverage: 98.67%, cost: 452.0, rand. prob: 0.013333333333333308
+[2024-10-13 16:10:50,649][INFO] Step 44: size: 44, coverage: 99.00%, cost: 454.0, rand. prob: 0.010000000000000009
+[2024-10-13 16:10:50,664][INFO] Step 45: size: 45, coverage: 99.67%, cost: 459.0, rand. prob: 0.0033333333333332993
+[2024-10-13 16:10:50,680][INFO] Step 46: size: 46, coverage: 100.00%, cost: 462.0, rand. prob: 0.0
+[2024-10-13 16:10:50,681][INFO] Size: 46 -> 44
+[2024-10-13 16:10:50,681][INFO] Cost: 462.0 -> 460.0

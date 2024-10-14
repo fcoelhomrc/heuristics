@@ -18,7 +18,7 @@ class Instance:
         self.n_rows = n_rows  # rows = elements
         self.total_covered_by = []  # how many subsets cover each row
         self.covered_by = []  # which subsets cover each row
-        
+
         self.weights = np.zeros(self.n_cols)  # costs
         self.mat = np.zeros((self.n_rows, self.n_cols), dtype=bool)  # boolean array representation
 
@@ -80,6 +80,9 @@ class Instance:
 
     def get_state(self):
         return self.state
+
+    def get_total_covered_by(self):
+        return self.total_covered_by
 
 class DataLoader:
     DATA_DIR = "../data"

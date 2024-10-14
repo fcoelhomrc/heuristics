@@ -2,6 +2,7 @@ from utils import DataLoader, Instance, State
 from solvers import *
 import pandas as pd
 import os
+from tqdm import tqdm
 
 OUTPUT_DIR = "../output"
 
@@ -22,95 +23,57 @@ best_known_solutions =  [512, 516, 494, 512, 560, 430, 492, 5441, 253, 302, 226,
 results["instance"].extend(available_inst)
 results[f"optimal-cost"] = best_known_solutions
 
-heuristic = "greedy"
-results[f"{heuristic}-cost"] = []
-results[f"{heuristic}-cost-re"] = []
-
-results[f"{heuristic}-error"] = []
-results[f"{heuristic}-error-re"] = []
-
-results[f"{heuristic}-re-improves"] = []
-
-if not os.path.exists(path := os.path.join(OUTPUT_DIR, heuristic)):
-    os.mkdir(path)
-for inst_name, cost_best in zip(available_inst, best_known_solutions):
-    inst = dl.load_instance(inst_name)
-
-    solver = GreedySolver(instance=inst)
-    log_path = os.path.join(OUTPUT_DIR, heuristic, f"{inst_name}.log")
-    solver.configure_logger(path=log_path)
-    sol, cost = solver.greedy_heuristic()
-    sol_RE, cost_RE = solver.clean_redundant()
-
-    results[f"{heuristic}-cost"].append(cost)
-    results[f"{heuristic}-error"].append((cost - cost_best)/cost_best)
-    results[f"{heuristic}-cost-re"].append(cost_RE)
-    results[f"{heuristic}-error-re"].append((cost_RE - cost_best) / cost_best)
-    results[f"{heuristic}-re-improves"].append(cost_RE < cost)
+heuristics = {
+    "better-greedy": BetterGreedySolver,
+    "random-greedy": RandomGreedySolver,
+    "better-random-greedy": BetterRandomGreedySolver
+}
 
 
-heuristic = "better-greedy"
-results[f"{heuristic}-cost"] = []
-results[f"{heuristic}-cost-re"] = []
+for heuristic_name, heuristic in tqdm(heuristics.items()):
+    results[f"{heuristic_name}-cost"] = []
+    results[f"{heuristic_name}-cost-re"] = []
 
-results[f"{heuristic}-error"] = []
-results[f"{heuristic}-error-re"] = []
+    results[f"{heuristic_name}-error"] = []
+    results[f"{heuristic_name}-error-re"] = []
 
-results[f"{heuristic}-re-improves"] = []
+    results[f"{heuristic_name}-re-improves"] = []
 
-if not os.path.exists(path := os.path.join(OUTPUT_DIR, heuristic)):
-    os.mkdir(path)
-for inst_name, cost_best in zip(available_inst, best_known_solutions):
-    inst = dl.load_instance(inst_name)
+    if not os.path.exists(path := os.path.join(OUTPUT_DIR, heuristic_name)):
+        os.mkdir(path)
 
-    solver = BetterGreedySolver(instance=inst)
-    log_path = os.path.join(OUTPUT_DIR, heuristic, f"{inst_name}.log")
-    solver.configure_logger(path=log_path)
-    sol, cost = solver.greedy_heuristic()
-    sol_RE, cost_RE = solver.clean_redundant()
+    for inst_name, cost_best in zip(available_inst, best_known_solutions):
+        inst = dl.load_instance(inst_name)
 
-    results[f"{heuristic}-cost"].append(cost)
-    results[f"{heuristic}-error"].append((cost - cost_best)/cost_best)
-    results[f"{heuristic}-cost-re"].append(cost_RE)
-    results[f"{heuristic}-error-re"].append((cost_RE - cost_best) / cost_best)
-    results[f"{heuristic}-re-improves"].append(cost_RE < cost)
+        solver = heuristic(instance=inst)
+        log_path = os.path.join(OUTPUT_DIR, heuristic_name, f"{inst_name}.log")
+        solver.configure_logger(path=log_path)
+        sol, cost = solver.greedy_heuristic()
+        sol_RE, cost_RE = solver.redundancy_elimination()
 
-heuristic = "random-greedy"
-results[f"{heuristic}-cost"] = []
-results[f"{heuristic}-cost-re"] = []
+        results[f"{heuristic_name}-cost"].append(cost)
+        results[f"{heuristic_name}-error"].append(np.abs(cost - cost_best)/cost_best)
+        results[f"{heuristic_name}-cost-re"].append(cost_RE)
+        results[f"{heuristic_name}-error-re"].append(np.abs(cost_RE - cost_best) / cost_best)
+        results[f"{heuristic_name}-re-improves"].append(cost_RE < cost)
 
-results[f"{heuristic}-error"] = []
-results[f"{heuristic}-error-re"] = []
-
-results[f"{heuristic}-re-improves"] = []
-
-if not os.path.exists(path := os.path.join(OUTPUT_DIR, heuristic)):
-    os.mkdir(path)
-for inst_name, cost_best in zip(available_inst, best_known_solutions):
-    inst = dl.load_instance(inst_name)
-
-    solver = RandomGreedySolver(instance=inst)
-    log_path = os.path.join(OUTPUT_DIR, heuristic, f"{inst_name}.log")
-    solver.configure_logger(path=log_path)
-    sol, cost = solver.greedy_heuristic()
-    sol_RE, cost_RE = solver.clean_redundant()
-
-    results[f"{heuristic}-cost"].append(cost)
-    results[f"{heuristic}-error"].append((cost - cost_best)/cost_best)
-    results[f"{heuristic}-cost-re"].append(cost_RE)
-    results[f"{heuristic}-error-re"].append((cost_RE - cost_best) / cost_best)
-    results[f"{heuristic}-re-improves"].append(cost_RE < cost)
 
 results_df = pd.DataFrame.from_dict(
     results
 )
 
+for heuristic in heuristics:
+    col = f"{heuristic}-error"
+    print(f"{col}: {results_df[col].mean()} +- {2*results_df[col].std()} [{results_df[col].min()}, {results_df[col].max()}]")
+
+    col = f"{heuristic}-error-re"
+    print(f"{col}: {results_df[col].mean()} +- {2*results_df[col].std()} [{results_df[col].min()}, {results_df[col].max()}]")
+
+
 results_df.to_csv(
     os.path.join(OUTPUT_DIR, "results.csv")
 )
 
-for col in results_df.columns:
-    if "improves" in str(col):
-        print(col, results_df[col].sum())
+
 
 # print(results_df)

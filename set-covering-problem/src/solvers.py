@@ -1,6 +1,7 @@
 from utils import DataLoader, Instance, State
 import numpy as np
 import logging
+from time import perf_counter
 
 
 class GreedySolver:
@@ -8,6 +9,9 @@ class GreedySolver:
     def __init__(self, instance: Instance, logger: logging.Logger = None):
         self.inst = instance
         self.logger = logger if logger else logging.getLogger()
+
+        self.constructive_step_elapsed_time = None
+        self.redundancy_elimination_elapsed_time = None
 
     def compute_greedy_score(self):
         coverage = self.inst.get_coverage_per_element()
@@ -40,6 +44,7 @@ class GreedySolver:
         total_iter = 0
         iter_coverage = None
         iter_cost = None
+        start_time = perf_counter()
 
         while not self.inst.check_sol_coverage():
             best_candidate = self.greedy_step()
@@ -54,6 +59,7 @@ class GreedySolver:
                              f"cost: {iter_cost}")
 
         self.inst.set_state(State.SOLVED)
+        self.constructive_step_elapsed_time = perf_counter() - start_time
         return np.asarray(self.inst.get_sol()), self.inst.get_sol_cost()
 
     def configure_logger(self, path):
@@ -73,6 +79,9 @@ class GreedySolver:
     def redundancy_elimination(self):
         if not self.inst.get_state() == State.SOLVED:
             return
+
+        start_time = perf_counter()
+
         sol = self.inst.get_sol()
         size = len(sol)
         cost = self.inst.get_sol_cost()
@@ -90,8 +99,15 @@ class GreedySolver:
         pruned_cost = self.inst.get_sol_cost()
         self.logger.info(f"Size: {size} -> {pruned_size}")
         self.logger.info(f"Cost: {cost} -> {pruned_cost}")
+        self.redundancy_elimination_elapsed_time = perf_counter() - start_time
         return np.asarray(pruned_sol), pruned_cost
 
+    def get_elapsed_times(self):
+        elapsed_times = {
+            "constructive-step": self.constructive_step_elapsed_time,
+            "redundancy-elimination": self.redundancy_elimination_elapsed_time
+        }
+        return elapsed_times
 
 class RandomGreedySolver(GreedySolver):
 
@@ -131,33 +147,27 @@ class PriorityGreedySolver(GreedySolver):
     def __init__(self, instance: Instance, logger: logging.Logger = None):
         super().__init__(instance, logger)
 
-        self.priority_threshold = 2
+        self.priority_threshold = 5
 
     def check_priority_usage(self):
-        element_frequency = np.array(self.inst.get_total_covered_by())
-        element_frequency = np.delete(element_frequency, self.inst.get_sol())
+        mat = self.inst.get_mat()
+        candidate_cols = np.delete(mat, self.inst.get_sol(), axis=1)
+        element_frequency = candidate_cols.sum(axis=1)
         use_priority = element_frequency.std() < self.priority_threshold
         self.logger.info(f"Priority check: {element_frequency.std()} -> "
                          f"{use_priority} (Threshold: {self.priority_threshold})")
         return use_priority
 
     def compute_greedy_score(self):
-
         greedy_score = super().compute_greedy_score()
         if self.check_priority_usage():
-
-            sol = self.inst.get_sol()
             mat = self.inst.get_mat()
             n_cols = self.inst.get_cols()
             priority_score = np.zeros(n_cols)
             for i in range(n_cols):
-                if i in sol:
-                    continue
-                else:
-                    element_frequency = np.array(self.inst.get_total_covered_by())
-                    priority_score[i] = element_frequency[mat[:, i]].sum() / element_frequency.sum()
-            eps = 1e-6
-            priority_score = 1 / (priority_score + eps)
+                element_frequency = np.array(self.inst.get_total_covered_by())
+                priority_score[i] = element_frequency[mat[:, i]].sum() / element_frequency.sum()
+            priority_score = - np.log(priority_score)
             self.logger.info(f"Priority score: {priority_score}")
             return priority_score * greedy_score
         else:
@@ -165,17 +175,7 @@ class PriorityGreedySolver(GreedySolver):
 
 if __name__== "__main__":
     dl = DataLoader()
-    inst = dl.load_instance("d1")
-    print(inst.n_rows, inst.n_cols)
-    print(len(inst.weights))
-    print(len(inst.total_covered_by))
-    print(len(inst.covered_by))
-    print(inst.mat.shape)
-
-    inst.sol = [0, 1, 2]
-    print(inst.get_coverage_percent())
-    print(inst.check_sol_coverage())
-    print(inst.get_sol_cost())
+    inst = dl.load_instance("42")
 
     # solver = GreedySolver(instance=inst)
     # sol_greedy, cost_greedy = solver.greedy_heuristic()

@@ -24,9 +24,9 @@ results["instance"].extend(available_inst)
 results[f"optimal-cost"] = best_known_solutions
 
 heuristics = {
-    "better-greedy": BetterGreedySolver,
+    "greedy": GreedySolver,
     "random-greedy": RandomGreedySolver,
-    "better-random-greedy": BetterRandomGreedySolver
+    "priority-greedy": PriorityGreedySolver
 }
 
 
@@ -38,6 +38,9 @@ for heuristic_name, heuristic in tqdm(heuristics.items()):
     results[f"{heuristic_name}-error-re"] = []
 
     results[f"{heuristic_name}-re-improves"] = []
+
+    for step, runtime in heuristic(Instance(1, 1)).get_elapsed_times().items():
+        results[f"{heuristic_name}-{step}-runtime"] = []
 
     if not os.path.exists(path := os.path.join(OUTPUT_DIR, heuristic_name)):
         os.mkdir(path)
@@ -57,6 +60,8 @@ for heuristic_name, heuristic in tqdm(heuristics.items()):
         results[f"{heuristic_name}-error-re"].append(np.abs(cost_RE - cost_best) / cost_best)
         results[f"{heuristic_name}-re-improves"].append(cost_RE < cost)
 
+        for step, runtime in solver.get_elapsed_times().items():
+            results[f"{heuristic_name}-{step}-runtime"].append(runtime)
 
 results_df = pd.DataFrame.from_dict(
     results

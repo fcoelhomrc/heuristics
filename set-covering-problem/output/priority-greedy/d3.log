@@ -1,0 +1,106 @@
+[2024-10-14 10:53:31,880][INFO] Priority check: 13.649045525237288 -> False (Threshold: 5)
+[2024-10-14 10:53:31,880][INFO] Step 1: size: 1, coverage: 7.50%, cost: 1.0
+[2024-10-14 10:53:31,896][INFO] Priority check: 13.651261617520925 -> False (Threshold: 5)
+[2024-10-14 10:53:31,896][INFO] Step 2: size: 2, coverage: 14.00%, cost: 2.0
+[2024-10-14 10:53:31,913][INFO] Priority check: 13.64014639767477 -> False (Threshold: 5)
+[2024-10-14 10:53:31,913][INFO] Step 3: size: 3, coverage: 19.75%, cost: 3.0
+[2024-10-14 10:53:31,930][INFO] Priority check: 13.651299388702894 -> False (Threshold: 5)
+[2024-10-14 10:53:31,930][INFO] Step 4: size: 4, coverage: 25.00%, cost: 4.0
+[2024-10-14 10:53:31,947][INFO] Priority check: 13.633862026219864 -> False (Threshold: 5)
+[2024-10-14 10:53:31,947][INFO] Step 5: size: 5, coverage: 30.25%, cost: 5.0
+[2024-10-14 10:53:31,963][INFO] Priority check: 13.64121603816903 -> False (Threshold: 5)
+[2024-10-14 10:53:31,963][INFO] Step 6: size: 6, coverage: 35.00%, cost: 6.0
+[2024-10-14 10:53:31,980][INFO] Priority check: 13.640983972939784 -> False (Threshold: 5)
+[2024-10-14 10:53:31,980][INFO] Step 7: size: 7, coverage: 39.25%, cost: 7.0
+[2024-10-14 10:53:31,996][INFO] Priority check: 13.63577555550105 -> False (Threshold: 5)
+[2024-10-14 10:53:31,996][INFO] Step 8: size: 8, coverage: 43.00%, cost: 8.0
+[2024-10-14 10:53:32,013][INFO] Priority check: 13.65884123013369 -> False (Threshold: 5)
+[2024-10-14 10:53:32,013][INFO] Step 9: size: 9, coverage: 46.50%, cost: 9.0
+[2024-10-14 10:53:32,029][INFO] Priority check: 13.650373392328872 -> False (Threshold: 5)
+[2024-10-14 10:53:32,029][INFO] Step 10: size: 10, coverage: 49.75%, cost: 10.0
+[2024-10-14 10:53:32,045][INFO] Priority check: 13.65148252022468 -> False (Threshold: 5)
+[2024-10-14 10:53:32,045][INFO] Step 11: size: 11, coverage: 52.75%, cost: 11.0
+[2024-10-14 10:53:32,062][INFO] Priority check: 13.646010176971142 -> False (Threshold: 5)
+[2024-10-14 10:53:32,062][INFO] Step 12: size: 12, coverage: 55.75%, cost: 12.0
+[2024-10-14 10:53:32,078][INFO] Priority check: 13.646639696276882 -> False (Threshold: 5)
+[2024-10-14 10:53:32,078][INFO] Step 13: size: 13, coverage: 58.50%, cost: 13.0
+[2024-10-14 10:53:32,094][INFO] Priority check: 13.640971143947194 -> False (Threshold: 5)
+[2024-10-14 10:53:32,094][INFO] Step 14: size: 14, coverage: 61.00%, cost: 14.0
+[2024-10-14 10:53:32,110][INFO] Priority check: 13.648094876208914 -> False (Threshold: 5)
+[2024-10-14 10:53:32,110][INFO] Step 15: size: 15, coverage: 63.25%, cost: 15.0
+[2024-10-14 10:53:32,126][INFO] Priority check: 13.652023430612767 -> False (Threshold: 5)
+[2024-10-14 10:53:32,126][INFO] Step 16: size: 16, coverage: 65.25%, cost: 16.0
+[2024-10-14 10:53:32,143][INFO] Priority check: 13.655950854847127 -> False (Threshold: 5)
+[2024-10-14 10:53:32,143][INFO] Step 17: size: 17, coverage: 67.00%, cost: 17.0
+[2024-10-14 10:53:32,159][INFO] Priority check: 13.644441175804893 -> False (Threshold: 5)
+[2024-10-14 10:53:32,159][INFO] Step 18: size: 18, coverage: 68.75%, cost: 18.0
+[2024-10-14 10:53:32,175][INFO] Priority check: 13.646513977935903 -> False (Threshold: 5)
+[2024-10-14 10:53:32,175][INFO] Step 19: size: 19, coverage: 70.50%, cost: 19.0
+[2024-10-14 10:53:32,190][INFO] Priority check: 13.64759113360303 -> False (Threshold: 5)
+[2024-10-14 10:53:32,191][INFO] Step 20: size: 20, coverage: 72.00%, cost: 20.0
+[2024-10-14 10:53:32,206][INFO] Priority check: 13.641736509696997 -> False (Threshold: 5)
+[2024-10-14 10:53:32,206][INFO] Step 21: size: 21, coverage: 73.50%, cost: 21.0
+[2024-10-14 10:53:32,222][INFO] Priority check: 13.639273257765606 -> False (Threshold: 5)
+[2024-10-14 10:53:32,222][INFO] Step 22: size: 22, coverage: 74.75%, cost: 22.0
+[2024-10-14 10:53:32,238][INFO] Priority check: 13.641330580262323 -> False (Threshold: 5)
+[2024-10-14 10:53:32,238][INFO] Step 23: size: 23, coverage: 76.00%, cost: 23.0
+[2024-10-14 10:53:32,254][INFO] Priority check: 13.618956457820108 -> False (Threshold: 5)
+[2024-10-14 10:53:32,254][INFO] Step 24: size: 24, coverage: 78.25%, cost: 25.0
+[2024-10-14 10:53:32,270][INFO] Priority check: 13.62559723461691 -> False (Threshold: 5)
+[2024-10-14 10:53:32,271][INFO] Step 25: size: 25, coverage: 79.25%, cost: 26.0
+[2024-10-14 10:53:32,287][INFO] Priority check: 13.61455448224436 -> False (Threshold: 5)
+[2024-10-14 10:53:32,287][INFO] Step 26: size: 26, coverage: 80.25%, cost: 27.0
+[2024-10-14 10:53:32,303][INFO] Priority check: 13.605329837971588 -> False (Threshold: 5)
+[2024-10-14 10:53:32,303][INFO] Step 27: size: 27, coverage: 82.25%, cost: 29.0
+[2024-10-14 10:53:32,319][INFO] Priority check: 13.597661563666012 -> False (Threshold: 5)
+[2024-10-14 10:53:32,319][INFO] Step 28: size: 28, coverage: 83.00%, cost: 30.0
+[2024-10-14 10:53:32,335][INFO] Priority check: 13.587935595593615 -> False (Threshold: 5)
+[2024-10-14 10:53:32,336][INFO] Step 29: size: 29, coverage: 83.75%, cost: 31.0
+[2024-10-14 10:53:32,352][INFO] Priority check: 13.596285338282659 -> False (Threshold: 5)
+[2024-10-14 10:53:32,352][INFO] Step 30: size: 30, coverage: 84.50%, cost: 32.0
+[2024-10-14 10:53:32,368][INFO] Priority check: 13.605609137410937 -> False (Threshold: 5)
+[2024-10-14 10:53:32,368][INFO] Step 31: size: 31, coverage: 85.25%, cost: 33.0
+[2024-10-14 10:53:32,385][INFO] Priority check: 13.613996474217261 -> False (Threshold: 5)
+[2024-10-14 10:53:32,385][INFO] Step 32: size: 32, coverage: 86.50%, cost: 35.0
+[2024-10-14 10:53:32,401][INFO] Priority check: 13.605531733453125 -> False (Threshold: 5)
+[2024-10-14 10:53:32,401][INFO] Step 33: size: 33, coverage: 87.75%, cost: 37.0
+[2024-10-14 10:53:32,418][INFO] Priority check: 13.614888679309868 -> False (Threshold: 5)
+[2024-10-14 10:53:32,418][INFO] Step 34: size: 34, coverage: 89.00%, cost: 39.0
+[2024-10-14 10:53:32,434][INFO] Priority check: 13.597242367480252 -> False (Threshold: 5)
+[2024-10-14 10:53:32,434][INFO] Step 35: size: 35, coverage: 89.50%, cost: 40.0
+[2024-10-14 10:53:32,451][INFO] Priority check: 13.60265576091669 -> False (Threshold: 5)
+[2024-10-14 10:53:32,451][INFO] Step 36: size: 36, coverage: 90.00%, cost: 41.0
+[2024-10-14 10:53:32,467][INFO] Priority check: 13.607714723641145 -> False (Threshold: 5)
+[2024-10-14 10:53:32,467][INFO] Step 37: size: 37, coverage: 91.00%, cost: 43.0
+[2024-10-14 10:53:32,484][INFO] Priority check: 13.595704974365985 -> False (Threshold: 5)
+[2024-10-14 10:53:32,484][INFO] Step 38: size: 38, coverage: 92.00%, cost: 45.0
+[2024-10-14 10:53:32,501][INFO] Priority check: 13.59328303795665 -> False (Threshold: 5)
+[2024-10-14 10:53:32,501][INFO] Step 39: size: 39, coverage: 92.75%, cost: 47.0
+[2024-10-14 10:53:32,518][INFO] Priority check: 13.60656436246858 -> False (Threshold: 5)
+[2024-10-14 10:53:32,518][INFO] Step 40: size: 40, coverage: 93.50%, cost: 49.0
+[2024-10-14 10:53:32,534][INFO] Priority check: 13.604855750797213 -> False (Threshold: 5)
+[2024-10-14 10:53:32,535][INFO] Step 41: size: 41, coverage: 94.50%, cost: 52.0
+[2024-10-14 10:53:32,551][INFO] Priority check: 13.582819801131134 -> False (Threshold: 5)
+[2024-10-14 10:53:32,551][INFO] Step 42: size: 42, coverage: 94.75%, cost: 53.0
+[2024-10-14 10:53:32,568][INFO] Priority check: 13.571757439624392 -> False (Threshold: 5)
+[2024-10-14 10:53:32,568][INFO] Step 43: size: 43, coverage: 95.25%, cost: 55.0
+[2024-10-14 10:53:32,585][INFO] Priority check: 13.571937730110612 -> False (Threshold: 5)
+[2024-10-14 10:53:32,585][INFO] Step 44: size: 44, coverage: 95.75%, cost: 57.0
+[2024-10-14 10:53:32,602][INFO] Priority check: 13.586761939476235 -> False (Threshold: 5)
+[2024-10-14 10:53:32,602][INFO] Step 45: size: 45, coverage: 96.25%, cost: 59.0
+[2024-10-14 10:53:32,620][INFO] Priority check: 13.585455457952081 -> False (Threshold: 5)
+[2024-10-14 10:53:32,620][INFO] Step 46: size: 46, coverage: 96.75%, cost: 61.0
+[2024-10-14 10:53:32,637][INFO] Priority check: 13.582230809038698 -> False (Threshold: 5)
+[2024-10-14 10:53:32,637][INFO] Step 47: size: 47, coverage: 97.50%, cost: 64.0
+[2024-10-14 10:53:32,654][INFO] Priority check: 13.583186067708857 -> False (Threshold: 5)
+[2024-10-14 10:53:32,654][INFO] Step 48: size: 48, coverage: 98.25%, cost: 69.0
+[2024-10-14 10:53:32,671][INFO] Priority check: 13.574101950037065 -> False (Threshold: 5)
+[2024-10-14 10:53:32,671][INFO] Step 49: size: 49, coverage: 99.00%, cost: 74.0
+[2024-10-14 10:53:32,689][INFO] Priority check: 13.583238752226952 -> False (Threshold: 5)
+[2024-10-14 10:53:32,689][INFO] Step 50: size: 50, coverage: 99.25%, cost: 76.0
+[2024-10-14 10:53:32,706][INFO] Priority check: 13.57749769839789 -> False (Threshold: 5)
+[2024-10-14 10:53:32,706][INFO] Step 51: size: 51, coverage: 99.50%, cost: 78.0
+[2024-10-14 10:53:32,724][INFO] Priority check: 13.580518905770868 -> False (Threshold: 5)
+[2024-10-14 10:53:32,724][INFO] Step 52: size: 52, coverage: 100.00%, cost: 83.0
+[2024-10-14 10:53:32,725][INFO] Size: 52 -> 52
+[2024-10-14 10:53:32,725][INFO] Cost: 83.0 -> 83.0

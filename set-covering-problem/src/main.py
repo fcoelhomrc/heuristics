@@ -77,7 +77,7 @@ for heuristic_name, heuristic in heuristics.items():
             for step, runtime in solver.get_elapsed_times().items():
                 results[f"{heuristic_name}-{step}-runtime"].append(runtime)
 
-            improver = BestNeighbor(heuristic=solver)
+            improver = improver(heuristic=solver)
             sol_improved, cost_improved = improver.run()
 
             results[f"{heuristic_name}-{improver_name}-cost"].append(cost_improved)

@@ -1,5 +1,6 @@
 from utils import DataLoader, Instance, State
 from solvers import *
+from improvement import *
 import pandas as pd
 import os
 from tqdm import tqdm
@@ -31,42 +32,61 @@ results[f"optimal-cost"] = best_known_solutions
 heuristics = {
     "greedy": GreedySolver,
     "random-greedy": RandomGreedySolver,
-    "priority-greedy": PriorityGreedySolver
+    "priority-greedy": PriorityGreedySolver,
+    "greedy-re": GreedySolver
 }
 
+improvers = {
+    "best-search": BestNeighbor,
+    "first-search": FirstNeighbor
+}
 
-for heuristic_name, heuristic in tqdm(heuristics.items()):
-    results[f"{heuristic_name}-cost"] = []
-    results[f"{heuristic_name}-cost-re"] = []
+pbar = tqdm(total=len(heuristics) * len(improvers))
+for heuristic_name, heuristic in heuristics.items():
+    for improver_name, improver in improvers.items():
+        results[f"{heuristic_name}-cost"] = []
+        results[f"{heuristic_name}-error"] = []
 
-    results[f"{heuristic_name}-error"] = []
-    results[f"{heuristic_name}-error-re"] = []
+        results[f"{heuristic_name}-{improver_name}-cost"] = []
+        results[f"{heuristic_name}-{improver_name}-error"] = []
 
-    results[f"{heuristic_name}-re-improves"] = []
+        for step, runtime in heuristic(Instance(1, 1)).get_elapsed_times().items():
+            results[f"{heuristic_name}-{step}-runtime"] = []
 
-    for step, runtime in heuristic(Instance(1, 1)).get_elapsed_times().items():
-        results[f"{heuristic_name}-{step}-runtime"] = []
+        for step, runtime in improver(heuristic(Instance(1, 1))).get_elapsed_times().items():
+            results[f"{heuristic_name}-{improver_name}-{step}-runtime"] = []
 
-    if not os.path.exists(path := os.path.join(OUTPUT_DIR, heuristic_name)):
-        os.mkdir(path)
+        if not os.path.exists(path := os.path.join(OUTPUT_DIR, heuristic_name)):
+            os.mkdir(path)
 
-    for inst_name, cost_best in zip(available_inst, best_known_solutions):
-        inst = dl.load_instance(inst_name)
+        for inst_name, cost_best in zip(available_inst, best_known_solutions):
+            inst = dl.load_instance(inst_name)
 
-        solver = heuristic(instance=inst)
-        log_path = os.path.join(OUTPUT_DIR, heuristic_name, f"{inst_name}.log")
-        solver.configure_logger(path=log_path)
-        sol, cost = solver.greedy_heuristic()
-        sol_RE, cost_RE = solver.redundancy_elimination()
+            solver = heuristic(instance=inst)
+            log_path = os.path.join(OUTPUT_DIR, heuristic_name, f"{inst_name}.log")
+            solver.configure_logger(path=log_path)
+            sol, cost = solver.greedy_heuristic()
+            solver.inst.set_state(State.SOLVED)
 
-        results[f"{heuristic_name}-cost"].append(cost)
-        results[f"{heuristic_name}-error"].append(np.abs(cost - cost_best)/cost_best)
-        results[f"{heuristic_name}-cost-re"].append(cost_RE)
-        results[f"{heuristic_name}-error-re"].append(np.abs(cost_RE - cost_best) / cost_best)
-        results[f"{heuristic_name}-re-improves"].append(cost_RE < cost)
+            if "-re" in heuristic_name:
+                sol, cost = solver.redundancy_elimination()
 
-        for step, runtime in solver.get_elapsed_times().items():
-            results[f"{heuristic_name}-{step}-runtime"].append(runtime)
+            results[f"{heuristic_name}-cost"].append(cost)
+            results[f"{heuristic_name}-error"].append(np.abs(cost - cost_best)/cost_best)
+
+            for step, runtime in solver.get_elapsed_times().items():
+                results[f"{heuristic_name}-{step}-runtime"].append(runtime)
+
+            improver = BestNeighbor(heuristic=solver)
+            sol_improved, cost_improved = improver.run()
+
+            results[f"{heuristic_name}-{improver_name}-cost"].append(cost_improved)
+            results[f"{heuristic_name}-{improver_name}-error"].append(np.abs(cost_improved - cost_best) / cost_best)
+
+            for step, runtime in improver.get_elapsed_times().items():
+                results[f"{heuristic_name}-{improver_name}-{step}-runtime"].append(runtime)
+
+        pbar.update()
 
 results_df = pd.DataFrame.from_dict(
     results
@@ -76,14 +96,8 @@ for heuristic in heuristics:
     col = f"{heuristic}-error"
     print(f"{col}: {results_df[col].mean()} +- {2*results_df[col].std()} [{results_df[col].min()}, {results_df[col].max()}]")
 
-    col = f"{heuristic}-error-re"
-    print(f"{col}: {results_df[col].mean()} +- {2*results_df[col].std()} [{results_df[col].min()}, {results_df[col].max()}]")
-
-
 results_df.to_csv(
     os.path.join(OUTPUT_DIR, "results.csv")
 )
-
-
 
 # print(results_df)

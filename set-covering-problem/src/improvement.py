@@ -21,15 +21,14 @@ class BestNeighbor:
 
     def __init__(self, heuristic: Union[GreedySolver, RandomGreedySolver, PriorityGreedySolver]):
 
-        assert heuristic.inst.get_state() == State.SOLVED
+        # assert heuristic.inst.get_state() == State.SOLVED
 
         self.solver = heuristic
         self.logger = self.solver.logger
         self.inst = self.solver.inst # Reduce verbosity in this implementation
         self.initial_sol = self.inst.get_sol()
 
-        self.max_iter = 100
-        self.moves_per_iter = 1000
+        self.max_iter = 3
 
         self.incumbent_sol = self.initial_sol.copy()
         self.neighbor = None
@@ -40,88 +39,77 @@ class BestNeighbor:
             "feasible-neighbor-cost": []
         }
 
-    def random_insert(self, to_insert: list):
-        sol = to_insert.copy()
-        sol_in = BestNeighbor.RNG.integers(0, self.inst.get_cols(), size=1)
-
-        sol.append(sol_in[0])
-        return sol
-
-    def random_double_insert(self, to_insert: list):
-        sol = to_insert.copy()
-        sol_in = BestNeighbor.RNG.integers(0, self.inst.get_cols(), size=2)
-
-        sol.extend(list(sol_in))
-        return sol
-
-    def random_swap(self, to_swap: list):
-        sol = to_swap.copy()
-        sol_in = BestNeighbor.RNG.integers(0, self.inst.get_cols(), size=1)
-        sol_out = BestNeighbor.RNG.choice(sol, size=1)
-
-        sol.remove(sol_out[0])
-        sol.append(sol_in[0])
-        return sol
-
-    def smart_swap(self, to_swap: list):
+    def removal_candidates_for_swap_one(self):
         mat = self.inst.get_mat()
-        weights = self.inst.get_weights()
-        candidates = to_swap.copy()
-        candidates_ranks = []
+        ranks = []
+        for j in self.incumbent_sol:
+            rows_covered_by_j = mat[:, j]
+            ranks.append(rows_covered_by_j.sum())
+        decreasing_sort = np.asarray(ranks).argsort()[::-1]
+        candidates = np.asarray(self.incumbent_sol)[decreasing_sort]
+        return candidates
 
-        for col in candidates:
-            candidate_elements = mat[:, col].reshape(-1, 1)
-            other_candidates_elements = np.delete(mat, col, axis=1)
-            overlap = (candidate_elements & other_candidates_elements)[:, candidates].sum()
-            cost = weights[col]
-            candidates_ranks.append(overlap * cost)
+    def insertion_candidates_for_swap_one(self, removal_candidate):
+        mat = self.inst.get_mat()
+        col = mat[:, removal_candidate]
+        rows_uncovered_by_removal = (col > 0)
+        overlaps = np.zeros(self.inst.get_cols())
+        for j in range(self.inst.get_cols()):
+            if j == removal_candidate:
+                overlaps[j] = 0
+                continue
+            rows_covered_by_j = mat[:, j]
+            overlaps[j] = (rows_uncovered_by_removal & rows_covered_by_j).sum()
+        increasing_sort = overlaps.argsort()
+        candidates = np.asarray([i for i in range(self.inst.get_cols())])[increasing_sort]
 
-        # Sort candidates by rank
-        candidates = np.array(candidates)
-        candidates_ranks = np.array(candidates_ranks)
+        costs = np.asarray(self.inst.weights)[candidates]
+        smaller_costs = (costs <= costs[removal_candidate])
+        candidates = candidates[smaller_costs]
 
-        sort_by_rank = np.argsort(candidates_ranks)
-        candidates = candidates[sort_by_rank]
+        return candidates
 
-        # Convert into probability distribution
-        candidates_ranks /= candidates_ranks.sum()
-
-        # Sample candidate to be removed based on ranks
-        sol_out = BestNeighbor.RNG.choice(candidates, size=1, p=candidates_ranks)
-
-        # Sample candidate to be added based on cost
-        weights = np.array(weights)
-        weights_normalized = weights / weights.sum()
-        sol_in = BestNeighbor.RNG.choice([j for j in range(self.inst.get_cols())],
-                                         size=1, p=weights_normalized)
-
-        sol = to_swap.copy()
-        sol.remove(sol_out[0])
-        sol.append(sol_in[0])
+    def swap_one(self, col_in, col_out):
+        sol = self.incumbent_sol.copy()
+        sol.remove(col_out)
+        sol.append(col_in)
         return sol
 
-    def gen_neighbor(self, move):
-        self.neighbor = move(self.incumbent_sol)
+    def gen_neighbor(self, col_in, col_out):
+        self.neighbor = self.swap_one(col_in, col_out)
         self.inst.set_sol(self.neighbor)
         cost = self.inst.get_sol_cost()
         is_valid = self.inst.check_sol_coverage()
         return cost, is_valid
 
-    def search_neighbors(self, move):
+    def search_neighbors(self):
 
         self.inst.set_sol(self.incumbent_sol)
         current_cost = self.inst.get_sol_cost()
+        total_iter = 0
+        total_feasible = 0
 
-        for i in range(self.moves_per_iter):
+        to_remove = self.removal_candidates_for_swap_one()
+        for col_out in to_remove:
             self.reset_neighbors()
             self.inst.set_sol(self.incumbent_sol)
 
-            cost, is_valid = self.gen_neighbor(move)
-            if is_valid:
-                self.run_data["feasible-neighbor-cost"].append(cost)
-            if is_valid and cost < current_cost:
-                self.best_neighbor = self.neighbor
-                current_cost = cost
+            to_insert = self.insertion_candidates_for_swap_one(
+                removal_candidate=col_out
+            )
+
+            for col_in in to_insert:
+                total_iter += 1
+
+                cost, is_valid = self.gen_neighbor(col_in, col_out)
+
+                if is_valid:
+                    self.run_data["feasible-neighbor-cost"].append(cost)
+                    total_feasible += 1
+
+                if is_valid and cost < current_cost:
+                    self.best_neighbor = self.neighbor
+                    current_cost = cost
 
         if self.best_neighbor is None:
             self.inst.set_sol(self.incumbent_sol)
@@ -130,19 +118,20 @@ class BestNeighbor:
 
         assert self.inst.check_sol_coverage()
 
+        self.logger.info(f"Explored {total_iter} neighbors, "
+                         f"found {total_feasible} feasible "
+                         f"({total_feasible/total_iter * 100:.2f}%)")
+
         _, cost = self.solver.redundancy_elimination()
         self.incumbent_sol = self.inst.get_sol()
         assert self.inst.check_sol_coverage()
         return current_cost
 
     def run(self):
-
-        move = self.random_double_insert
-
         start_time = perf_counter()
 
-        for i in tqdm(range(self.max_iter)):
-            cost = self.search_neighbors(move=move)
+        for i in range(self.max_iter):
+            cost = self.search_neighbors()
             self.logger.info(f"Step {i}: cost -> {cost}")
 
         self.improvement_step_elapsed_time = perf_counter() - start_time
@@ -164,9 +153,68 @@ class BestNeighbor:
     def get_run_data(self):
         return self.run_data
 
+
+class FirstNeighbor(BestNeighbor):
+
+    def __init__(self, heuristic: Union[GreedySolver, RandomGreedySolver, PriorityGreedySolver]):
+        super().__init__(heuristic=heuristic)
+
+    def search_neighbors(self):
+
+        self.inst.set_sol(self.incumbent_sol)
+        current_cost = self.inst.get_sol_cost()
+        total_iter = 0
+        total_feasible = 0
+        found_better = False
+
+        to_remove = self.removal_candidates_for_swap_one()
+        for col_out in to_remove:
+            if found_better:
+                break
+
+            self.reset_neighbors()
+            self.inst.set_sol(self.incumbent_sol)
+
+            to_insert = self.insertion_candidates_for_swap_one(
+                removal_candidate=col_out
+            )
+
+            for col_in in to_insert:
+                total_iter += 1
+
+                cost, is_valid = self.gen_neighbor(col_in, col_out)
+
+                if is_valid:
+                    self.run_data["feasible-neighbor-cost"].append(cost)
+                    total_feasible += 1
+
+                if is_valid and cost < current_cost:
+                    self.best_neighbor = self.neighbor
+                    current_cost = cost
+                    found_better = True
+                    break
+
+        if self.best_neighbor is None:
+            self.inst.set_sol(self.incumbent_sol)
+        else:
+            self.inst.set_sol(self.best_neighbor)
+
+        assert self.inst.check_sol_coverage()
+
+        self.logger.info(f"Explored {total_iter} neighbors, "
+                         f"found {total_feasible} feasible "
+                         f"({total_feasible/total_iter * 100:.2f}%)")
+
+        _, cost = self.solver.redundancy_elimination()
+        self.incumbent_sol = self.inst.get_sol()
+        assert self.inst.check_sol_coverage()
+        return current_cost
+
+
+
 if __name__== "__main__":
     dl = DataLoader()
-    inst = dl.load_instance("c3")
+    inst = dl.load_instance("43")
 
     solver = PriorityGreedySolver(instance=inst)
     sol_greedy, cost_greedy = solver.greedy_heuristic()
@@ -175,11 +223,11 @@ if __name__== "__main__":
     print(solver.inst.get_state())
 
     # Screw up initial solution
-    # N = 100
-    # added = np.random.randint(0, solver.inst.get_cols(), size=N)
-    # solver.inst.get_sol().extend(list(added))
+    N = 10
+    added = np.random.randint(0, solver.inst.get_cols(), size=N)
+    solver.inst.get_sol().extend(list(added))
 
-    improver = BestNeighbor(heuristic=solver)
+    improver = FirstNeighbor(heuristic=solver)
     sol_improved, cost_improved = improver.run()
 
     print(improver.inst.get_state())

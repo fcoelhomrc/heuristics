@@ -1,7 +1,9 @@
 from utils import DataLoader, Instance, State
+from postprocessing import RedundancyElimination
 import numpy as np
 import logging
 from time import perf_counter
+import os
 
 
 class GreedySolver:
@@ -65,13 +67,13 @@ class GreedySolver:
         return np.asarray(self.inst.get_sol()), self.inst.get_sol_cost()
 
     def configure_logger(self, path):
-        self.logger.setLevel(logging.DEBUG)
+        self.logger.setLevel(logging.INFO)
 
         for handler in self.logger.handlers[:]:
             self.logger.removeHandler(handler)
 
         file_handler = logging.FileHandler(path)
-        file_handler.setLevel(logging.DEBUG)
+        file_handler.setLevel(logging.INFO)
 
         formatter = logging.Formatter('[%(asctime)s][%(levelname)s] %(message)s')
         file_handler.setFormatter(formatter)
@@ -79,97 +81,14 @@ class GreedySolver:
         self.logger.addHandler(file_handler)
 
     def redundancy_elimination(self):
-        if not self.inst.get_state() == State.SOLVED:
-            return
-
         start_time = perf_counter()
-
-        mat = self.inst.get_mat()
-        weights = self.inst.get_weights()
-        sol = self.inst.get_sol()
-        candidates = []
-
-        self._prune_solution_for_redundancy_elimination(candidates, sol)
-
-        if len(candidates) < 1:  # No suitable candidates found, exit.
-            return np.asarray(self.inst.get_sol()), self.inst.get_sol_cost()
-
-        candidates_ranks = []
-
-        self._rank_candidates_for_redundancy_elimination(candidates, candidates_ranks, mat, weights)
-
-        # Sort candidates by rank
-        candidates = np.array(candidates)
-        candidates_ranks = np.array(candidates_ranks)
-
-        sort_by_rank = np.argsort(candidates_ranks)
-        candidates = candidates[sort_by_rank]
-
-        top_k = min(len(candidates), self.top_k_redundancy_elimination)
-        top_k_candidates = candidates[-top_k:]
-
-        top_k_elements_to_prune = []
-        top_k_elements_to_prune_cost = []
-
-        for candidate in top_k_candidates:
-            assert self.inst.check_sol_coverage()
-
-            to_prune = [candidate]
-            to_prune_cost = weights[candidate]
-            has_redundant_cols = True
-
-            while has_redundant_cols:
-
-                for col in to_prune:
-                    self.inst.prune_sol(col)
-
-                current_cost = 0
-                current_col = None
-                for col in self.inst.get_sol():
-                    self.inst.prune_sol(col)
-
-                    if not self.inst.check_sol_coverage():
-                        self.inst.increment_sol(col)
-                        continue
-
-                    cost = weights[col]
-
-                    if current_cost < cost:
-                        current_cost = cost
-                        current_col = col
-
-                    self.inst.increment_sol(col)
-
-                for col in to_prune:
-                    self.inst.increment_sol(col)
-
-                if current_col is None:
-                    has_redundant_cols = False
-                else:
-                    to_prune.append(current_col)
-                    to_prune_cost += current_cost
-
-            top_k_elements_to_prune.append(to_prune)
-            top_k_elements_to_prune_cost.append(to_prune_cost)
-
-        for elements_to_prune, cost in zip(top_k_elements_to_prune, top_k_elements_to_prune_cost):
-            self.logger.info(f"Redundancy elimination: {elements_to_prune} -> cost: {cost}")
-
-        best_elements_to_prune = top_k_elements_to_prune[np.argmax(np.asarray(top_k_elements_to_prune_cost))]
-
-        size_before_pruning = len(self.inst.get_sol())
-        cost_before_pruning = self.inst.get_sol_cost()
-        for col in best_elements_to_prune:
-            self.inst.prune_sol(col)
-        size_after_pruning = len(self.inst.get_sol())
-        cost_after_pruning = self.inst.get_sol_cost()
-        self.logger.info(f"Size: {size_before_pruning} -> {size_after_pruning}")
-        self.logger.info(f"Cost: {cost_before_pruning} -> {cost_after_pruning}")
+        engine = RedundancyElimination(instance=self.inst, logger=self.logger)
+        engine.do_elimination()
+        self.redundancy_elimination_elapsed_time = perf_counter() - start_time
 
         assert self.inst.check_sol_coverage()
 
-        self.redundancy_elimination_elapsed_time = perf_counter() - start_time
-        return np.asarray(self.inst.get_sol()), self.inst.get_sol_cost()
+        return [int(x) for x in self.inst.get_sol()], self.inst.get_sol_cost()
 
     @staticmethod
     def _rank_candidates_for_redundancy_elimination(candidates, candidates_ranks, mat, weights):
@@ -244,8 +163,8 @@ class PriorityGreedySolver(GreedySolver):
         candidate_cols = np.delete(mat, self.inst.get_sol(), axis=1)
         element_frequency = candidate_cols.sum(axis=1)
         use_priority = element_frequency.std() < self.priority_threshold
-        self.logger.info(f"Priority check: {element_frequency.std()} -> "
-                         f"{use_priority} (Threshold: {self.priority_threshold})")
+        # self.logger.info(f"Priority check: {element_frequency.std()} -> "
+        #                  f"{use_priority} (Threshold: {self.priority_threshold})")
         return use_priority
 
     def compute_greedy_score(self):
@@ -258,14 +177,20 @@ class PriorityGreedySolver(GreedySolver):
                 element_frequency = np.array(self.inst.get_total_covered_by())
                 priority_score[i] = element_frequency[mat[:, i]].sum() / element_frequency.sum()
             priority_score = - np.log(priority_score)
-            self.logger.info(f"Priority score: {priority_score}")
+            # self.logger.info(f"Priority score: {priority_score}")
             return priority_score * greedy_score
         else:
             return greedy_score
 
 if __name__== "__main__":
     dl = DataLoader()
-    inst = dl.load_instance("42")
+    inst_name = "42"
+    inst = dl.load_instance(inst_name)
+
+    OUTPUT_DIR = "../output"
+    if not os.path.exists(path := os.path.join(OUTPUT_DIR, "improvement-test-run")):
+        os.mkdir(path)
+    log_path = os.path.join(OUTPUT_DIR, "improvement-test-run", f"{inst_name}.log")
 
     # solver = GreedySolver(instance=inst)
     # sol_greedy, cost_greedy = solver.greedy_heuristic()
@@ -278,6 +203,8 @@ if __name__== "__main__":
     # print(p_sol_greedy, p_cost_greedy)
 
     solver = PriorityGreedySolver(instance=inst)
+    solver.configure_logger(path=log_path)
+
     sol_greedy, cost_greedy = solver.greedy_heuristic()
     p_sol_greedy, p_cost_greedy = solver.redundancy_elimination()
     print(sol_greedy, cost_greedy)

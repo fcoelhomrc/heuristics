@@ -36,25 +36,30 @@ heuristics = {
     "greedy-re": GreedySolver
 }
 
-improvers = {
-    "best-search": BestNeighbor,
-    "first-search": FirstNeighbor
+local_search_strategies = {
+    "first-search": SearchStrategy.FIRST,
+    "best-search": SearchStrategy.BEST
 }
 
-pbar = tqdm(total=len(heuristics) * len(improvers))
+pbar = tqdm(total=len(heuristics) * len(local_search_strategies),
+            desc="Algorithm")
+pbar2 = tqdm(total=42, desc="Instance")
+
 for heuristic_name, heuristic in heuristics.items():
-    for improver_name, improver in improvers.items():
+    for ls_strategy_name, ls_strategy in local_search_strategies.items():
         results[f"{heuristic_name}-cost"] = []
         results[f"{heuristic_name}-error"] = []
 
-        results[f"{heuristic_name}-{improver_name}-cost"] = []
-        results[f"{heuristic_name}-{improver_name}-error"] = []
+        results[f"{heuristic_name}-{ls_strategy_name}-cost"] = []
+        results[f"{heuristic_name}-{ls_strategy_name}-error"] = []
 
         for step, runtime in heuristic(Instance(1, 1)).get_elapsed_times().items():
             results[f"{heuristic_name}-{step}-runtime"] = []
 
-        for step, runtime in improver(heuristic(Instance(1, 1))).get_elapsed_times().items():
-            results[f"{heuristic_name}-{improver_name}-{step}-runtime"] = []
+        for step, runtime in LocalSearch(
+                heuristic=heuristic(Instance(1, 1))
+        ).get_elapsed_times().items():
+            results[f"{heuristic_name}-{ls_strategy_name}-{step}-runtime"] = []
 
         if not os.path.exists(path := os.path.join(OUTPUT_DIR, heuristic_name)):
             os.mkdir(path)
@@ -77,16 +82,18 @@ for heuristic_name, heuristic in heuristics.items():
             for step, runtime in solver.get_elapsed_times().items():
                 results[f"{heuristic_name}-{step}-runtime"].append(runtime)
 
-            improver = improver(heuristic=solver)
-            sol_improved, cost_improved = improver.run()
+            local_search = LocalSearch(heuristic=solver, strategy=ls_strategy)
+            sol_improved, cost_improved = local_search.run()
 
-            results[f"{heuristic_name}-{improver_name}-cost"].append(cost_improved)
-            results[f"{heuristic_name}-{improver_name}-error"].append(np.abs(cost_improved - cost_best) / cost_best)
+            results[f"{heuristic_name}-{ls_strategy_name}-cost"].append(cost_improved)
+            results[f"{heuristic_name}-{ls_strategy_name}-error"].append(np.abs(cost_improved - cost_best) / cost_best)
 
-            for step, runtime in improver.get_elapsed_times().items():
-                results[f"{heuristic_name}-{improver_name}-{step}-runtime"].append(runtime)
+            for step, runtime in local_search.get_elapsed_times().items():
+                results[f"{heuristic_name}-{ls_strategy_name}-{step}-runtime"].append(runtime)
 
+            pbar2.update()
         pbar.update()
+        pbar2.reset()
 
 results_df = pd.DataFrame.from_dict(
     results

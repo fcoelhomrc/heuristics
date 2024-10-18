@@ -4,7 +4,8 @@ import pandas as pd
 df = pd.read_csv("../output/results.csv")
 
 heuristics = [
-    "greedy", "random-greedy", "priority-greedy", "greedy-re"
+    # "greedy", "random-greedy", "priority-greedy", "greedy-re"
+    "greedy-re"
 ]
 improvers = [
     "best-search", "first-search"
@@ -30,10 +31,14 @@ print("\nDEVIATION FROM BEST KNOWN SOLUTION")
 print("=" * 20)
 
 for h in heuristics:
+    key = f"{h}-error"
+    agg = df[key].max()
+    print(key)
+    print(f"{h} -> {agg * 100:.1f} %")
     for i in improvers:
         name = f"{h}-{i}"
         key = f"{name}-error"
-        agg = df[key].mean()
+        agg = df[key].max()
         print(f"{name} -> {agg * 100:.1f} %")
 
 

@@ -1,8 +1,3 @@
-from multiprocessing.managers import Value
-
-from PyQt6.uic.Compiler.qobjectcreator import logger
-from numpy.f2py.f90mod_rules import options
-
 from utils import State, Instance, DataLoader
 from solvers import GreedySolver, RandomGreedySolver, PriorityGreedySolver
 from postprocessing import RedundancyElimination
@@ -23,11 +18,12 @@ class CoolingSchedule(Enum):
 class EquilibriumStrategy(Enum):
     STATIC = 0
     ADAPTIVE = 1
+    EXHAUSTIVE = 2
 
-class NeighborhoodStructure(Enum):
-    N1 = 0
-    N2 = 1
-    RANDOM = 2
+class MoveType(Enum):
+    INSERT = 0
+    REMOVE = 1
+
 
 class SimulatedAnnealing:
     SEED = 42
@@ -38,8 +34,7 @@ class SimulatedAnnealing:
                  initial_temperature: float, final_temperature: float,
                  cooling_schedule: CoolingSchedule = CoolingSchedule.GEOMETRIC,
                  cooling_params: dict = None,
-                 equilibrium_strategy: EquilibriumStrategy = EquilibriumStrategy.STATIC,
-                 neighborhood_structure: NeighborhoodStructure = NeighborhoodStructure.N1,
+                 equilibrium_strategy: EquilibriumStrategy = EquilibriumStrategy.EXHAUSTIVE,
                  logger: logging.Logger = None):
 
         self.inst = instance
@@ -58,14 +53,14 @@ class SimulatedAnnealing:
         self.equilibrium_strategy = equilibrium_strategy
         self.initial_temperature = initial_temperature
         self.final_temperature = final_temperature
-        self.neighborhood_structure = neighborhood_structure
 
         # Components
         self.temperature = None
         self.sol = None
         self.candidate = None
         self.best = None
-        self.candidate_generator = None
+        self.move_type = None
+        self.candidate_options = None
 
         # Statistics
         self.time = None
@@ -80,159 +75,132 @@ class SimulatedAnnealing:
             "current-size": [],
             "candidate-size": [],
             "best-size": [],
-            "acceptance-proba": []
+            "acceptance-proba": [],
         }
         self.sol_cost = None
         self.candidate_cost = None
         self.best_cost = None
 
-    def run(self):  # TODO: bug! not checking if solution is valid -> cost goes to zero
+    def run(self):
         i = 0
         self.do_start_clock()  # statistics
         self.do_initialize()
         while self.temperature > self.final_temperature:  # TODO: implement a better stopping criteria
+            # update stage
             self.do_cooling(i)
+            self.do_reset_candidate_pool()
+            # search stage
             j = 0
-            candidates = self.do_enumerate_candidates(self.neighborhood_structure)
             while not self.reached_equilibrium(j):
-                self.do_next_candidate(candidates)
-                if not self.do_check_if_valid_candidate():
-                    logger.info(f"skipped -> candidate is not a valid solution")
-                    continue
+                self.do_next_candidate()
+                if self.candidate is None:
+                    break
 
                 j += 1
                 self.do_write_step()  # statistics
                 self.do_read_clock()  # statistics
                 self.do_write_temperature()  # statistics
-
-                if self.candidate is None:
-                    self.logger.info(f"exhausted neighborhood -> {j} candidates considered")
-                    break  # exhausted candidates
                 self.do_compute_costs()  # statistics
                 self.do_write_costs()  # statistics
                 self.do_write_sizes()  # statistics
+
                 if self.do_accept():  # candidate either improves, or wins lottery
                     self.do_update_sol()
                     self.do_update_best()
                     break
             i += 1
-        logger.info(f"reached stop condition after {i} steps "
-                    f"(max steps -> {self.max_iterations})")
+        self.logger.info(f"reached stop condition after {i} steps "
+                         f"(max steps -> {self.max_iterations})")
+
+    def dry_run(self, max_iterations: int):
+        n_test_pts = 50
+        test_temperatures = np.logspace(2, -2, n_test_pts)
+        test_scores = np.zeros(n_test_pts)
+        data_for_final_temperature = np.zeros((n_test_pts, 3))
+        for i in range(n_test_pts):
+            n_iter = 0
+            x = 0
+            self.do_initialize()
+            self.do_reset_candidate_pool()
+            while self.candidate is not None:
+                self.do_next_candidate()
+                if self.candidate is None:
+                    break
+                delta = self.do_compute_delta()
+                proba = np.exp(-delta / test_temperatures[i])
+                self.inst.set_sol(self.candidate)
+                cost = self.inst.get_sol_cost()
+                data_for_final_temperature[i, 0] = cost
+                data_for_final_temperature[i, 1] = np.log(proba)
+                data_for_final_temperature[i, 2] = delta
+                if self.move_type == MoveType.REMOVE:
+                    x += (1 - proba) * cost
+                elif self.move_type == MoveType.INSERT:
+                    self.inst.set_sol(self.candidate)
+                    x += proba * cost
+                else:
+                    raise ValueError(f"Invalid move {self.move_type}")
+                n_iter += 1
+            x /= n_iter
+            test_scores[i] = x
+        initial_temperature = test_temperatures[np.abs(test_scores).argmin()]
+
+        cheapest_set = data_for_final_temperature[:, 0].argmin()
+        final_temperature = (-data_for_final_temperature[[cheapest_set], 2] /
+                             data_for_final_temperature[[cheapest_set], 1])[0]
+        final_temperature /= 50
+        assert final_temperature < initial_temperature
+
+        if self.cooling_schedule == CoolingSchedule.LINEAR:
+            rate = (final_temperature - initial_temperature) / max_iterations
+        elif self.cooling_schedule == CoolingSchedule.GEOMETRIC:
+            rate = np.exp( (np.log(final_temperature) - np.log(initial_temperature)) / max_iterations )
+        else:
+            raise ValueError("Provide cooling schedule")
+
+        # reset statistics
+        for _, stat in self.stats.items():
+            stat.clear()
+
+        return initial_temperature, final_temperature, {"rate": rate}
 
     def evaluation_func(self, sol):
         self.inst.set_sol(sol)
         cost = self.inst.get_sol_cost()
         return cost
 
-    def do_insert(self, insert):
-        if insert is not None:
-            self.candidate.append(insert)
+    def do_reset_candidate_pool(self):
+        self.candidate_options = [i for i in range(self.inst.get_cols())]
 
-    def do_remove(self, remove):
-        if remove in self.candidate and remove is not None:
-            self.candidate.remove(remove)
+    def do_next_candidate(self):
+        sol = self.sol[:]
+        while True:
+            if len(self.candidate_options) < 1:
+                self.candidate = None  # exhausted options, move on
+                break
 
-    def do_swap(self, remove, insert):
-        for i in remove:
-            self.do_remove(i)
-        for i in insert:
-            self.do_insert(i)
-
-    def do_enumerate_candidates(self, neighborhood_structure: NeighborhoodStructure):
-        sol = self.sol[:]  # starting point for generating neighborhood
-        options_to_insert = [i for i in range(self.inst.get_cols())] + [None]  # all insertion options
-
-        if neighborhood_structure == NeighborhoodStructure.N1:
-            to_remove = sol[:]
-            coverage_percent_if_removed = []
-            to_remove_cost = []
-            for i in to_remove:
-                self.inst.set_sol(sol.copy())
-                self.inst.prune_sol(i)
-                coverage_percent_if_removed.append(self.inst.get_coverage_percent())
-                to_remove_cost.append(self.inst.get_sol_cost())
-            sort_by_coverage = np.argsort(coverage_percent_if_removed)
-            to_remove = list(np.asarray(to_remove)[sort_by_coverage][::-1])
-            coverage_percent_if_removed = list(np.asarray(coverage_percent_if_removed)[sort_by_coverage][::-1])
-            to_remove_cost = list(np.asarray(to_remove_cost)[sort_by_coverage][::-1])
-
-            swaps = []
-            for i, p, c in zip(to_remove, coverage_percent_if_removed, to_remove_cost):
-                for j in options_to_insert:
-                    if j is None:  # adds  option of not inserting
-                        swaps.append((i, j))
-                        continue
-
-                    if j in sol:
-                        continue
-
-                    self.inst.set_sol(sol.copy())
-                    self.inst.prune_sol(i)
-                    self.inst.increment_sol(j)
-                    if self.inst.get_coverage_percent() < p:
-                        continue
-                    if self.inst.get_sol_cost() > c:
-                        continue
-                    swaps.append((i, j))
-
-            self.logger.info(f"generated N1 with size {len(swaps)} "
-                             f"(max. candidates -> {self.max_candidates}) "
-                             f"(max. % explored -> {100 * min(1., self.max_candidates/len(swaps)):.5f} %)")
-
-            for swap in swaps:
-                yield swap
-
-        elif neighborhood_structure == NeighborhoodStructure.N2:
-            raise NotImplementedError  # TODO: implement N2 structure (should contain N1)
-
-        elif neighborhood_structure == NeighborhoodStructure.RANDOM:
-            to_remove = SimulatedAnnealing.RNG.choice(
-                sol, size=(self.max_candidates, 2)
+            candidate = sol.copy()
+            sample = SimulatedAnnealing.RNG.choice(
+                self.candidate_options, size=1
             )
+            sample = int(sample[0])
+            self.candidate_options.remove(sample)
 
-            options_to_insert_without_sol = [i for i in options_to_insert if i not in sol]
-            to_insert = SimulatedAnnealing.RNG.choice(
-                options_to_insert_without_sol, size=(self.max_candidates, 2)
-            )
+            if sample in sol:
+                candidate.remove(sample)
+                self.move_type = MoveType.REMOVE
+            else:
+                candidate.append(sample)
+                self.move_type = MoveType.INSERT
 
-            swaps = []
-            for i in range(self.max_candidates):
-                remove_1 = to_remove[i, 0]
-                remove_2 = None # to_remove[i, 1]
-                insert_1 = to_insert[i, 0]
-                insert_2 = None # to_insert[i, 1]
-                swap = (
-                    (
-                        int(remove_1) if remove_1 else None,
-                        int(remove_2) if remove_2 else None
-                    ),
-                    (
-                        int(insert_1) if insert_1 else None,
-                        int(insert_2) if insert_2 else None,
-                    )
-                )
-                swaps.append(swap)
-
-            for swap in swaps:
-                yield swap
-
-        else:
-            raise ValueError("Provide neighborhood structure")
-
-    def do_next_candidate(self, generator):
-        try:
-            swap = next(generator)
-            insert = swap[0]
-            remove = swap[1]
-            self.candidate = self.sol[:]
-            self.do_swap(insert, remove)
-            return True
-        except StopIteration:
-            return False
+            if self.do_check_if_valid_operation(candidate):
+                self.candidate = candidate
+                break
 
     def do_cooling(self, step):
         if self.cooling_schedule == CoolingSchedule.LINEAR:
             self.temperature = self.temperature - step * self.cooling_params["rate"]
+            self.logger.info(f"temperature updated -> {self.temperature:.3f} / target: {self.final_temperature}")
         elif self.cooling_schedule == CoolingSchedule.GEOMETRIC:
             self.temperature = self.cooling_params["rate"] * self.temperature
         else:
@@ -245,26 +213,33 @@ class SimulatedAnnealing:
         self.do_write_delta(delta)
         return delta
 
-    def do_check_if_valid_candidate(self):
-        self.inst.set_sol(self.candidate.copy())
+    def do_check_if_valid_operation(self, sol):
+        self.inst.set_sol(sol.copy())
         return self.inst.check_sol_coverage()
 
     def do_accept(self):
-
-        self.do_write_acceptance_proba()
-
+        self.do_write_acceptance_proba() # statistics
         delta = self.do_compute_delta()
         if delta <= 0:
-            logger.info(f"accepted -> candidate improves current solution")
             return True
-        else:
-            self.logger.info(f"acceptance proba -> {np.exp(- delta / self.temperature):.6f} "
+        proba = min(1., np.exp(- delta / self.temperature))
+        if self.move_type == MoveType.INSERT:
+            self.logger.info(f"{self.move_type} "
+                             f"acceptance proba -> {proba:.6f} "
                              f"(temperature -> {self.temperature})")
-            return SimulatedAnnealing.RNG.uniform() < np.exp(- delta / self.temperature)
+            return SimulatedAnnealing.RNG.uniform() < proba
+        elif self.move_type == MoveType.REMOVE:
+            self.logger.info(f"{self.move_type} "
+                             f"acceptance proba -> {(1 - proba):.6f} "
+                             f"(temperature -> {self.temperature})")
+            return SimulatedAnnealing.RNG.uniform() < (1 - proba)
+        else:
+            raise ValueError(f"Invalid move {self.move_type}")
 
     def do_initialize(self):
         self.temperature = self.initial_temperature
         self.sol = self.initial_sol[:]
+        self.candidate = self.sol[:]  # TODO: this might introduce a bug
         self.best = self.sol[:]
 
     def do_update_sol(self):
@@ -279,6 +254,8 @@ class SimulatedAnnealing:
             return step >= self.max_candidates
         elif self.equilibrium_strategy == EquilibriumStrategy.ADAPTIVE:
             raise NotImplementedError  #TODO: implement adaptive equilibrium
+        elif self.equilibrium_strategy == EquilibriumStrategy.EXHAUSTIVE:
+            return self.candidate is None
         else:
             raise ValueError("Provide an equilibrium strategy")
 
@@ -317,13 +294,8 @@ class SimulatedAnnealing:
         self.stats["delta"].append(delta)
 
     def do_write_acceptance_proba(self):
-        if not self.do_check_if_valid_candidate():
-            proba = None
         delta = self.do_compute_delta()
-        if delta <= 0:
-            proba = None
-        else:
-            proba = np.exp(- delta / self.temperature)
+        proba = min(1., np.exp(- delta / self.temperature))
         self.stats["acceptance-proba"].append(proba)
 
     def do_write_costs(self):
@@ -363,10 +335,17 @@ class SimulatedAnnealing:
 
         self.logger.addHandler(file_handler)
 
+    def set_hyper_parameters(self, **kwargs):
+        if initial_temperature := kwargs.get("initial_temperature", None):
+            self.initial_temperature = initial_temperature
+        if final_temperature := kwargs.get("final_temperature", None):
+            self.final_temperature = final_temperature
+        if cooling_params := kwargs.get("cooling_params", None):
+            self.cooling_params = cooling_params
 
 if __name__ == "__main__":
     dl = DataLoader()
-    inst_name = "46"
+    inst_name = "c1"
     inst = dl.load_instance(inst_name)
 
     OUTPUT_DIR = "../output"
@@ -383,22 +362,44 @@ if __name__ == "__main__":
     inst.set_sol(list(sol_greedy))
     inst.set_state(State.SOLVED)
 
+    max_iter = 1_000
+    max_cand = 10 * inst.get_cols()
     sim_annealing = SimulatedAnnealing(
         instance=inst,
-        max_candidates=10, max_iterations=1_000,
-        initial_temperature=60.0, final_temperature=1,
-        cooling_schedule=CoolingSchedule.GEOMETRIC, cooling_params={"rate": 0.99},
-        neighborhood_structure=NeighborhoodStructure.RANDOM
+        max_candidates=max_cand, max_iterations=max_iter,
+        initial_temperature=5.0, final_temperature=1.,
+        cooling_schedule=CoolingSchedule.GEOMETRIC, cooling_params={"rate": 0.99}
     )
     sim_annealing.configure_logger(log_path)
 
+    # estimate hyper parameters
+    init_temp, final_temp, cooling = sim_annealing.dry_run(
+        max_iterations=max_iter
+    )
+    sim_annealing.set_hyper_parameters(
+        initial_temperature=init_temp,
+        final_temperature=final_temp,
+        cooling_params=cooling
+    )
+
+    # solve instance
     sim_annealing.run()
 
-    suggested_initial_temperature = sim_annealing.get_initial_temperature_estimate(0.99)
+    sim_annealing.logger.info(f"dry run estimates -> "
+                              f"init temp: {init_temp:.2f} "
+                              f"final temp: {final_temp:.2f} "
+                              f"rate: {cooling["rate"]:.5f}")
 
     best = sim_annealing.get_best()
     stats = sim_annealing.get_stats()
 
+    sim_annealing.logger.info(f"init size {len(sim_annealing.initial_sol)} "
+                              f"-> curr size {len(sim_annealing.sol)}")
+
+    inst.set_sol(best)
+    assert inst.check_sol_coverage()
+    best_cost, optimal_cost = inst.get_sol_cost(), inst.get_best_known_sol_cost()
+    is_hit = best_cost == optimal_cost
 
     import matplotlib.pyplot as plt
 
@@ -409,7 +410,7 @@ if __name__ == "__main__":
     plt.plot(time, stats["current-cost"], label="current-cost",
              color="k", lw=1.2, ls="-")
     plt.plot(time, stats["candidate-cost"], label="candidate-cost",
-             color="tab:blue", lw=1.0, ls="-")
+             color="tab:blue", lw=0.8, ls="-", alpha=0.7)
     plt.axhline(inst.get_best_known_sol_cost(), color="k", lw=2.0, ls="--")
 
     plt.xlabel("step")
@@ -423,30 +424,7 @@ if __name__ == "__main__":
     plt.ylabel("temperature")
 
     plt.title(f"simulated annealing \n "
-              f"suggested initial temperature -> {suggested_initial_temperature:.5f}")
+              f"hit: {is_hit} -> best: {best_cost}, opt: {optimal_cost}")
     plt.show()
-
-    ####
-
-    plt.plot(time, stats["best-size"], label="best-size",
-             color="tab:green", lw=1.5, ls="-")
-    plt.plot(time, stats["current-size"], label="current-size",
-             color="k", lw=1.2, ls="-")
-    plt.plot(time, stats["candidate-size"], label="candidate-size",
-             color="tab:blue", lw=1.0, ls="-")
-
-    plt.xlabel("step")
-    plt.ylabel("sizes")
-    plt.legend()
-
-    twinx = plt.twinx()
-    twinx.plot(time, np.asarray(stats["temperature"]) / sim_annealing.initial_temperature, label="temperature",
-               color="tab:orange", ls="-", lw=0.8)
-    twinx.scatter(time, stats["acceptance-proba"], marker=".", color="tab:red", alpha=0.3)
-    plt.ylabel("temperature")
-
-    plt.title(f"simulated annealing \n "
-              f"suggested initial temperature -> {suggested_initial_temperature:.5f}")
-    # plt.show()
 
 

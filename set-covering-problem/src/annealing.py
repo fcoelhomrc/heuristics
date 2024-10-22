@@ -14,6 +14,7 @@ from time import perf_counter
 class CoolingSchedule(Enum):
     LINEAR = 0
     GEOMETRIC = 1
+    NON_MONOTONIC = 2
 
 class EquilibriumStrategy(Enum):
     STATIC = 0
@@ -85,7 +86,7 @@ class SimulatedAnnealing:
         i = 0
         self.do_start_clock()  # statistics
         self.do_initialize()
-        while self.temperature > self.final_temperature:  # TODO: implement a better stopping criteria
+        while self.temperature > self.final_temperature and i < self.max_iterations:  # TODO: implement a better stopping criteria
             # update stage
             self.do_cooling(i)
             self.do_reset_candidate_pool()
@@ -116,7 +117,7 @@ class SimulatedAnnealing:
         n_test_pts = 50
         test_temperatures = np.logspace(2, -2, n_test_pts)
         test_scores = np.zeros(n_test_pts)
-        data_for_final_temperature = np.zeros((n_test_pts, 3))
+        data_for_final_temperature = np.zeros((n_test_pts, 3))  # cost, log proba, delta
         for i in range(n_test_pts):
             n_iter = 0
             x = 0
@@ -144,11 +145,7 @@ class SimulatedAnnealing:
             x /= n_iter
             test_scores[i] = x
         initial_temperature = test_temperatures[np.abs(test_scores).argmin()]
-
-        cheapest_set = data_for_final_temperature[:, 0].argmin()
-        final_temperature = (-data_for_final_temperature[[cheapest_set], 2] /
-                             data_for_final_temperature[[cheapest_set], 1])[0]
-        final_temperature /= 50
+        final_temperature = 0.01 * initial_temperature
         assert final_temperature < initial_temperature
 
         if self.cooling_schedule == CoolingSchedule.LINEAR:
@@ -203,6 +200,16 @@ class SimulatedAnnealing:
             self.logger.info(f"temperature updated -> {self.temperature:.3f} / target: {self.final_temperature}")
         elif self.cooling_schedule == CoolingSchedule.GEOMETRIC:
             self.temperature = self.cooling_params["rate"] * self.temperature
+        elif self.cooling_schedule == CoolingSchedule.NON_MONOTONIC:
+            is_below_threshold = self.temperature < self.cooling_params["refuel_threshold"] * self.initial_temperature
+            if is_below_threshold and not self.cooling_params["active"]:
+                self.cooling_params["active"] = True
+                if SimulatedAnnealing.RNG.uniform() < self.cooling_params["refuel_proba"]:
+                    self.temperature = self.cooling_params["refuel_rate"] * self.temperature
+                else:
+                    self.temperature = self.cooling_params["rate"] * self.temperature
+            else:
+                self.temperature = self.cooling_params["rate"] * self.temperature
         else:
             raise ValueError("Provide cooling schedule")
 
@@ -243,9 +250,10 @@ class SimulatedAnnealing:
         self.best = self.sol[:]
 
     def do_update_sol(self):
-        self.sol = self.candidate[:]  # Prevents shallow copy
+        self.sol = self.candidate[:]  # prevents shallow copy
 
     def do_update_best(self):
+        self.do_compute_costs()  # make sure costs are up to date
         if self.sol_cost < self.best_cost:
             self.best = self.sol[:]
 
@@ -345,7 +353,7 @@ class SimulatedAnnealing:
 
 if __name__ == "__main__":
     dl = DataLoader()
-    inst_name = "c1"
+    inst_name = "b3"
     inst = dl.load_instance(inst_name)
 
     OUTPUT_DIR = "../output"
@@ -362,7 +370,7 @@ if __name__ == "__main__":
     inst.set_sol(list(sol_greedy))
     inst.set_state(State.SOLVED)
 
-    max_iter = 1_000
+    max_iter = 4_000
     max_cand = 10 * inst.get_cols()
     sim_annealing = SimulatedAnnealing(
         instance=inst,
@@ -376,6 +384,14 @@ if __name__ == "__main__":
     init_temp, final_temp, cooling = sim_annealing.dry_run(
         max_iterations=max_iter
     )
+
+    # # test new cooling schedule
+    # sim_annealing.cooling_schedule = CoolingSchedule.NON_MONOTONIC
+    # cooling["refuel_threshold"] = 0.75
+    # cooling["refuel_rate"] = 1.05
+    # cooling["refuel_proba"] = 0.20
+    # cooling["active"] = False
+
     sim_annealing.set_hyper_parameters(
         initial_temperature=init_temp,
         final_temperature=final_temp,
@@ -389,7 +405,6 @@ if __name__ == "__main__":
                               f"init temp: {init_temp:.2f} "
                               f"final temp: {final_temp:.2f} "
                               f"rate: {cooling["rate"]:.5f}")
-
     best = sim_annealing.get_best()
     stats = sim_annealing.get_stats()
 
@@ -418,7 +433,7 @@ if __name__ == "__main__":
     plt.legend()
 
     twinx = plt.twinx()
-    twinx.plot(time, np.asarray(stats["temperature"]) / sim_annealing.initial_temperature, label="temperature",
+    twinx.plot(time, stats["temperature"], label="temperature",
                color="tab:orange", ls="-", lw=0.8)
     # twinx.scatter(time, stats["acceptance-proba"], marker=".", color="tab:red", alpha=0.3)
     plt.ylabel("temperature")
@@ -427,4 +442,18 @@ if __name__ == "__main__":
               f"hit: {is_hit} -> best: {best_cost}, opt: {optimal_cost}")
     plt.show()
 
-
+    ###
+    # proba = np.asarray(stats["acceptance-proba"])
+    # proba = proba[(1e-3 < proba) & (proba < 0.999)]
+    # plt.plot(proba, label="insert",
+    #          color="tab:orange", lw=1.5, ls="-")
+    # plt.plot(1. - proba, label="remove",
+    #          color="tab:blue", lw=1.5, ls="-")
+    #
+    # plt.xlabel("step")
+    # plt.ylabel("proba")
+    # plt.legend()
+    #
+    # plt.title(f"simulated annealing \n "
+    #           f"hit: {is_hit} -> best: {best_cost}, opt: {optimal_cost}")
+    # plt.show()

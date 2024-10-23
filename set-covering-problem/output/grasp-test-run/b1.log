@@ -1,0 +1,83 @@
+[2024-10-23 02:12:16,866][INFO] process 0 has completed -> [4, 3, 1, 7, 8, 6, 9, 15, 20, 10, 14, 17, 21, 18, 23, 30, 37, 24, 11, 27, 31, 33, 25, 49, 38, 39, 34, 32, 13, 29, 54, 66, 19, 12, 5, 44, 26, 100, 144, 64, 73, 126, 36, 35, 28, 179, 173]
+[2024-10-23 02:12:26,800][INFO] process 0 -> searching n2 at iter 8
+[2024-10-23 02:13:16,912][INFO] process 0 has completed -> cost: 82.0 (69) size: 42 -> [4, 3, 1, 7, 8, 6, 9, 15, 20, 10, 21, 18, 23, 30, 37, 24, 11, 27, 31, 33, 25, 49, 38, 39, 34, 32, 29, 66, 5, 44, 26, 100, 144, 73, 126, 36, 35, 28, 179, 19, 140, 53]
+[2024-10-23 02:14:27,340][INFO] process 0 has completed -> [4, 3, 1, 7, 8, 6, 9, 15, 20, 10, 14, 17, 21, 18, 23, 30, 37, 24, 11, 27, 31, 33, 25, 49, 38, 39, 34, 32, 13, 29, 54, 66, 19, 12, 5, 44, 26, 100, 144, 64, 73, 126, 36, 35, 28, 179, 173]
+[2024-10-23 02:14:37,169][INFO] process 0 -> searching n2 at iter 7
+[2024-10-23 03:14:27,397][INFO] process 0 has completed -> cost: 82.0 (69) size: 43 -> [4, 3, 1, 7, 8, 6, 9, 15, 20, 10, 14, 21, 18, 30, 37, 24, 11, 27, 31, 33, 25, 49, 38, 39, 34, 32, 29, 66, 19, 5, 44, 26, 100, 144, 64, 73, 126, 36, 35, 179, 23, 93, 16]
+[2024-10-23 11:13:24,563][INFO] process 2 has completed -> size: 45
+[2024-10-23 11:13:24,570][INFO] process 4 has completed -> size: 45
+[2024-10-23 11:13:24,576][INFO] process 0 has completed -> size: 47
+[2024-10-23 11:13:24,594][INFO] process 3 has completed -> size: 47
+[2024-10-23 11:13:24,597][INFO] process 1 has completed -> size: 47
+[2024-10-23 11:13:29,912][INFO] process 2 -> searching n2 at iter 8
+[2024-10-23 11:13:30,356][INFO] process 0 -> searching n2 at iter 5
+[2024-10-23 11:13:30,367][INFO] process 1 -> searching n2 at iter 6
+[2024-10-23 11:13:30,489][INFO] process 4 -> searching n2 at iter 8
+[2024-10-23 11:13:30,539][INFO] process 3 -> searching n2 at iter 9
+[2024-10-23 11:14:24,659][INFO] process 0 has completed -> cost: 76.0 (69) size: 42 -> [1, 0, 4, 2, 5, 3, 10, 17, 20, 6, 14, 8, 15, 9, 23, 30, 41, 37, 18, 38, 11, 27, 52, 49, 26, 32, 25, 66, 29, 39, 36, 33, 144, 72, 74, 136, 44, 35, 92, 131, 7, 21]
+[2024-10-23 11:14:24,666][INFO] process 1 has completed -> cost: 76.0 (69) size: 42 -> [1, 0, 4, 2, 5, 3, 10, 17, 6, 14, 8, 15, 9, 23, 30, 41, 37, 18, 38, 11, 27, 52, 49, 26, 32, 25, 66, 29, 39, 36, 33, 144, 72, 74, 136, 44, 35, 92, 131, 20, 7, 21]
+[2024-10-23 11:14:24,666][INFO] process 3 has completed -> cost: 81.0 (69) size: 42 -> [4, 3, 1, 8, 6, 9, 15, 20, 10, 14, 21, 18, 23, 30, 37, 24, 11, 27, 31, 33, 25, 49, 38, 39, 34, 32, 29, 66, 19, 44, 26, 100, 144, 64, 73, 126, 36, 35, 179, 7, 93, 2]
+[2024-10-23 11:14:24,669][INFO] process 2 has completed -> cost: 82.0 (69) size: 42 -> [4, 3, 1, 7, 8, 6, 9, 15, 20, 10, 21, 18, 23, 30, 37, 24, 11, 27, 31, 33, 25, 49, 38, 39, 34, 32, 29, 66, 5, 44, 26, 100, 144, 73, 126, 36, 35, 28, 179, 19, 140, 53]
+[2024-10-23 11:14:24,679][INFO] process 4 has completed -> cost: 82.0 (69) size: 43 -> [4, 3, 1, 7, 8, 6, 9, 15, 20, 10, 14, 21, 18, 23, 30, 37, 24, 11, 27, 31, 33, 25, 49, 38, 39, 34, 32, 29, 66, 19, 5, 44, 26, 100, 144, 64, 73, 126, 36, 35, 179, 93, 16]
+[2024-10-23 11:14:49,121][INFO] process 4 has completed -> size: 45
+[2024-10-23 11:14:49,130][INFO] process 2 has completed -> size: 45
+[2024-10-23 11:14:49,133][INFO] process 3 has completed -> size: 47
+[2024-10-23 11:14:49,139][INFO] process 1 has completed -> size: 47
+[2024-10-23 11:14:49,162][INFO] process 0 has completed -> size: 47
+[2024-10-23 11:14:49,168][WARNING] generated 5 solutions -> 2 are unique
+[2024-10-23 11:14:54,166][INFO] process 0 -> searching n2 at iter 6
+[2024-10-23 11:14:54,599][INFO] process 1 -> searching n2 at iter 6
+[2024-10-23 11:15:42,906][INFO] process 2 has completed -> size: 45
+[2024-10-23 11:15:42,926][INFO] process 4 has completed -> size: 45
+[2024-10-23 11:15:42,940][INFO] process 0 has completed -> size: 47
+[2024-10-23 11:15:42,946][INFO] process 3 has completed -> size: 47
+[2024-10-23 11:15:42,962][INFO] process 19 has completed -> size: 44
+[2024-10-23 11:15:42,967][INFO] process 15 has completed -> size: 45
+[2024-10-23 11:15:42,973][INFO] process 1 has completed -> size: 47
+[2024-10-23 11:15:42,980][INFO] process 13 has completed -> size: 46
+[2024-10-23 11:15:42,987][INFO] process 5 has completed -> size: 44
+[2024-10-23 11:15:42,990][INFO] process 18 has completed -> size: 47
+[2024-10-23 11:15:43,017][INFO] process 17 has completed -> size: 46
+[2024-10-23 11:15:43,052][INFO] process 16 has completed -> size: 47
+[2024-10-23 11:15:43,173][INFO] process 10 has completed -> size: 46
+[2024-10-23 11:15:43,174][INFO] process 8 has completed -> size: 45
+[2024-10-23 11:15:43,178][INFO] process 7 has completed -> size: 47
+[2024-10-23 11:15:43,179][INFO] process 6 has completed -> size: 46
+[2024-10-23 11:15:43,199][INFO] process 9 has completed -> size: 44
+[2024-10-23 11:15:43,210][INFO] process 14 has completed -> size: 44
+[2024-10-23 11:15:43,287][INFO] process 12 has completed -> size: 44
+[2024-10-23 11:15:43,311][INFO] process 11 has completed -> size: 47
+[2024-10-23 11:15:43,318][WARNING] generated 20 solutions -> 4 are unique
+[2024-10-23 11:15:47,966][INFO] process 0 -> searching n2 at iter 6
+[2024-10-23 11:15:48,072][INFO] process 1 -> searching n2 at iter 6
+[2024-10-23 11:15:48,570][INFO] process 2 -> searching n2 at iter 6
+[2024-10-23 11:15:48,838][INFO] process 3 -> searching n2 at iter 8
+[2024-10-23 11:17:45,212][INFO] process 5 has completed -> size: 44
+[2024-10-23 11:17:45,360][INFO] process 6 has completed -> size: 46
+[2024-10-23 11:17:45,408][INFO] process 4 has completed -> size: 45
+[2024-10-23 11:17:45,427][INFO] process 12 has completed -> size: 44
+[2024-10-23 11:17:45,442][INFO] process 3 has completed -> size: 47
+[2024-10-23 11:17:45,455][INFO] process 15 has completed -> size: 45
+[2024-10-23 11:17:45,463][INFO] process 17 has completed -> size: 46
+[2024-10-23 11:17:45,470][INFO] process 13 has completed -> size: 46
+[2024-10-23 11:17:45,471][INFO] process 16 has completed -> size: 47
+[2024-10-23 11:17:45,473][INFO] process 0 has completed -> size: 47
+[2024-10-23 11:17:45,474][INFO] process 18 has completed -> size: 47
+[2024-10-23 11:17:45,570][INFO] process 14 has completed -> size: 44
+[2024-10-23 11:17:45,614][INFO] process 11 has completed -> size: 47
+[2024-10-23 11:17:45,656][INFO] process 2 has completed -> size: 45
+[2024-10-23 11:17:45,664][INFO] process 1 has completed -> size: 47
+[2024-10-23 11:17:45,678][INFO] process 10 has completed -> size: 46
+[2024-10-23 11:17:45,682][INFO] process 7 has completed -> size: 47
+[2024-10-23 11:17:45,749][INFO] process 8 has completed -> size: 45
+[2024-10-23 11:17:45,782][INFO] process 19 has completed -> size: 44
+[2024-10-23 11:17:45,784][INFO] process 9 has completed -> size: 44
+[2024-10-23 11:17:45,792][WARNING] generated 20 solutions -> 4 are unique
+[2024-10-23 11:17:49,784][INFO] process 0 -> searching n2 at iter 6
+[2024-10-23 11:17:50,536][INFO] process 1 -> searching n2 at iter 6
+[2024-10-23 11:17:50,767][INFO] process 3 -> searching n2 at iter 6
+[2024-10-23 11:17:51,136][INFO] process 2 -> searching n2 at iter 8
+[2024-10-23 11:18:45,841][INFO] process 0 has completed -> cost: 72.0 (69) size: 41
+[2024-10-23 11:18:45,842][INFO] process 1 has completed -> cost: 76.0 (69) size: 42
+[2024-10-23 11:18:45,844][INFO] process 2 has completed -> cost: 76.0 (69) size: 41
+[2024-10-23 11:18:45,857][INFO] process 3 has completed -> cost: 83.0 (69) size: 43

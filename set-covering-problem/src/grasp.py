@@ -58,11 +58,11 @@ class Grasp:
     def do_construct_solution(self, idx):
         inst = copy.deepcopy(self.inst)
 
-        rng = np.random.default_rng(seed=self.seeds[idx])
-        starter_size = 1  # promote diversity among initial solutions
-        starter = rng.integers(0, inst.get_cols(), size=starter_size).tolist()
-        for x in starter:
-            inst.increment_sol(x)
+        # rng = np.random.default_rng(seed=self.seeds[idx])
+        # starter_size = 1  # promote diversity among initial solutions
+        # starter = rng.integers(0, inst.get_cols(), size=starter_size).tolist()
+        # for x in starter:
+        #     inst.increment_sol(x)
         while not inst.check_sol_coverage():
             scores = self.do_compute_greedy_scores(inst)
             x = self.do_choose_next(scores, seed=self.seeds[idx])
@@ -172,6 +172,7 @@ class GraspVND(Grasp):
         self.max_runtime = 1 * 60  # seconds
         self.max_iter = 200
         self.optimized_solutions = []
+        self.frequency = np.zeros(instance.get_cols())
 
     def run(self):
         super().run()  # generate initial solutions
@@ -188,6 +189,7 @@ class GraspVND(Grasp):
                 result = future.result()
                 assert isinstance(result[0], list)
                 self.optimized_solutions.append(result[0])
+                self.frequency += result[2]
                 self.logger.info(f"process {idx} has completed -> "
                                  f"cost: {result[1]} ({self.inst.get_best_known_sol_cost()}) "
                                  f"size: {len(result[0])}")
@@ -197,10 +199,13 @@ class GraspVND(Grasp):
 
     def do_local_search(self, solution, idx):
         start = perf_counter()
+        inst = copy.deepcopy(self.inst)
         elapsed = 0
         n_iter = 0
         current = solution.copy()
+        frequency_on_best_sol = np.zeros(inst.get_cols())
         while n_iter < self.max_iter and elapsed < self.max_runtime:
+            frequency_on_best_sol[current] += 1  # track elements which frequently appear in good solutions
             n1 = self.do_generate_n1(current)  # search for improvement in small neighborhood
             found_improvement = False
             try:
@@ -220,7 +225,7 @@ class GraspVND(Grasp):
             if found_improvement:
                 n_iter += 1
                 continue  # re-center search on new solution
-            n2 = self.do_generate_n2(current)  # ...or keep looking in larger neighborhood
+            n2 = self.do_generate_n2(current, frequency_on_best_sol.tolist())  # ...or keep looking in larger neighborhood
             self.logger.info(f"process {idx} -> searching n2 at iter {n_iter}")
             try:
                 while not found_improvement:
@@ -243,10 +248,9 @@ class GraspVND(Grasp):
             else:  # exhausted all options, halt search
                 self.logger.info(f"process {idx} -> could not find improvements, halting")
                 break
-        inst = copy.deepcopy(self.inst)
         inst.set_sol(current)
         cost = inst.get_sol_cost()
-        return current, cost
+        return current, cost, frequency_on_best_sol
 
     def do_generate_n1(self, solution: list):
         inst = copy.deepcopy(self.inst)
@@ -280,7 +284,7 @@ class GraspVND(Grasp):
                     yield [x, x_in]
                     continue
 
-    def do_generate_n2(self, solution: list):
+    def do_generate_n2(self, solution: list, frequency: list):
         inst = copy.deepcopy(self.inst)
         mat = inst.get_mat()
         weights = inst.get_weights()
@@ -319,7 +323,10 @@ class GraspVND(Grasp):
                 cost_removed = weights[x] + weights[y]
 
             insert_options = [i for i in range(inst.get_cols())]
-            insert_options = [None] + [x for _, x in sorted(zip(weights, insert_options))]
+            # try to look first at elements which rarely appear in the best solution considered so far
+            sort_by_increasing_freq = np.asarray(frequency).argsort()
+            insert_options = [None] + (np.asarray(insert_options)[sort_by_increasing_freq]).tolist()
+            # insert_options = [None] + [x for _, x in sorted(zip(weights, insert_options))]
             for i, x_in in enumerate(insert_options):
                 if x_in is not None:
                     if weights[x_in] > cost_removed:
@@ -391,6 +398,9 @@ class GraspVND(Grasp):
                 best_cost = cost
         return best, best_cost
 
+    def get_frequency(self):
+        return self.frequency
+
 
 if __name__ == "__main__":
     dl = DataLoader()
@@ -434,7 +444,7 @@ if __name__ == "__main__":
     # plt.ylabel("cost")
     # plt.show()
 
-    K = 1
+    K = 4
     alpha = K / inst.get_cols()
     print(f"alpha -> {alpha}")
     n_solutions = 16
@@ -448,6 +458,14 @@ if __name__ == "__main__":
     max_time = 3 * 60  # around 1h for 42 instances
     grasp.max_runtime = max_time
     grasp.run()
+
+    freq = grasp.get_frequency()
+    import matplotlib.pyplot as plt
+    plt.bar([x for x in range(inst.get_cols())], freq)
+    plt.xlabel("member of solution")
+    plt.ylabel("counts")
+    plt.title("frequency on good solutions")
+    plt.show()
 
     for solution in grasp.get_solutions():
         print(solution)

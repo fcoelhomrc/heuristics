@@ -57,6 +57,12 @@ class Grasp:
 
     def do_construct_solution(self, idx):
         inst = copy.deepcopy(self.inst)
+
+        rng = np.random.default_rng(seed=self.seeds[idx])
+        starter_size = 1  # promote diversity among initial solutions
+        starter = rng.integers(0, inst.get_cols(), size=starter_size).tolist()
+        for x in starter:
+            inst.increment_sol(x)
         while not inst.check_sol_coverage():
             scores = self.do_compute_greedy_scores(inst)
             x = self.do_choose_next(scores, seed=self.seeds[idx])
@@ -312,7 +318,8 @@ class GraspVND(Grasp):
                 elements_removed = (mat[:, x] | mat[:, y])
                 cost_removed = weights[x] + weights[y]
 
-            insert_options = [i for i in range(inst.get_cols())] + [None]
+            insert_options = [i for i in range(inst.get_cols())]
+            insert_options = [None] + [x for _, x in sorted(zip(weights, insert_options))]
             for i, x_in in enumerate(insert_options):
                 if x_in is not None:
                     if weights[x_in] > cost_removed:
@@ -427,10 +434,10 @@ if __name__ == "__main__":
     # plt.ylabel("cost")
     # plt.show()
 
-    K = 8
+    K = 1
     alpha = K / inst.get_cols()
     print(f"alpha -> {alpha}")
-    n_solutions = 32
+    n_solutions = 16
     grasp = GraspVND(instance=inst,
                      alpha=alpha, n_solutions=n_solutions)
 
@@ -438,7 +445,7 @@ if __name__ == "__main__":
 
     max_iter = 100
     grasp.max_iter = max_iter
-    max_time = 20 * 60
+    max_time = 3 * 60  # around 1h for 42 instances
     grasp.max_runtime = max_time
     grasp.run()
 

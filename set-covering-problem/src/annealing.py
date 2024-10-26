@@ -1,3 +1,5 @@
+import copy
+
 from utils import State, Instance, DataLoader
 from solvers import GreedySolver, RandomGreedySolver, PriorityGreedySolver
 from postprocessing import RedundancyElimination
@@ -167,7 +169,7 @@ class SimulatedAnnealing:
         return cost
 
     def do_reset_candidate_pool(self):
-        self.candidate_options = [i for i in range(self.inst.get_cols())]
+        self.candidate_options = [i for i in range(self.inst.get_cols())] + [None]
 
     def do_next_candidate(self):
         sol = self.sol[:]
@@ -191,6 +193,8 @@ class SimulatedAnnealing:
                 self.move_type = MoveType.INSERT
 
             if self.do_check_if_valid_operation(candidate):
+                # apply redundancy elimination
+                candidate, _ = self.redundancy_elimination()
                 self.candidate = candidate
                 break
 
@@ -248,6 +252,14 @@ class SimulatedAnnealing:
         self.sol = self.initial_sol[:]
         self.candidate = self.sol[:]  # TODO: this might introduce a bug
         self.best = self.sol[:]
+
+    def redundancy_elimination(self):
+        inst = copy.deepcopy(self.inst)
+        inst.set_sol(self.sol)
+        engine = RedundancyElimination(instance=inst, logger=self.logger)
+        engine.do_elimination()
+        assert inst.check_sol_coverage()
+        return inst.get_sol(), inst.get_sol_cost()
 
     def do_update_sol(self):
         self.sol = self.candidate[:]  # prevents shallow copy
@@ -353,7 +365,7 @@ class SimulatedAnnealing:
 
 if __name__ == "__main__":
     dl = DataLoader()
-    inst_name = "b3"
+    inst_name = "42"
     inst = dl.load_instance(inst_name)
 
     OUTPUT_DIR = "../output"
@@ -370,20 +382,20 @@ if __name__ == "__main__":
     inst.set_sol(list(sol_greedy))
     inst.set_state(State.SOLVED)
 
-    max_iter = 4_000
+    max_iter = 5_000
     max_cand = 10 * inst.get_cols()
     sim_annealing = SimulatedAnnealing(
         instance=inst,
         max_candidates=max_cand, max_iterations=max_iter,
-        initial_temperature=5.0, final_temperature=1.,
+        initial_temperature=100.0, final_temperature=0.001,
         cooling_schedule=CoolingSchedule.GEOMETRIC, cooling_params={"rate": 0.99}
     )
     sim_annealing.configure_logger(log_path)
 
-    # estimate hyper parameters
-    init_temp, final_temp, cooling = sim_annealing.dry_run(
-        max_iterations=max_iter
-    )
+    # # estimate hyper parameters
+    # init_temp, final_temp, cooling = sim_annealing.dry_run(
+    #     max_iterations=max_iter
+    # )
 
     # # test new cooling schedule
     # sim_annealing.cooling_schedule = CoolingSchedule.NON_MONOTONIC
@@ -391,20 +403,20 @@ if __name__ == "__main__":
     # cooling["refuel_rate"] = 1.05
     # cooling["refuel_proba"] = 0.20
     # cooling["active"] = False
-
-    sim_annealing.set_hyper_parameters(
-        initial_temperature=init_temp,
-        final_temperature=final_temp,
-        cooling_params=cooling
-    )
+    #
+    # sim_annealing.set_hyper_parameters(
+    #     initial_temperature=init_temp,
+    #     final_temperature=final_temp,
+    #     cooling_params=cooling
+    # )
 
     # solve instance
     sim_annealing.run()
 
-    sim_annealing.logger.info(f"dry run estimates -> "
-                              f"init temp: {init_temp:.2f} "
-                              f"final temp: {final_temp:.2f} "
-                              f"rate: {cooling["rate"]:.5f}")
+    # sim_annealing.logger.info(f"dry run estimates -> "
+    #                           f"init temp: {init_temp:.2f} "
+    #                           f"final temp: {final_temp:.2f} "
+    #                           f"rate: {cooling["rate"]:.5f}")
     best = sim_annealing.get_best()
     stats = sim_annealing.get_stats()
 

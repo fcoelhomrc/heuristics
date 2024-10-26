@@ -1,0 +1,33 @@
+[2024-10-23 21:10:23,084][INFO] process 0 has completed -> size: 71
+[2024-10-23 21:10:23,107][INFO] process 8 has completed -> size: 72
+[2024-10-23 21:10:23,114][INFO] process 13 has completed -> size: 69
+[2024-10-23 21:10:23,361][INFO] process 4 has completed -> size: 69
+[2024-10-23 21:10:23,381][INFO] process 11 has completed -> size: 69
+[2024-10-23 21:10:23,389][INFO] process 14 has completed -> size: 70
+[2024-10-23 21:10:23,458][INFO] process 10 has completed -> size: 71
+[2024-10-23 21:10:23,512][INFO] process 1 has completed -> size: 69
+[2024-10-23 21:10:23,573][INFO] process 15 has completed -> size: 72
+[2024-10-23 21:10:23,653][INFO] process 2 has completed -> size: 69
+[2024-10-23 21:10:23,782][INFO] process 3 has completed -> size: 72
+[2024-10-23 21:10:23,798][INFO] process 9 has completed -> size: 70
+[2024-10-23 21:10:23,849][INFO] process 5 has completed -> size: 72
+[2024-10-23 21:10:23,853][INFO] process 12 has completed -> size: 69
+[2024-10-23 21:10:23,936][INFO] process 7 has completed -> size: 71
+[2024-10-23 21:10:23,967][INFO] process 6 has completed -> size: 72
+[2024-10-23 21:10:23,974][WARNING] generated 16 solutions -> 4 are unique
+[2024-10-23 21:10:25,081][INFO] process 2 -> searching n2 at iter 9
+[2024-10-23 21:10:25,174][INFO] process 1 -> searching n2 at iter 14
+[2024-10-23 21:10:25,407][INFO] process 3 -> searching n2 at iter 13
+[2024-10-23 21:10:25,632][INFO] process 0 -> searching n2 at iter 24
+[2024-10-23 21:10:54,002][WARNING] process 1 -> search in n2 timed out!
+[2024-10-23 21:10:54,002][INFO] process 1 -> could not find improvements, halting
+[2024-10-23 21:10:54,003][INFO] process 1 has completed -> cost: 297.0 (279) size: 60
+[2024-10-23 21:10:54,003][WARNING] process 2 -> search in n2 timed out!
+[2024-10-23 21:10:54,003][INFO] process 2 -> could not find improvements, halting
+[2024-10-23 21:10:54,004][WARNING] process 0 -> search in n2 timed out!
+[2024-10-23 21:10:54,004][INFO] process 0 -> could not find improvements, halting
+[2024-10-23 21:10:54,004][INFO] process 2 has completed -> cost: 300.0 (279) size: 64
+[2024-10-23 21:10:54,004][INFO] process 0 has completed -> cost: 288.0 (279) size: 60
+[2024-10-23 21:10:54,004][WARNING] process 3 -> search in n2 timed out!
+[2024-10-23 21:10:54,005][INFO] process 3 -> could not find improvements, halting
+[2024-10-23 21:10:54,005][INFO] process 3 has completed -> cost: 290.0 (279) size: 62

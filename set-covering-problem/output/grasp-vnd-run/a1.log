@@ -1,0 +1,29 @@
+[2024-10-23 21:13:28,687][INFO] process 14 has completed -> size: 86
+[2024-10-23 21:13:28,714][INFO] process 2 has completed -> size: 90
+[2024-10-23 21:13:28,741][INFO] process 0 has completed -> size: 90
+[2024-10-23 21:13:29,302][INFO] process 15 has completed -> size: 86
+[2024-10-23 21:13:29,328][INFO] process 8 has completed -> size: 90
+[2024-10-23 21:13:29,346][INFO] process 13 has completed -> size: 90
+[2024-10-23 21:13:29,374][INFO] process 1 has completed -> size: 86
+[2024-10-23 21:13:29,551][INFO] process 3 has completed -> size: 86
+[2024-10-23 21:13:29,646][INFO] process 4 has completed -> size: 86
+[2024-10-23 21:13:29,787][INFO] process 9 has completed -> size: 86
+[2024-10-23 21:13:30,121][INFO] process 12 has completed -> size: 86
+[2024-10-23 21:13:30,151][INFO] process 10 has completed -> size: 90
+[2024-10-23 21:13:30,276][INFO] process 11 has completed -> size: 86
+[2024-10-23 21:13:30,277][INFO] process 7 has completed -> size: 86
+[2024-10-23 21:13:30,309][INFO] process 5 has completed -> size: 86
+[2024-10-23 21:13:30,517][INFO] process 6 has completed -> size: 86
+[2024-10-23 21:13:30,525][WARNING] generated 16 solutions -> 3 are unique
+[2024-10-23 21:13:35,208][INFO] process 0 -> searching n2 at iter 21
+[2024-10-23 21:13:35,764][INFO] process 1 -> searching n2 at iter 15
+[2024-10-23 21:13:36,797][INFO] process 2 -> searching n2 at iter 28
+[2024-10-23 21:14:00,557][WARNING] process 0 -> search in n2 timed out!
+[2024-10-23 21:14:00,557][INFO] process 0 -> could not find improvements, halting
+[2024-10-23 21:14:00,558][INFO] process 0 has completed -> cost: 272.0 (253) size: 74
+[2024-10-23 21:14:00,560][WARNING] process 1 -> search in n2 timed out!
+[2024-10-23 21:14:00,560][INFO] process 1 -> could not find improvements, halting
+[2024-10-23 21:14:00,560][INFO] process 1 has completed -> cost: 270.0 (253) size: 76
+[2024-10-23 21:14:00,567][WARNING] process 2 -> search in n2 timed out!
+[2024-10-23 21:14:00,567][INFO] process 2 -> could not find improvements, halting
+[2024-10-23 21:14:00,568][INFO] process 2 has completed -> cost: 266.0 (253) size: 75

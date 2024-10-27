@@ -25,7 +25,9 @@ class Instance:
 
         self.sol = []  # which subsets are included in solution
         self.sol_coverage = np.zeros(self.n_rows)  # how many times solution covers each element
-    
+
+        self.best_known_sol_cost = None  # optimal solution
+        self.instance_name = None
 
     def update_sol_coverage(self):
             self.sol_coverage = self.mat[:, self.sol].sum(axis=1).flatten()
@@ -88,6 +90,9 @@ class Instance:
     def get_total_covered_by(self):
         return self.total_covered_by
 
+    def get_best_known_sol_cost(self):
+        return self.best_known_sol_cost
+
 class DataLoader:
     DATA_DIR = "../data"
 
@@ -100,7 +105,17 @@ class DataLoader:
         row i followed by a list of the columns which cover row i
         """
         self.available_instances = self.list_instances()
-        return
+
+        self.optimal_costs = {
+            "42": 512, "43": 516, "44": 494, "45": 512, "46": 560, "47": 430, "48": 492, "49": 641,
+            "51": 253, "52": 302, "53": 226, "54": 242, "55": 211, "56": 213, "57": 293, "58": 288, "59": 279,
+            "61": 138, "62": 146, "63": 145, "64": 131, "65": 161,  # 6.X
+            "a1": 253, "a2": 252, "a3": 232, "a4": 234, "a5": 236,  # A.X
+            "b1": 69, "b2": 76, "b3": 80, "b4": 79, "b5": 72,  # B.X
+            "c1": 227, "c2": 219, "c3": 243, "c4": 219, "c5": 215,  # C.X
+            "d1": 60, "d2": 66, "d3": 72, "d4": 62, "d5": 61  # D.X
+        }
+
 
     @staticmethod
     def list_instances():
@@ -134,6 +149,10 @@ class DataLoader:
             instance.set_mat(mat)
 
             instance.set_state(State.LOADED)
+
+            instance.instance_name = name
+            instance.best_known_sol_cost = self.optimal_costs[name]
+
             return instance
 
     @staticmethod

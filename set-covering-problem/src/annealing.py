@@ -16,17 +16,9 @@ from time import perf_counter
 class CoolingSchedule(Enum):
     LINEAR = 0
     GEOMETRIC = 1
-    NON_MONOTONIC = 2
 
 class EquilibriumStrategy(Enum):
     STATIC = 0
-    ADAPTIVE = 1
-    EXHAUSTIVE = 2
-
-class MoveType(Enum):
-    INSERT = 0
-    REMOVE = 1
-
 
 class SimulatedAnnealing:
     SEED = 42
@@ -37,7 +29,7 @@ class SimulatedAnnealing:
                  initial_temperature: float, final_temperature: float,
                  cooling_schedule: CoolingSchedule = CoolingSchedule.GEOMETRIC,
                  cooling_params: dict = None,
-                 equilibrium_strategy: EquilibriumStrategy = EquilibriumStrategy.EXHAUSTIVE,
+                 equilibrium_strategy: EquilibriumStrategy = EquilibriumStrategy.STATIC,
                  logger: logging.Logger = None):
 
         self.inst = instance
@@ -62,8 +54,6 @@ class SimulatedAnnealing:
         self.sol = None
         self.candidate = None
         self.best = None
-        self.move_type = None
-        self.candidate_options = None
 
         # Statistics
         self.time = None
@@ -88,17 +78,16 @@ class SimulatedAnnealing:
         i = 0
         self.do_start_clock()  # statistics
         self.do_initialize()
-        while self.temperature > self.final_temperature and i < self.max_iterations:  # TODO: implement a better stopping criteria
+        pbar = tqdm(total=self.max_iterations, desc="annealing", leave=False)
+        while self.temperature > self.final_temperature and i < self.max_iterations:
             # update stage
             self.do_cooling(i)
-            self.do_reset_candidate_pool()
             # search stage
             j = 0
             while not self.reached_equilibrium(j):
                 self.do_next_candidate()
                 if self.candidate is None:
-                    break
-
+                    continue
                 j += 1
                 self.do_write_step()  # statistics
                 self.do_read_clock()  # statistics
@@ -112,108 +101,75 @@ class SimulatedAnnealing:
                     self.do_update_best()
                     break
             i += 1
+            pbar.set_description(f"annealing -> cost {self.sol_cost}")
+            pbar.update()
         self.logger.info(f"reached stop condition after {i} steps "
                          f"(max steps -> {self.max_iterations})")
 
-    def dry_run(self, max_iterations: int):
-        n_test_pts = 50
-        test_temperatures = np.logspace(2, -2, n_test_pts)
-        test_scores = np.zeros(n_test_pts)
-        data_for_final_temperature = np.zeros((n_test_pts, 3))  # cost, log proba, delta
-        for i in range(n_test_pts):
-            n_iter = 0
-            x = 0
-            self.do_initialize()
-            self.do_reset_candidate_pool()
-            while self.candidate is not None:
-                self.do_next_candidate()
-                if self.candidate is None:
-                    break
-                delta = self.do_compute_delta()
-                proba = np.exp(-delta / test_temperatures[i])
-                self.inst.set_sol(self.candidate)
-                cost = self.inst.get_sol_cost()
-                data_for_final_temperature[i, 0] = cost
-                data_for_final_temperature[i, 1] = np.log(proba)
-                data_for_final_temperature[i, 2] = delta
-                if self.move_type == MoveType.REMOVE:
-                    x += (1 - proba) * cost
-                elif self.move_type == MoveType.INSERT:
-                    self.inst.set_sol(self.candidate)
-                    x += proba * cost
-                else:
-                    raise ValueError(f"Invalid move {self.move_type}")
-                n_iter += 1
-            x /= n_iter
-            test_scores[i] = x
-        initial_temperature = test_temperatures[np.abs(test_scores).argmin()]
-        final_temperature = 0.01 * initial_temperature
-        assert final_temperature < initial_temperature
 
-        if self.cooling_schedule == CoolingSchedule.LINEAR:
-            rate = (final_temperature - initial_temperature) / max_iterations
-        elif self.cooling_schedule == CoolingSchedule.GEOMETRIC:
-            rate = np.exp( (np.log(final_temperature) - np.log(initial_temperature)) / max_iterations )
-        else:
-            raise ValueError("Provide cooling schedule")
-
-        # reset statistics
-        for _, stat in self.stats.items():
-            stat.clear()
-
-        return initial_temperature, final_temperature, {"rate": rate}
+    def dry_run(self):
+        self.do_initialize()
+        sample_size = 1_000
+        probas = np.array([0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9])
+        deltas = []
+        pbar = tqdm(total=sample_size, desc="dry run")
+        n = 0
+        while n < sample_size:
+            self.do_next_candidate()
+            if self.candidate is None:
+                continue
+            n += 1
+            delta = self.do_compute_delta()
+            deltas.append(delta)
+            pbar.update()
+        delta_std = np.asarray(deltas).std()
+        init_temps = (-3 / np.log(probas)) * delta_std
+        print(f"dry run -> delta std {delta_std}")
+        return probas, init_temps
 
     def evaluation_func(self, sol):
         self.inst.set_sol(sol)
         cost = self.inst.get_sol_cost()
         return cost
 
-    def do_reset_candidate_pool(self):
-        self.candidate_options = [i for i in range(self.inst.get_cols())] + [None]
-
     def do_next_candidate(self):
-        sol = self.sol[:]
-        while True:
-            if len(self.candidate_options) < 1:
-                self.candidate = None  # exhausted options, move on
-                break
+        candidate = [x for x in self.sol]
 
-            candidate = sol.copy()
-            sample = SimulatedAnnealing.RNG.choice(
-                self.candidate_options, size=1
-            )
-            sample = int(sample[0])
-            self.candidate_options.remove(sample)
+        remove_options = [x for x in candidate]
+        remove_options += [None]
+        x_out = SimulatedAnnealing.RNG.choice(candidate, size=2, replace=True)
+        insert_options = [x for x in range(self.inst.get_cols()) if x not in candidate]
+        insert_options += [None]
+        x_in = SimulatedAnnealing.RNG.choice(insert_options, size=2, replace=True)
+        # perform swap(n_out, n_in)
+        for x in x_out.tolist():
+            if x is None:
+                continue
+            if x in candidate:
+              candidate.remove(x)
+            # self.logger.info(f"changes -> removed {x}")
+        for x in x_in.tolist():
+            if x is None:
+                continue
+            if x not in candidate:
+                candidate.append(x)
+                # self.logger.info(f"changes -> inserted {x}")
 
-            if sample in sol:
-                candidate.remove(sample)
-                self.move_type = MoveType.REMOVE
-            else:
-                candidate.append(sample)
-                self.move_type = MoveType.INSERT
+        # self.logger.info(f"cost -> current {self.evaluation_func(self.sol)}, "
+        #                  f"candidate {self.evaluation_func(candidate)}")
 
-            if self.do_check_if_valid_operation(candidate):
-                # apply redundancy elimination
-                candidate, _ = self.redundancy_elimination()
-                self.candidate = candidate
-                break
+        # perform redundancy elimination
+        if self.do_check_coverage(candidate):
+            candidate, _ = self.redundancy_elimination(candidate)
+            self.candidate = candidate
+        else:
+            self.candidate = None
 
     def do_cooling(self, step):
         if self.cooling_schedule == CoolingSchedule.LINEAR:
             self.temperature = self.temperature - step * self.cooling_params["rate"]
-            self.logger.info(f"temperature updated -> {self.temperature:.3f} / target: {self.final_temperature}")
         elif self.cooling_schedule == CoolingSchedule.GEOMETRIC:
             self.temperature = self.cooling_params["rate"] * self.temperature
-        elif self.cooling_schedule == CoolingSchedule.NON_MONOTONIC:
-            is_below_threshold = self.temperature < self.cooling_params["refuel_threshold"] * self.initial_temperature
-            if is_below_threshold and not self.cooling_params["active"]:
-                self.cooling_params["active"] = True
-                if SimulatedAnnealing.RNG.uniform() < self.cooling_params["refuel_proba"]:
-                    self.temperature = self.cooling_params["refuel_rate"] * self.temperature
-                else:
-                    self.temperature = self.cooling_params["rate"] * self.temperature
-            else:
-                self.temperature = self.cooling_params["rate"] * self.temperature
         else:
             raise ValueError("Provide cooling schedule")
 
@@ -224,38 +180,33 @@ class SimulatedAnnealing:
         self.do_write_delta(delta)
         return delta
 
-    def do_check_if_valid_operation(self, sol):
-        self.inst.set_sol(sol.copy())
-        return self.inst.check_sol_coverage()
-
     def do_accept(self):
         self.do_write_acceptance_proba() # statistics
+        if not self.do_check_coverage(self.candidate):
+            return False
         delta = self.do_compute_delta()
-        if delta <= 0:
+        proba = np.exp(- delta / self.temperature)
+        self.logger.info(f"delta -> {delta:.1f} " 
+                         f"acceptance proba -> {proba:.6f} "
+                         f"(temperature -> {self.temperature})")
+        if delta < 0:
             return True
-        proba = min(1., np.exp(- delta / self.temperature))
-        if self.move_type == MoveType.INSERT:
-            self.logger.info(f"{self.move_type} "
-                             f"acceptance proba -> {proba:.6f} "
-                             f"(temperature -> {self.temperature})")
-            return SimulatedAnnealing.RNG.uniform() < proba
-        elif self.move_type == MoveType.REMOVE:
-            self.logger.info(f"{self.move_type} "
-                             f"acceptance proba -> {(1 - proba):.6f} "
-                             f"(temperature -> {self.temperature})")
-            return SimulatedAnnealing.RNG.uniform() < (1 - proba)
-        else:
-            raise ValueError(f"Invalid move {self.move_type}")
+        return SimulatedAnnealing.RNG.uniform() < proba
 
     def do_initialize(self):
         self.temperature = self.initial_temperature
         self.sol = self.initial_sol[:]
-        self.candidate = self.sol[:]  # TODO: this might introduce a bug
+        self.candidate = self.sol[:]
         self.best = self.sol[:]
 
-    def redundancy_elimination(self):
+    def do_check_coverage(self, x):
         inst = copy.deepcopy(self.inst)
-        inst.set_sol(self.sol)
+        inst.set_sol(x.copy())
+        return inst.check_sol_coverage()
+
+    def redundancy_elimination(self, sol):
+        inst = copy.deepcopy(self.inst)
+        inst.set_sol(sol.copy())
         engine = RedundancyElimination(instance=inst, logger=self.logger)
         engine.do_elimination()
         assert inst.check_sol_coverage()
@@ -272,10 +223,6 @@ class SimulatedAnnealing:
     def reached_equilibrium(self, step):
         if self.equilibrium_strategy == EquilibriumStrategy.STATIC:
             return step >= self.max_candidates
-        elif self.equilibrium_strategy == EquilibriumStrategy.ADAPTIVE:
-            raise NotImplementedError  #TODO: implement adaptive equilibrium
-        elif self.equilibrium_strategy == EquilibriumStrategy.EXHAUSTIVE:
-            return self.candidate is None
         else:
             raise ValueError("Provide an equilibrium strategy")
 
@@ -382,41 +329,29 @@ if __name__ == "__main__":
     inst.set_sol(list(sol_greedy))
     inst.set_state(State.SOLVED)
 
-    max_iter = 5_000
-    max_cand = 10 * inst.get_cols()
+    max_iter = 50
+    max_cand = 1
+    Ti = 30
+    Tf = 1
+    alpha = (Tf / Ti)**(1 / max_iter)
+
+    print(f"Ti {Ti} -> Tf {Tf} (alpha = {alpha:.5f} -> {max_iter} iter)")
+
     sim_annealing = SimulatedAnnealing(
         instance=inst,
         max_candidates=max_cand, max_iterations=max_iter,
-        initial_temperature=100.0, final_temperature=0.001,
-        cooling_schedule=CoolingSchedule.GEOMETRIC, cooling_params={"rate": 0.99}
+        initial_temperature=Ti, final_temperature=Tf,
+        cooling_schedule=CoolingSchedule.GEOMETRIC, cooling_params={"rate": alpha},
+        equilibrium_strategy=EquilibriumStrategy.STATIC
     )
     sim_annealing.configure_logger(log_path)
 
-    # # estimate hyper parameters
-    # init_temp, final_temp, cooling = sim_annealing.dry_run(
-    #     max_iterations=max_iter
-    # )
+    # init_probas, init_temps = sim_annealing.dry_run()
+    # dry_run_res = {p: t for p,t in zip(init_probas, init_temps)}
+    # print(dry_run_res)
 
-    # # test new cooling schedule
-    # sim_annealing.cooling_schedule = CoolingSchedule.NON_MONOTONIC
-    # cooling["refuel_threshold"] = 0.75
-    # cooling["refuel_rate"] = 1.05
-    # cooling["refuel_proba"] = 0.20
-    # cooling["active"] = False
-    #
-    # sim_annealing.set_hyper_parameters(
-    #     initial_temperature=init_temp,
-    #     final_temperature=final_temp,
-    #     cooling_params=cooling
-    # )
-
-    # solve instance
     sim_annealing.run()
 
-    # sim_annealing.logger.info(f"dry run estimates -> "
-    #                           f"init temp: {init_temp:.2f} "
-    #                           f"final temp: {final_temp:.2f} "
-    #                           f"rate: {cooling["rate"]:.5f}")
     best = sim_annealing.get_best()
     stats = sim_annealing.get_stats()
 
@@ -453,19 +388,3 @@ if __name__ == "__main__":
     plt.title(f"simulated annealing \n "
               f"hit: {is_hit} -> best: {best_cost}, opt: {optimal_cost}")
     plt.show()
-
-    ###
-    # proba = np.asarray(stats["acceptance-proba"])
-    # proba = proba[(1e-3 < proba) & (proba < 0.999)]
-    # plt.plot(proba, label="insert",
-    #          color="tab:orange", lw=1.5, ls="-")
-    # plt.plot(1. - proba, label="remove",
-    #          color="tab:blue", lw=1.5, ls="-")
-    #
-    # plt.xlabel("step")
-    # plt.ylabel("proba")
-    # plt.legend()
-    #
-    # plt.title(f"simulated annealing \n "
-    #           f"hit: {is_hit} -> best: {best_cost}, opt: {optimal_cost}")
-    # plt.show()

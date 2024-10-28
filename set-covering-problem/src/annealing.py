@@ -1,5 +1,3 @@
-import copy
-
 from utils import State, Instance, DataLoader
 from solvers import GreedySolver, RandomGreedySolver, PriorityGreedySolver
 from postprocessing import RedundancyElimination
@@ -23,6 +21,9 @@ class EquilibriumStrategy(Enum):
 class SimulatedAnnealing:
     SEED = 42
     RNG = np.random.default_rng(seed=SEED)
+    # Moves / evaluation function
+    PENALTY = 1.25
+    SWAP_THRESHOLD = 0.5
 
     def __init__(self, instance: Instance,
                  max_candidates: int, max_iterations: int,
@@ -32,16 +33,27 @@ class SimulatedAnnealing:
                  equilibrium_strategy: EquilibriumStrategy = EquilibriumStrategy.STATIC,
                  logger: logging.Logger = None):
 
+        self.logger = logger if logger else logging.getLogger()
         self.inst = instance
         assert instance.get_state() == State.SOLVED, "Initial solution must be provided"
         assert instance.check_sol_coverage(), "Provided solution is not valid"
 
-        self.logger = logger if logger else logging.getLogger()
+        # unpack instance data
+        self.mat = self.inst.get_mat()
+        self.weights = self.inst.get_weights()
+        self.n_rows = self.inst.get_rows()
+        self.n_cols = self.inst.get_cols()
+        self.cost_optimal = instance.get_best_known_sol_cost()
 
-        self.initial_sol = self.inst.get_sol()
+        # convert solution representation to binary vector
+        sol_as_list_of_integers = self.inst.get_sol()
+        self.initial_sol = np.zeros(self.n_cols, dtype=int)
+        self.initial_sol[sol_as_list_of_integers] = 1
+        assert self.is_complete_solution(self.initial_sol)
 
-        # Hyper-parameters
-        self.max_candidates = max_candidates
+        # hyper-parameters
+        self._max_candidates = max_candidates  # don't modify
+        self.max_candidates = max_candidates  # modify for adaptive strategy
         self.max_iterations = max_iterations
         self.cooling_schedule = cooling_schedule
         self.cooling_params = {"rate": 0.99} if cooling_params is None else cooling_params
@@ -49,13 +61,10 @@ class SimulatedAnnealing:
         self.initial_temperature = initial_temperature
         self.final_temperature = final_temperature
 
-        # Components
+        # components
         self.temperature = None
-        self.sol = None
-        self.candidate = None
-        self.best = None
 
-        # Statistics
+        # statistics
         self.time = None
         self.stats = {
             "step": [],
@@ -70,100 +79,217 @@ class SimulatedAnnealing:
             "best-size": [],
             "acceptance-proba": [],
         }
-        self.sol_cost = None
-        self.candidate_cost = None
-        self.best_cost = None
 
+    # auxiliary methods
+    def do_compute_cost(self, x):
+        assert isinstance(x, np.ndarray)
+        assert x.size == self.n_cols
+        cost = self.weights[x == 1].sum()
+        return int(cost)
+
+    def do_compute_coverage(self, x):
+        assert isinstance(x, np.ndarray)
+        assert x.size == self.n_cols
+        selected_cols = self.mat[:, x == 1]
+        covered_rows = np.bitwise_or.reduce(selected_cols, axis=-1)
+        assert covered_rows.size == self.n_rows
+        covered_total = covered_rows.sum()
+        covered_percent = covered_total / self.n_rows
+        return covered_total, covered_percent
+
+    def is_complete_solution(self, x):
+        assert isinstance(x, np.ndarray)
+        assert x.size == self.n_cols
+        covered_total, _ = self.do_compute_coverage(x)
+        return covered_total == self.n_rows
+
+    def do_fill_partial_solution(self, x):
+        assert isinstance(x, np.ndarray)
+        assert x.size == self.n_cols
+        y = x.copy()
+        penalty = 0
+        for i in range(self.n_cols):
+            if self.is_complete_solution(y):
+                break
+            if y[i]:
+                continue
+            selected_cols = self.mat[:, y == 1].copy()
+            covered_rows = np.bitwise_or.reduce(selected_cols, axis=-1)
+            col = self.mat[:, i]
+            new_covers = col & ~covered_rows
+            if new_covers.sum() > 0:
+                y[i] = 1  # include if covers some previously uncovered rows
+                penalty += SimulatedAnnealing.PENALTY * self.weights[i]
+        return y, penalty
+
+    def do_estimate_hyper_params(self, max_iter=100):
+        current, candidate, best = self.do_initialize()
+        cost_current = self.do_compute_cost(current)
+        n_samples = 100
+
+        # expected cost for first candidate -> cost of initial solution
+        # this prevents the cost from exploding early on
+        results = np.zeros(n_samples)
+        temperatures = np.logspace(0, 2, n_samples)
+
+        # flips
+        flip_deltas = []
+        pbar = tqdm(total=self.n_cols, desc="parameter estimation - flips", leave=False)
+        for i in range(self.n_cols):
+            x = current.copy()
+            x[i] = 1 - current[i]
+            if self.is_complete_solution(x):
+                cost_x = self.do_compute_cost(x)
+                delta = self.do_compute_delta(cost_current, cost_x)
+                flip_deltas.append(delta)
+            else:
+                x, penalty = self.do_fill_partial_solution(x)
+                cost_x = self.do_compute_cost(x)
+                cost_x += penalty
+                delta = self.do_compute_delta(cost_current, cost_x)
+                flip_deltas.append(delta)
+            pbar.update()
+        pbar.close()
+        # swaps
+        swap_deltas = []
+        ones_indices = np.where(current == 1)[0]
+        zeros_indices = np.where(current == 0)[0]
+        pbar = tqdm(total=len(ones_indices) * len(zeros_indices),
+                    desc="parameter estimation - swaps", leave=False)
+        for one_index in ones_indices:
+            for zero_index in zeros_indices:
+                x = current.copy()
+                x[one_index] = 0
+                x[zero_index] = 1
+                if self.is_complete_solution(x):
+                    cost_x = self.do_compute_cost(x)
+                    delta = self.do_compute_delta(cost_current, cost_x)
+                    swap_deltas.append(delta)
+                else:
+                    x, penalty = self.do_fill_partial_solution(x)
+                    cost_x = self.do_compute_cost(x)
+                    cost_x += penalty
+                    delta = self.do_compute_delta(cost_current, cost_x)
+                    swap_deltas.append(delta)
+                pbar.update()
+        pbar.close()
+        flip_deltas = np.array(flip_deltas)
+        swap_deltas = np.array(swap_deltas)
+
+        # expectations
+        for i, temp in enumerate(temperatures):
+            flip_count = 0
+            flip_contribution = 0
+            for delta in flip_deltas:
+                proba = np.exp(- delta / temp)
+                flip_contribution += (delta + cost_current) * proba
+                flip_count += 1
+            flip_contribution /= flip_count
+
+            swap_count = 0
+            swap_contribution = 0
+            for delta in swap_deltas:
+                proba = np.exp(- delta / temp)
+                swap_contribution += (delta + cost_current) * proba
+                swap_count += 1
+            swap_contribution /= swap_count
+
+            cost_expected = (((1 - SimulatedAnnealing.SWAP_THRESHOLD) * flip_contribution)
+                             + (SimulatedAnnealing.SWAP_THRESHOLD * swap_contribution))
+            results[i] = cost_current - cost_expected
+            print(f"temp {temp},"
+                  f" flips {flip_contribution}, swaps {swap_contribution},"
+                  f" diff {abs(cost_current - cost_expected)}")
+
+        best_temp_index = (np.abs(results)).argmin()
+        initial_temperature = temperatures[best_temp_index]
+
+        proba = 0.05
+        cheapest_set = self.weights.min()
+        final_temperature = - cheapest_set / np.log(proba)
+
+        if final_temperature > initial_temperature:
+            final_temperature = 0.01 * initial_temperature
+
+        rate = (final_temperature / initial_temperature)**(1/max_iter)
+        return initial_temperature, final_temperature, rate
+
+
+    # main methods
     def run(self):
         i = 0
         self.do_start_clock()  # statistics
-        self.do_initialize()
+
+        # initialization
+        current, candidate, best = self.do_initialize()
+        cost_current = self.do_compute_cost(current)
+        cost_candidate = self.do_compute_cost(candidate)
+        cost_best = self.do_compute_cost(best)
+
+        # outer loop
         pbar = tqdm(total=self.max_iterations, desc="annealing", leave=False)
         while self.temperature > self.final_temperature and i < self.max_iterations:
-            # update stage
+            # update temperature
             self.do_cooling(i)
-            # search stage
             j = 0
+            # inner loop - search
+            min_inner_cost = cost_current
+            max_inner_cost = cost_current
             while not self.reached_equilibrium(j):
-                self.do_next_candidate()
-                if self.candidate is None:
-                    continue
+                candidate, penalty = self.do_next_candidate(current)
+                cost_candidate = self.do_compute_cost(candidate) + penalty
+
+                min_inner_cost = min(min_inner_cost, cost_candidate)
+                max_inner_cost = max(max_inner_cost, cost_candidate)
+                ratio = 1 - (np.exp( -( max_inner_cost - min_inner_cost ) / max_inner_cost ))
+                max_candidates_for_next_iter = self._max_candidates + int(self._max_candidates * ratio)
+                self.max_candidates = max_candidates_for_next_iter
+                self.logger.info(f"max candidates {i+1} -> {self.max_candidates}")
+
                 j += 1
                 self.do_write_step()  # statistics
                 self.do_read_clock()  # statistics
                 self.do_write_temperature()  # statistics
-                self.do_compute_costs()  # statistics
-                self.do_write_costs()  # statistics
-                self.do_write_sizes()  # statistics
+                self.do_write_costs(cost_current, cost_candidate, cost_best)  # statistics
+                self.do_write_sizes(current, candidate, best)  # statistics
 
-                if self.do_accept():  # candidate either improves, or wins lottery
-                    self.do_update_sol()
-                    self.do_update_best()
+                if self.do_accept(cost_current, cost_candidate):  # candidate either improves, or wins lottery
+                    current = candidate.copy()  # update current
+                    cost_current = cost_candidate
+                    if cost_current < cost_best: # update best
+                        best = current.copy()
+                        cost_best = cost_current
                     break
             i += 1
-            pbar.set_description(f"annealing -> cost {self.sol_cost}")
+            pbar.set_description(f"annealing -> cost {cost_current} ({cost_best} / {self.cost_optimal})")
             pbar.update()
         self.logger.info(f"reached stop condition after {i} steps "
                          f"(max steps -> {self.max_iterations})")
+        assert self.is_complete_solution(best)
+        return best, cost_best
 
 
-    def dry_run(self):
-        self.do_initialize()
-        sample_size = 1_000
-        probas = np.array([0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9])
-        deltas = []
-        pbar = tqdm(total=sample_size, desc="dry run")
-        n = 0
-        while n < sample_size:
-            self.do_next_candidate()
-            if self.candidate is None:
-                continue
-            n += 1
-            delta = self.do_compute_delta()
-            deltas.append(delta)
-            pbar.update()
-        delta_std = np.asarray(deltas).std()
-        init_temps = (-3 / np.log(probas)) * delta_std
-        print(f"dry run -> delta std {delta_std}")
-        return probas, init_temps
-
-    def evaluation_func(self, sol):
-        self.inst.set_sol(sol)
-        cost = self.inst.get_sol_cost()
-        return cost
-
-    def do_next_candidate(self):
-        candidate = [x for x in self.sol]
-
-        remove_options = [x for x in candidate]
-        remove_options += [None]
-        x_out = SimulatedAnnealing.RNG.choice(candidate, size=2, replace=True)
-        insert_options = [x for x in range(self.inst.get_cols()) if x not in candidate]
-        insert_options += [None]
-        x_in = SimulatedAnnealing.RNG.choice(insert_options, size=2, replace=True)
-        # perform swap(n_out, n_in)
-        for x in x_out.tolist():
-            if x is None:
-                continue
-            if x in candidate:
-              candidate.remove(x)
-            # self.logger.info(f"changes -> removed {x}")
-        for x in x_in.tolist():
-            if x is None:
-                continue
-            if x not in candidate:
-                candidate.append(x)
-                # self.logger.info(f"changes -> inserted {x}")
-
-        # self.logger.info(f"cost -> current {self.evaluation_func(self.sol)}, "
-        #                  f"candidate {self.evaluation_func(candidate)}")
-
-        # perform redundancy elimination
-        if self.do_check_coverage(candidate):
-            candidate, _ = self.redundancy_elimination(candidate)
-            self.candidate = candidate
+    def do_next_candidate(self, x):
+        assert isinstance(x, np.ndarray)
+        assert x.size == self.n_cols
+        do_swap = SimulatedAnnealing.RNG.uniform() < SimulatedAnnealing.SWAP_THRESHOLD
+        candidate = x.copy()
+        if do_swap:  # swap 1, 1
+            ones_indices = np.where(x == 1)[0]
+            zeros_indices = np.where(x == 0)[0]
+            one_index = SimulatedAnnealing.RNG.choice(ones_indices)
+            zero_index = SimulatedAnnealing.RNG.choice(zeros_indices)
+            candidate[one_index] = 0
+            candidate[zero_index] = 1
+        else:  # flip
+            index = SimulatedAnnealing.RNG.integers(0, self.n_cols)
+            candidate[index] = 1 - candidate[index]
+        if self.is_complete_solution(candidate):
+            penalty = 0
+            return candidate, penalty
         else:
-            self.candidate = None
+            candidate, penalty = self.do_fill_partial_solution(candidate)
+            return candidate, penalty
 
     def do_cooling(self, step):
         if self.cooling_schedule == CoolingSchedule.LINEAR:
@@ -173,52 +299,28 @@ class SimulatedAnnealing:
         else:
             raise ValueError("Provide cooling schedule")
 
-    def do_compute_delta(self):
-        candidate_fitness = self.evaluation_func(self.candidate)
-        sol_fitness = self.evaluation_func(self.sol)
-        delta = candidate_fitness - sol_fitness
+    def do_compute_delta(self, cost_current, cost_candidate):
+        delta = cost_candidate - cost_current
         self.do_write_delta(delta)
         return delta
 
-    def do_accept(self):
-        self.do_write_acceptance_proba() # statistics
-        if not self.do_check_coverage(self.candidate):
-            return False
-        delta = self.do_compute_delta()
+    def do_accept(self, cost_current, cost_candidate):
+        delta = self.do_compute_delta(cost_current, cost_candidate)
         proba = np.exp(- delta / self.temperature)
+        self.do_write_acceptance_proba(proba) # statistics
         self.logger.info(f"delta -> {delta:.1f} " 
                          f"acceptance proba -> {proba:.6f} "
                          f"(temperature -> {self.temperature})")
-        if delta < 0:
+        if delta < 0:  # found improvement
             return True
         return SimulatedAnnealing.RNG.uniform() < proba
 
     def do_initialize(self):
         self.temperature = self.initial_temperature
-        self.sol = self.initial_sol[:]
-        self.candidate = self.sol[:]
-        self.best = self.sol[:]
-
-    def do_check_coverage(self, x):
-        inst = copy.deepcopy(self.inst)
-        inst.set_sol(x.copy())
-        return inst.check_sol_coverage()
-
-    def redundancy_elimination(self, sol):
-        inst = copy.deepcopy(self.inst)
-        inst.set_sol(sol.copy())
-        engine = RedundancyElimination(instance=inst, logger=self.logger)
-        engine.do_elimination()
-        assert inst.check_sol_coverage()
-        return inst.get_sol(), inst.get_sol_cost()
-
-    def do_update_sol(self):
-        self.sol = self.candidate[:]  # prevents shallow copy
-
-    def do_update_best(self):
-        self.do_compute_costs()  # make sure costs are up to date
-        if self.sol_cost < self.best_cost:
-            self.best = self.sol[:]
+        current = self.initial_sol.copy()
+        candidate = self.initial_sol.copy()
+        best = self.initial_sol.copy()
+        return current, candidate, best
 
     def reached_equilibrium(self, step):
         if self.equilibrium_strategy == EquilibriumStrategy.STATIC:
@@ -228,18 +330,6 @@ class SimulatedAnnealing:
 
     def get_stats(self):
         return self.stats
-
-    def get_initial_temperature_estimate(self, acceptance_proba=0.99):
-        deltas = self.stats["delta"]
-        if len(deltas) < 1:
-            return
-        sigma = np.asarray(deltas).std()
-        k = -3 / np.log(acceptance_proba)
-        return k * sigma
-
-    # Results
-    def get_best(self):
-        return self.best.copy()
 
     # Statistics
     def do_start_clock(self):
@@ -260,33 +350,21 @@ class SimulatedAnnealing:
     def do_write_delta(self, delta):
         self.stats["delta"].append(delta)
 
-    def do_write_acceptance_proba(self):
-        delta = self.do_compute_delta()
-        proba = min(1., np.exp(- delta / self.temperature))
+    def do_write_acceptance_proba(self, proba):
         self.stats["acceptance-proba"].append(proba)
 
-    def do_write_costs(self):
-        self.stats["current-cost"].append(self.sol_cost)
-        self.stats["candidate-cost"].append(self.candidate_cost)
-        self.stats["best-cost"].append(self.best_cost)
+    def do_write_costs(self, current, candidate, best):
+        self.stats["current-cost"].append(current)
+        self.stats["candidate-cost"].append(candidate)
+        self.stats["best-cost"].append(best)
 
-    def do_write_sizes(self):
-        self.stats["current-size"].append(len(self.sol))
-        self.stats["candidate-size"].append(len(self.candidate))
-        self.stats["best-size"].append(len(self.best))
+    def do_write_sizes(self, current, candidate, best):
+        self.stats["current-size"].append(len(current))
+        self.stats["candidate-size"].append(len(candidate))
+        self.stats["best-size"].append(len(best))
 
     def do_write_temperature(self):
         self.stats["temperature"].append(self.temperature)
-
-    def do_compute_costs(self):
-        self.inst.set_sol(self.sol)
-        self.sol_cost = self.inst.get_sol_cost()
-
-        self.inst.set_sol(self.candidate)
-        self.candidate_cost = self.inst.get_sol_cost()
-
-        self.inst.set_sol(self.best)
-        self.best_cost = self.inst.get_sol_cost()
 
     def configure_logger(self, log_file_path):
         self.logger.setLevel(logging.INFO)
@@ -302,6 +380,9 @@ class SimulatedAnnealing:
 
         self.logger.addHandler(file_handler)
 
+    def get_cost_optimal(self):
+        return self.cost_optimal
+
     def set_hyper_parameters(self, **kwargs):
         if initial_temperature := kwargs.get("initial_temperature", None):
             self.initial_temperature = initial_temperature
@@ -309,6 +390,11 @@ class SimulatedAnnealing:
             self.final_temperature = final_temperature
         if cooling_params := kwargs.get("cooling_params", None):
             self.cooling_params = cooling_params
+        if max_iterations := kwargs.get("max_iterations", None):
+            self.max_iterations = max_iterations
+        if max_candidates := kwargs.get("max_candidates", None):
+            self.max_candidates = max_candidates
+            self._max_candidates = max_candidates
 
 if __name__ == "__main__":
     dl = DataLoader()
@@ -329,13 +415,14 @@ if __name__ == "__main__":
     inst.set_sol(list(sol_greedy))
     inst.set_state(State.SOLVED)
 
-    max_iter = 50
-    max_cand = 1
+    # don't change these... dummy values
+    max_iter = 100
+    max_cand = 1000
     Ti = 30
-    Tf = 1
+    Tf = 0.01
     alpha = (Tf / Ti)**(1 / max_iter)
 
-    print(f"Ti {Ti} -> Tf {Tf} (alpha = {alpha:.5f} -> {max_iter} iter)")
+    # print(f"Ti {Ti} -> Tf {Tf} (alpha = {alpha:.5f} -> {max_iter} iter)")
 
     sim_annealing = SimulatedAnnealing(
         instance=inst,
@@ -346,34 +433,39 @@ if __name__ == "__main__":
     )
     sim_annealing.configure_logger(log_path)
 
-    # init_probas, init_temps = sim_annealing.dry_run()
-    # dry_run_res = {p: t for p,t in zip(init_probas, init_temps)}
-    # print(dry_run_res)
+    # configure hyper parameters
+    max_iter = 200
+    max_cand = 1000
+    Ti, Tf, alpha = sim_annealing.do_estimate_hyper_params(max_iter)
 
-    sim_annealing.run()
+    sim_annealing.set_hyper_parameters(
+        initial_temperature=Ti,
+        final_temperature=Tf,
+        cooling_params={"rate": alpha},
+        max_candidates=max_cand,
+        max_iterations=max_iter
+    )
 
-    best = sim_annealing.get_best()
+    print(f"Ti {Ti} -> Tf {Tf} (alpha = {alpha:.5f} -> {max_iter} iter)")
+
+    # run annealing algorithm and hope for the best
+    best, cost_best = sim_annealing.run()
+    cost_optimal = sim_annealing.get_cost_optimal()
+    is_hit = cost_optimal == cost_best
     stats = sim_annealing.get_stats()
 
-    sim_annealing.logger.info(f"init size {len(sim_annealing.initial_sol)} "
-                              f"-> curr size {len(sim_annealing.sol)}")
-
-    inst.set_sol(best)
-    assert inst.check_sol_coverage()
-    best_cost, optimal_cost = inst.get_sol_cost(), inst.get_best_known_sol_cost()
-    is_hit = best_cost == optimal_cost
 
     import matplotlib.pyplot as plt
 
     time = stats["step"]
 
     plt.plot(time, stats["best-cost"], label="best-cost",
-             color="tab:green", lw=1.5, ls="-")
+             color="tab:green", lw=2.4, ls="-")
     plt.plot(time, stats["current-cost"], label="current-cost",
-             color="k", lw=1.2, ls="-")
+             color="k", lw=1.4, ls="-", alpha=0.9)
     plt.plot(time, stats["candidate-cost"], label="candidate-cost",
              color="tab:blue", lw=0.8, ls="-", alpha=0.7)
-    plt.axhline(inst.get_best_known_sol_cost(), color="k", lw=2.0, ls="--")
+    plt.axhline(cost_optimal, color="k", lw=2.0, ls="--")
 
     plt.xlabel("step")
     plt.ylabel("costs")
@@ -386,5 +478,5 @@ if __name__ == "__main__":
     plt.ylabel("temperature")
 
     plt.title(f"simulated annealing \n "
-              f"hit: {is_hit} -> best: {best_cost}, opt: {optimal_cost}")
+              f"hit: {is_hit} -> best: {cost_best}, opt: {cost_optimal}")
     plt.show()

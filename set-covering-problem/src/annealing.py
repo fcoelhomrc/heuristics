@@ -23,7 +23,6 @@ class SimulatedAnnealing:
     RNG = np.random.default_rng(seed=SEED)
     # Moves / evaluation function
     PENALTY = 1.25
-    SWAP_THRESHOLD = 0.5
 
     def __init__(self, instance: Instance,
                  max_candidates: int, max_iterations: int,
@@ -122,15 +121,38 @@ class SimulatedAnnealing:
                 penalty += SimulatedAnnealing.PENALTY * self.weights[i]
         return y, penalty
 
+    def do_redundancy_elimination(self, x):
+        ranks = np.zeros(self.n_cols)
+        redundancy = np.zeros(self.n_cols)
+        for i in range(self.n_cols):
+            if x[i] == 0:
+                ranks[i] = 0
+                continue
+            y = x.copy()
+            y[i] = 0  # remove a column...
+            if self.is_complete_solution(y): #...redundant if still complete
+                ranks[i] = self.weights[i]
+                redundancy[i] = 1
+        redundancy = redundancy[ranks.argsort()[::-1]]
+        y = x.copy()
+        for i in range(self.n_cols):
+            if redundancy[i]:
+                y[i] = 0
+            if not self.is_complete_solution(y):
+                y[i] = 1
+                break
+        return y
+
+
     def do_estimate_hyper_params(self, max_iter=100):
         current, candidate, best = self.do_initialize()
         cost_current = self.do_compute_cost(current)
-        n_samples = 100
+        n_samples = 1000
 
         # expected cost for first candidate -> cost of initial solution
         # this prevents the cost from exploding early on
         results = np.zeros(n_samples)
-        temperatures = np.logspace(0, 2, n_samples)
+        temperatures = np.logspace(0, 3, n_samples)
 
         # flips
         flip_deltas = []
@@ -143,6 +165,7 @@ class SimulatedAnnealing:
                 delta = self.do_compute_delta(cost_current, cost_x)
                 flip_deltas.append(delta)
             else:
+                continue
                 x, penalty = self.do_fill_partial_solution(x)
                 cost_x = self.do_compute_cost(x)
                 cost_x += penalty
@@ -150,31 +173,8 @@ class SimulatedAnnealing:
                 flip_deltas.append(delta)
             pbar.update()
         pbar.close()
-        # swaps
-        swap_deltas = []
-        ones_indices = np.where(current == 1)[0]
-        zeros_indices = np.where(current == 0)[0]
-        pbar = tqdm(total=len(ones_indices) * len(zeros_indices),
-                    desc="parameter estimation - swaps", leave=False)
-        for one_index in ones_indices:
-            for zero_index in zeros_indices:
-                x = current.copy()
-                x[one_index] = 0
-                x[zero_index] = 1
-                if self.is_complete_solution(x):
-                    cost_x = self.do_compute_cost(x)
-                    delta = self.do_compute_delta(cost_current, cost_x)
-                    swap_deltas.append(delta)
-                else:
-                    x, penalty = self.do_fill_partial_solution(x)
-                    cost_x = self.do_compute_cost(x)
-                    cost_x += penalty
-                    delta = self.do_compute_delta(cost_current, cost_x)
-                    swap_deltas.append(delta)
-                pbar.update()
-        pbar.close()
+
         flip_deltas = np.array(flip_deltas)
-        swap_deltas = np.array(swap_deltas)
 
         # expectations
         for i, temp in enumerate(temperatures):
@@ -186,20 +186,8 @@ class SimulatedAnnealing:
                 flip_count += 1
             flip_contribution /= flip_count
 
-            swap_count = 0
-            swap_contribution = 0
-            for delta in swap_deltas:
-                proba = np.exp(- delta / temp)
-                swap_contribution += (delta + cost_current) * proba
-                swap_count += 1
-            swap_contribution /= swap_count
-
-            cost_expected = (((1 - SimulatedAnnealing.SWAP_THRESHOLD) * flip_contribution)
-                             + (SimulatedAnnealing.SWAP_THRESHOLD * swap_contribution))
+            cost_expected = flip_contribution
             results[i] = cost_current - cost_expected
-            print(f"temp {temp},"
-                  f" flips {flip_contribution}, swaps {swap_contribution},"
-                  f" diff {abs(cost_current - cost_expected)}")
 
         best_temp_index = (np.abs(results)).argmin()
         initial_temperature = temperatures[best_temp_index]
@@ -272,23 +260,30 @@ class SimulatedAnnealing:
     def do_next_candidate(self, x):
         assert isinstance(x, np.ndarray)
         assert x.size == self.n_cols
-        do_swap = SimulatedAnnealing.RNG.uniform() < SimulatedAnnealing.SWAP_THRESHOLD
         candidate = x.copy()
-        if do_swap:  # swap 1, 1
-            ones_indices = np.where(x == 1)[0]
-            zeros_indices = np.where(x == 0)[0]
-            one_index = SimulatedAnnealing.RNG.choice(ones_indices)
+        ones_indices = np.where(x == 1)[0]
+        zeros_indices = np.where(x == 0)[0]
+
+        one_index = SimulatedAnnealing.RNG.choice(ones_indices)
+        candidate[one_index] = 0  # remove 1
+
+        coin = SimulatedAnnealing.RNG.uniform()
+        if coin < 0.33:
+            pass
+        elif 0.33 < coin < 0.66:
             zero_index = SimulatedAnnealing.RNG.choice(zeros_indices)
-            candidate[one_index] = 0
             candidate[zero_index] = 1
-        else:  # flip
-            index = SimulatedAnnealing.RNG.integers(0, self.n_cols)
-            candidate[index] = 1 - candidate[index]
+        else:
+            zero_index = SimulatedAnnealing.RNG.choice(zeros_indices, size=2, replace=False)
+            candidate[zero_index] = 1
+
         if self.is_complete_solution(candidate):
             penalty = 0
+            candidate = self.do_redundancy_elimination(candidate)
             return candidate, penalty
         else:
             candidate, penalty = self.do_fill_partial_solution(candidate)
+            candidate = self.do_redundancy_elimination(candidate)
             return candidate, penalty
 
     def do_cooling(self, step):
@@ -398,7 +393,7 @@ class SimulatedAnnealing:
 
 if __name__ == "__main__":
     dl = DataLoader()
-    inst_name = "42"
+    inst_name = "c1"
     inst = dl.load_instance(inst_name)
 
     OUTPUT_DIR = "../output"
@@ -436,7 +431,10 @@ if __name__ == "__main__":
     # configure hyper parameters
     max_iter = 200
     max_cand = 1000
-    Ti, Tf, alpha = sim_annealing.do_estimate_hyper_params(max_iter)
+    Ti = 100
+    Tf = 0.1
+    alpha = (Tf / Ti)**(1 / max_iter)
+    # Ti, Tf, alpha = sim_annealing.do_estimate_hyper_params(max_iter)
 
     sim_annealing.set_hyper_parameters(
         initial_temperature=Ti,

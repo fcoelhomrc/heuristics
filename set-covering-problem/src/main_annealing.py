@@ -121,8 +121,7 @@ for inst_name in available_inst:
     results["hit"].append(hit)
     results["relative-error"].append(relative_error)
 
-    inst.set_sol(best)
-    assert inst.check_sol_coverage()  # sanity check
+    assert sim_annealing.is_complete_solution(best)  # sanity check
 
     import matplotlib.pyplot as plt
     save_fig_path = os.path.join(OUTPUT_DIR, "annealing-run", f"{inst_name}.png")
@@ -142,7 +141,7 @@ for inst_name in available_inst:
     plt.legend()
 
     twinx = plt.twinx()
-    twinx.plot(time, np.asarray(stats["temperature"]) / sim_annealing.initial_temperature, label="temperature",
+    twinx.plot(time, np.asarray(stats["temperature"]), label="temperature",
                color="tab:orange", ls="-", lw=0.8)
     plt.ylabel("temperature")
 

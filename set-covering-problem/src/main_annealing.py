@@ -46,6 +46,10 @@ OUTPUT_DIR = "../output"
 if not os.path.exists(path := os.path.join(OUTPUT_DIR, "annealing-run")):
     os.mkdir(path)
 
+calibration_instances = {
+    "42": None, "51": None, "61": None, "a1": None, "b1": None, "c1": None, "d1": None,
+}
+
 pbar = tqdm(total=len(available_inst),
             desc="instance", position=0, leave=False)
 
@@ -65,12 +69,96 @@ for inst_name in available_inst:
     inst.set_state(State.SOLVED)
 
 
-    # don't change these... dummy values
+
+    if inst_name in calibration_instances:
+        temperatures = [1, 30, 60, 90]
+        costs = []
+        for initial_temperature in temperatures:
+            max_iter = 30
+            max_cand = 300
+            Ti = initial_temperature
+            Tf = 0.01
+            alpha = (Tf / Ti) ** (1 / max_iter)
+
+            inst = dl.load_instance(inst_name)
+            solver = GreedySolver(instance=inst)
+            solver.configure_logger(path=log_path)
+            sol_greedy, cost_greedy = solver.greedy_heuristic()
+
+            # reset instance
+            inst = dl.load_instance(inst_name)
+            inst.set_sol(list(sol_greedy))
+            inst.set_state(State.SOLVED)
+
+            sim_annealing = SimulatedAnnealing(
+                instance=inst,
+                max_candidates=max_cand, max_iterations=max_iter,
+                initial_temperature=Ti, final_temperature=Tf,
+                cooling_schedule=CoolingSchedule.GEOMETRIC, cooling_params={"rate": alpha},
+                equilibrium_strategy=EquilibriumStrategy.STATIC
+            )
+            best, best_cost = sim_annealing.run()
+            costs.append(best_cost)
+        costs = np.array(costs)
+        fine_tune_temperature = temperatures[costs.argmin()]
+        delta_temperature = 5
+        n_samples = 5
+        temperatures = np.linspace(fine_tune_temperature - delta_temperature,
+                                   fine_tune_temperature + delta_temperature, n_samples)
+        costs = []
+        for initial_temperature in temperatures:
+            max_iter = 30
+            max_cand = 300
+            Ti = initial_temperature
+            Tf = 0.01
+            alpha = (Tf / Ti) ** (1 / max_iter)
+
+            inst = dl.load_instance(inst_name)
+            solver = GreedySolver(instance=inst)
+            solver.configure_logger(path=log_path)
+            sol_greedy, cost_greedy = solver.greedy_heuristic()
+
+            # reset instance
+            inst = dl.load_instance(inst_name)
+            inst.set_sol(list(sol_greedy))
+            inst.set_state(State.SOLVED)
+
+            sim_annealing = SimulatedAnnealing(
+                instance=inst,
+                max_candidates=max_cand, max_iterations=max_iter,
+                initial_temperature=Ti, final_temperature=Tf,
+                cooling_schedule=CoolingSchedule.GEOMETRIC, cooling_params={"rate": alpha},
+                equilibrium_strategy=EquilibriumStrategy.STATIC
+            )
+            best, best_cost = sim_annealing.run()
+            costs.append(best_cost)
+        costs = np.array(costs)
+        chosen_temperature = temperatures[costs.argmin()]
+        calibration_instances[inst_name] = chosen_temperature
+
+    # get calibration result
+    char = inst_name[0]
+    if char == "4":
+        Ti = calibration_instances["42"]
+    elif char == "5":
+        Ti = calibration_instances["51"]
+    elif char == "6":
+        Ti = calibration_instances["61"]
+    elif char == "a":
+        Ti = calibration_instances["a1"]
+    elif char == "b":
+        Ti = calibration_instances["b1"]
+    elif char == "c":
+        Ti = calibration_instances["c1"]
+    elif char == "d":
+        Ti = calibration_instances["d1"]
+    else:
+        Ti = 30
+
     max_iter = 100
     max_cand = 1000
-    Ti = 30
     Tf = 0.01
-    alpha = (Tf / Ti)**(1 / max_iter)
+    alpha = (Tf / Ti) ** (1 / max_iter)
 
     sim_annealing = SimulatedAnnealing(
         instance=inst,
@@ -80,19 +168,6 @@ for inst_name in available_inst:
         equilibrium_strategy=EquilibriumStrategy.STATIC
     )
     sim_annealing.configure_logger(log_path)
-
-    # configure hyper parameters
-    max_iter = 200
-    max_cand = 1000
-    Ti, Tf, alpha = sim_annealing.do_estimate_hyper_params(max_iter)
-
-    sim_annealing.set_hyper_parameters(
-        initial_temperature=Ti,
-        final_temperature=Tf,
-        cooling_params={"rate": alpha},
-        max_candidates=max_cand,
-        max_iterations=max_iter
-    )
 
     results["initial-temperature"] = Ti
     results["final-temperature"] = Tf
@@ -157,6 +232,8 @@ results_df = pd.DataFrame(results)
 save_results_path = os.path.join(OUTPUT_DIR, "annealing-run", "results.csv")
 results_df.to_csv(save_results_path)
 
+
+print(f"calibration: {calibration_instances}")
 print(f"total hits: {results_df["hit"].sum()}")
 print(f"mean relative error: {results_df["relative-error"].mean()}")
 print(f"mean runtime: {results_df["runtime"].mean()}")

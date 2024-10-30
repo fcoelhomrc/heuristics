@@ -1,0 +1,1320 @@
+[2024-10-28 19:07:26,143][INFO] Step 1: size: 1, coverage: 7.25%, cost: 1.0
+[2024-10-28 19:07:26,159][INFO] Step 2: size: 2, coverage: 14.00%, cost: 2.0
+[2024-10-28 19:07:26,175][INFO] Step 3: size: 3, coverage: 20.00%, cost: 3.0
+[2024-10-28 19:07:26,191][INFO] Step 4: size: 4, coverage: 25.25%, cost: 4.0
+[2024-10-28 19:07:26,206][INFO] Step 5: size: 5, coverage: 30.00%, cost: 5.0
+[2024-10-28 19:07:26,222][INFO] Step 6: size: 6, coverage: 34.50%, cost: 6.0
+[2024-10-28 19:07:26,237][INFO] Step 7: size: 7, coverage: 38.75%, cost: 7.0
+[2024-10-28 19:07:26,253][INFO] Step 8: size: 8, coverage: 42.75%, cost: 8.0
+[2024-10-28 19:07:26,268][INFO] Step 9: size: 9, coverage: 46.50%, cost: 9.0
+[2024-10-28 19:07:26,283][INFO] Step 10: size: 10, coverage: 50.00%, cost: 10.0
+[2024-10-28 19:07:26,298][INFO] Step 11: size: 11, coverage: 53.25%, cost: 11.0
+[2024-10-28 19:07:26,314][INFO] Step 12: size: 12, coverage: 56.50%, cost: 12.0
+[2024-10-28 19:07:26,329][INFO] Step 13: size: 13, coverage: 59.50%, cost: 13.0
+[2024-10-28 19:07:26,344][INFO] Step 14: size: 14, coverage: 62.25%, cost: 14.0
+[2024-10-28 19:07:26,359][INFO] Step 15: size: 15, coverage: 65.00%, cost: 15.0
+[2024-10-28 19:07:26,374][INFO] Step 16: size: 16, coverage: 67.50%, cost: 16.0
+[2024-10-28 19:07:26,389][INFO] Step 17: size: 17, coverage: 69.75%, cost: 17.0
+[2024-10-28 19:07:26,404][INFO] Step 18: size: 18, coverage: 72.00%, cost: 18.0
+[2024-10-28 19:07:26,418][INFO] Step 19: size: 19, coverage: 73.75%, cost: 19.0
+[2024-10-28 19:07:26,433][INFO] Step 20: size: 20, coverage: 75.50%, cost: 20.0
+[2024-10-28 19:07:26,448][INFO] Step 21: size: 21, coverage: 77.00%, cost: 21.0
+[2024-10-28 19:07:26,462][INFO] Step 22: size: 22, coverage: 78.25%, cost: 22.0
+[2024-10-28 19:07:26,477][INFO] Step 23: size: 23, coverage: 79.50%, cost: 23.0
+[2024-10-28 19:07:26,492][INFO] Step 24: size: 24, coverage: 80.75%, cost: 24.0
+[2024-10-28 19:07:26,507][INFO] Step 25: size: 25, coverage: 83.00%, cost: 26.0
+[2024-10-28 19:07:26,522][INFO] Step 26: size: 26, coverage: 84.00%, cost: 27.0
+[2024-10-28 19:07:26,536][INFO] Step 27: size: 27, coverage: 85.00%, cost: 28.0
+[2024-10-28 19:07:26,551][INFO] Step 28: size: 28, coverage: 86.75%, cost: 30.0
+[2024-10-28 19:07:26,566][INFO] Step 29: size: 29, coverage: 87.50%, cost: 31.0
+[2024-10-28 19:07:26,581][INFO] Step 30: size: 30, coverage: 88.25%, cost: 32.0
+[2024-10-28 19:07:26,596][INFO] Step 31: size: 31, coverage: 89.00%, cost: 33.0
+[2024-10-28 19:07:26,611][INFO] Step 32: size: 32, coverage: 89.75%, cost: 34.0
+[2024-10-28 19:07:26,626][INFO] Step 33: size: 33, coverage: 90.50%, cost: 35.0
+[2024-10-28 19:07:26,641][INFO] Step 34: size: 34, coverage: 91.25%, cost: 36.0
+[2024-10-28 19:07:26,657][INFO] Step 35: size: 35, coverage: 91.75%, cost: 37.0
+[2024-10-28 19:07:26,672][INFO] Step 36: size: 36, coverage: 92.25%, cost: 38.0
+[2024-10-28 19:07:26,687][INFO] Step 37: size: 37, coverage: 92.75%, cost: 39.0
+[2024-10-28 19:07:26,703][INFO] Step 38: size: 38, coverage: 93.25%, cost: 40.0
+[2024-10-28 19:07:26,718][INFO] Step 39: size: 39, coverage: 94.25%, cost: 42.0
+[2024-10-28 19:07:26,734][INFO] Step 40: size: 40, coverage: 95.00%, cost: 44.0
+[2024-10-28 19:07:26,749][INFO] Step 41: size: 41, coverage: 95.25%, cost: 45.0
+[2024-10-28 19:07:26,765][INFO] Step 42: size: 42, coverage: 95.50%, cost: 46.0
+[2024-10-28 19:07:26,781][INFO] Step 43: size: 43, coverage: 95.75%, cost: 47.0
+[2024-10-28 19:07:26,796][INFO] Step 44: size: 44, coverage: 96.00%, cost: 48.0
+[2024-10-28 19:07:26,812][INFO] Step 45: size: 45, coverage: 96.25%, cost: 49.0
+[2024-10-28 19:07:26,828][INFO] Step 46: size: 46, coverage: 96.50%, cost: 50.0
+[2024-10-28 19:07:26,844][INFO] Step 47: size: 47, coverage: 96.75%, cost: 51.0
+[2024-10-28 19:07:26,860][INFO] Step 48: size: 48, coverage: 97.25%, cost: 53.0
+[2024-10-28 19:07:26,877][INFO] Step 49: size: 49, coverage: 98.00%, cost: 56.0
+[2024-10-28 19:07:26,893][INFO] Step 50: size: 50, coverage: 98.50%, cost: 59.0
+[2024-10-28 19:07:26,909][INFO] Step 51: size: 51, coverage: 99.00%, cost: 62.0
+[2024-10-28 19:07:26,925][INFO] Step 52: size: 52, coverage: 99.25%, cost: 64.0
+[2024-10-28 19:07:26,942][INFO] Step 53: size: 53, coverage: 99.50%, cost: 66.0
+[2024-10-28 19:07:26,958][INFO] Step 54: size: 54, coverage: 99.75%, cost: 68.0
+[2024-10-28 19:07:26,975][INFO] Step 55: size: 55, coverage: 100.00%, cost: 71.0
+[2024-10-28 19:07:26,995][INFO] max candidates 1 -> 1409
+[2024-10-28 19:07:26,995][INFO] delta -> 79.2 acceptance proba -> 0.000000 (temperature -> 0.954992586021436)
+[2024-10-28 19:07:26,998][INFO] max candidates 1 -> 1492
+[2024-10-28 19:07:26,998][INFO] delta -> 150.2 acceptance proba -> 0.000000 (temperature -> 0.954992586021436)
+[2024-10-28 19:07:27,000][INFO] max candidates 1 -> 1492
+[2024-10-28 19:07:27,000][INFO] delta -> 10.0 acceptance proba -> 0.000028 (temperature -> 0.954992586021436)
+[2024-10-28 19:07:27,002][INFO] max candidates 1 -> 1492
+[2024-10-28 19:07:27,002][INFO] delta -> 1.2 acceptance proba -> 0.270114 (temperature -> 0.954992586021436)
+[2024-10-28 19:07:27,005][INFO] max candidates 1 -> 1492
+[2024-10-28 19:07:27,005][INFO] delta -> 1.2 acceptance proba -> 0.270114 (temperature -> 0.954992586021436)
+[2024-10-28 19:07:27,010][INFO] max candidates 2 -> 1442
+[2024-10-28 19:07:27,010][INFO] delta -> 101.5 acceptance proba -> 0.000000 (temperature -> 0.9120108393559099)
+[2024-10-28 19:07:27,013][INFO] max candidates 2 -> 1487
+[2024-10-28 19:07:27,013][INFO] delta -> 146.0 acceptance proba -> 0.000000 (temperature -> 0.9120108393559099)
+[2024-10-28 19:07:27,015][INFO] max candidates 2 -> 1487
+[2024-10-28 19:07:27,015][INFO] delta -> 61.0 acceptance proba -> 0.000000 (temperature -> 0.9120108393559099)
+[2024-10-28 19:07:27,019][INFO] max candidates 2 -> 1487
+[2024-10-28 19:07:27,019][INFO] delta -> 81.2 acceptance proba -> 0.000000 (temperature -> 0.9120108393559099)
+[2024-10-28 19:07:27,022][INFO] max candidates 2 -> 1487
+[2024-10-28 19:07:27,022][INFO] delta -> 35.0 acceptance proba -> 0.000000 (temperature -> 0.9120108393559099)
+[2024-10-28 19:07:27,025][INFO] max candidates 2 -> 1487
+[2024-10-28 19:07:27,025][INFO] delta -> 49.0 acceptance proba -> 0.000000 (temperature -> 0.9120108393559099)
+[2024-10-28 19:07:27,028][INFO] max candidates 2 -> 1487
+[2024-10-28 19:07:27,028][INFO] delta -> 71.2 acceptance proba -> 0.000000 (temperature -> 0.9120108393559099)
+[2024-10-28 19:07:27,031][INFO] max candidates 2 -> 1487
+[2024-10-28 19:07:27,031][INFO] delta -> 95.0 acceptance proba -> 0.000000 (temperature -> 0.9120108393559099)
+[2024-10-28 19:07:27,034][INFO] max candidates 2 -> 1487
+[2024-10-28 19:07:27,034][INFO] delta -> 0.0 acceptance proba -> 1.000000 (temperature -> 0.9120108393559099)
+[2024-10-28 19:07:27,036][INFO] max candidates 3 -> 1290
+[2024-10-28 19:07:27,036][INFO] delta -> 37.8 acceptance proba -> 0.000000 (temperature -> 0.8709635899560808)
+[2024-10-28 19:07:27,039][INFO] max candidates 3 -> 1437
+[2024-10-28 19:07:27,039][INFO] delta -> 98.0 acceptance proba -> 0.000000 (temperature -> 0.8709635899560808)
+[2024-10-28 19:07:27,043][INFO] max candidates 3 -> 1437
+[2024-10-28 19:07:27,043][INFO] delta -> 97.2 acceptance proba -> 0.000000 (temperature -> 0.8709635899560808)
+[2024-10-28 19:07:27,049][INFO] max candidates 3 -> 1521
+[2024-10-28 19:07:27,049][INFO] delta -> 203.2 acceptance proba -> 0.000000 (temperature -> 0.8709635899560808)
+[2024-10-28 19:07:27,052][INFO] max candidates 3 -> 1521
+[2024-10-28 19:07:27,052][INFO] delta -> 75.0 acceptance proba -> 0.000000 (temperature -> 0.8709635899560808)
+[2024-10-28 19:07:27,054][INFO] max candidates 3 -> 1521
+[2024-10-28 19:07:27,054][INFO] delta -> 57.0 acceptance proba -> 0.000000 (temperature -> 0.8709635899560808)
+[2024-10-28 19:07:27,056][INFO] max candidates 3 -> 1521
+[2024-10-28 19:07:27,056][INFO] delta -> 40.0 acceptance proba -> 0.000000 (temperature -> 0.8709635899560808)
+[2024-10-28 19:07:27,058][INFO] max candidates 3 -> 1525
+[2024-10-28 19:07:27,058][INFO] delta -> -2.2 acceptance proba -> 13.241365 (temperature -> 0.8709635899560808)
+[2024-10-28 19:07:27,061][INFO] max candidates 4 -> 1436
+[2024-10-28 19:07:27,061][INFO] delta -> 94.2 acceptance proba -> 0.000000 (temperature -> 0.8317637711026712)
+[2024-10-28 19:07:27,064][INFO] max candidates 4 -> 1448
+[2024-10-28 19:07:27,064][INFO] delta -> 103.2 acceptance proba -> 0.000000 (temperature -> 0.8317637711026712)
+[2024-10-28 19:07:27,066][INFO] max candidates 4 -> 1448
+[2024-10-28 19:07:27,066][INFO] delta -> 77.0 acceptance proba -> 0.000000 (temperature -> 0.8317637711026712)
+[2024-10-28 19:07:27,069][INFO] max candidates 4 -> 1448
+[2024-10-28 19:07:27,069][INFO] delta -> 66.2 acceptance proba -> 0.000000 (temperature -> 0.8317637711026712)
+[2024-10-28 19:07:27,072][INFO] max candidates 4 -> 1448
+[2024-10-28 19:07:27,072][INFO] delta -> 94.2 acceptance proba -> 0.000000 (temperature -> 0.8317637711026712)
+[2024-10-28 19:07:27,075][INFO] max candidates 4 -> 1448
+[2024-10-28 19:07:27,075][INFO] delta -> 4.2 acceptance proba -> 0.006038 (temperature -> 0.8317637711026712)
+[2024-10-28 19:07:27,080][INFO] max candidates 4 -> 1495
+[2024-10-28 19:07:27,080][INFO] delta -> 151.8 acceptance proba -> 0.000000 (temperature -> 0.8317637711026712)
+[2024-10-28 19:07:27,086][INFO] max candidates 4 -> 1495
+[2024-10-28 19:07:27,086][INFO] delta -> 12.8 acceptance proba -> 0.000000 (temperature -> 0.8317637711026712)
+[2024-10-28 19:07:27,089][INFO] max candidates 4 -> 1495
+[2024-10-28 19:07:27,089][INFO] delta -> 104.2 acceptance proba -> 0.000000 (temperature -> 0.8317637711026712)
+[2024-10-28 19:07:27,091][INFO] max candidates 4 -> 1495
+[2024-10-28 19:07:27,092][INFO] delta -> 1.2 acceptance proba -> 0.222499 (temperature -> 0.8317637711026712)
+[2024-10-28 19:07:27,096][INFO] max candidates 4 -> 1495
+[2024-10-28 19:07:27,096][INFO] delta -> 77.5 acceptance proba -> 0.000000 (temperature -> 0.8317637711026712)
+[2024-10-28 19:07:27,099][INFO] max candidates 4 -> 1495
+[2024-10-28 19:07:27,099][INFO] delta -> 1.2 acceptance proba -> 0.222499 (temperature -> 0.8317637711026712)
+[2024-10-28 19:07:27,103][INFO] max candidates 4 -> 1495
+[2024-10-28 19:07:27,103][INFO] delta -> 107.5 acceptance proba -> 0.000000 (temperature -> 0.8317637711026712)
+[2024-10-28 19:07:27,106][INFO] max candidates 4 -> 1495
+[2024-10-28 19:07:27,106][INFO] delta -> 73.2 acceptance proba -> 0.000000 (temperature -> 0.8317637711026712)
+[2024-10-28 19:07:27,108][INFO] max candidates 4 -> 1495
+[2024-10-28 19:07:27,108][INFO] delta -> 63.2 acceptance proba -> 0.000000 (temperature -> 0.8317637711026712)
+[2024-10-28 19:07:27,112][INFO] max candidates 4 -> 1495
+[2024-10-28 19:07:27,112][INFO] delta -> 134.5 acceptance proba -> 0.000000 (temperature -> 0.8317637711026712)
+[2024-10-28 19:07:27,115][INFO] max candidates 4 -> 1495
+[2024-10-28 19:07:27,116][INFO] delta -> 73.2 acceptance proba -> 0.000000 (temperature -> 0.8317637711026712)
+[2024-10-28 19:07:27,117][INFO] max candidates 4 -> 1495
+[2024-10-28 19:07:27,117][INFO] delta -> 61.0 acceptance proba -> 0.000000 (temperature -> 0.8317637711026712)
+[2024-10-28 19:07:27,120][INFO] max candidates 4 -> 1495
+[2024-10-28 19:07:27,120][INFO] delta -> 149.2 acceptance proba -> 0.000000 (temperature -> 0.8317637711026712)
+[2024-10-28 19:07:27,122][INFO] max candidates 4 -> 1495
+[2024-10-28 19:07:27,122][INFO] delta -> 1.2 acceptance proba -> 0.222499 (temperature -> 0.8317637711026712)
+[2024-10-28 19:07:27,125][INFO] max candidates 4 -> 1495
+[2024-10-28 19:07:27,125][INFO] delta -> 105.2 acceptance proba -> 0.000000 (temperature -> 0.8317637711026712)
+[2024-10-28 19:07:27,128][INFO] max candidates 4 -> 1495
+[2024-10-28 19:07:27,128][INFO] delta -> 2.5 acceptance proba -> 0.049506 (temperature -> 0.8317637711026712)
+[2024-10-28 19:07:27,131][INFO] max candidates 4 -> 1495
+[2024-10-28 19:07:27,131][INFO] delta -> 123.2 acceptance proba -> 0.000000 (temperature -> 0.8317637711026712)
+[2024-10-28 19:07:27,136][INFO] max candidates 4 -> 1495
+[2024-10-28 19:07:27,136][INFO] delta -> 129.5 acceptance proba -> 0.000000 (temperature -> 0.8317637711026712)
+[2024-10-28 19:07:27,139][INFO] max candidates 4 -> 1495
+[2024-10-28 19:07:27,139][INFO] delta -> 3.2 acceptance proba -> 0.020093 (temperature -> 0.8317637711026712)
+[2024-10-28 19:07:27,141][INFO] max candidates 4 -> 1495
+[2024-10-28 19:07:27,141][INFO] delta -> 68.0 acceptance proba -> 0.000000 (temperature -> 0.8317637711026712)
+[2024-10-28 19:07:27,147][INFO] max candidates 4 -> 1495
+[2024-10-28 19:07:27,147][INFO] delta -> 104.8 acceptance proba -> 0.000000 (temperature -> 0.8317637711026712)
+[2024-10-28 19:07:27,150][INFO] max candidates 4 -> 1495
+[2024-10-28 19:07:27,150][INFO] delta -> 1.2 acceptance proba -> 0.222499 (temperature -> 0.8317637711026712)
+[2024-10-28 19:07:27,152][INFO] max candidates 4 -> 1495
+[2024-10-28 19:07:27,152][INFO] delta -> 147.2 acceptance proba -> 0.000000 (temperature -> 0.8317637711026712)
+[2024-10-28 19:07:27,155][INFO] max candidates 4 -> 1495
+[2024-10-28 19:07:27,155][INFO] delta -> 1.2 acceptance proba -> 0.222499 (temperature -> 0.8317637711026712)
+[2024-10-28 19:07:27,158][INFO] max candidates 4 -> 1495
+[2024-10-28 19:07:27,158][INFO] delta -> 144.2 acceptance proba -> 0.000000 (temperature -> 0.8317637711026712)
+[2024-10-28 19:07:27,161][INFO] max candidates 4 -> 1516
+[2024-10-28 19:07:27,161][INFO] delta -> 186.2 acceptance proba -> 0.000000 (temperature -> 0.8317637711026712)
+[2024-10-28 19:07:27,165][INFO] max candidates 4 -> 1516
+[2024-10-28 19:07:27,165][INFO] delta -> 2.5 acceptance proba -> 0.049506 (temperature -> 0.8317637711026712)
+[2024-10-28 19:07:27,169][INFO] max candidates 4 -> 1516
+[2024-10-28 19:07:27,169][INFO] delta -> 114.2 acceptance proba -> 0.000000 (temperature -> 0.8317637711026712)
+[2024-10-28 19:07:27,172][INFO] max candidates 4 -> 1516
+[2024-10-28 19:07:27,172][INFO] delta -> 1.2 acceptance proba -> 0.222499 (temperature -> 0.8317637711026712)
+[2024-10-28 19:07:27,175][INFO] max candidates 4 -> 1516
+[2024-10-28 19:07:27,175][INFO] delta -> 6.2 acceptance proba -> 0.000545 (temperature -> 0.8317637711026712)
+[2024-10-28 19:07:27,181][INFO] max candidates 4 -> 1516
+[2024-10-28 19:07:27,181][INFO] delta -> 45.5 acceptance proba -> 0.000000 (temperature -> 0.8317637711026712)
+[2024-10-28 19:07:27,183][INFO] max candidates 4 -> 1516
+[2024-10-28 19:07:27,183][INFO] delta -> 80.2 acceptance proba -> 0.000000 (temperature -> 0.8317637711026712)
+[2024-10-28 19:07:27,185][INFO] max candidates 4 -> 1516
+[2024-10-28 19:07:27,185][INFO] delta -> 166.0 acceptance proba -> 0.000000 (temperature -> 0.8317637711026712)
+[2024-10-28 19:07:27,188][INFO] max candidates 4 -> 1516
+[2024-10-28 19:07:27,188][INFO] delta -> 10.2 acceptance proba -> 0.000004 (temperature -> 0.8317637711026712)
+[2024-10-28 19:07:27,191][INFO] max candidates 4 -> 1516
+[2024-10-28 19:07:27,191][INFO] delta -> 17.5 acceptance proba -> 0.000000 (temperature -> 0.8317637711026712)
+[2024-10-28 19:07:27,193][INFO] max candidates 4 -> 1516
+[2024-10-28 19:07:27,193][INFO] delta -> 110.0 acceptance proba -> 0.000000 (temperature -> 0.8317637711026712)
+[2024-10-28 19:07:27,199][INFO] max candidates 4 -> 1516
+[2024-10-28 19:07:27,199][INFO] delta -> 95.8 acceptance proba -> 0.000000 (temperature -> 0.8317637711026712)
+[2024-10-28 19:07:27,201][INFO] max candidates 4 -> 1516
+[2024-10-28 19:07:27,201][INFO] delta -> 1.2 acceptance proba -> 0.222499 (temperature -> 0.8317637711026712)
+[2024-10-28 19:07:27,203][INFO] max candidates 4 -> 1516
+[2024-10-28 19:07:27,203][INFO] delta -> 17.2 acceptance proba -> 0.000000 (temperature -> 0.8317637711026712)
+[2024-10-28 19:07:27,205][INFO] max candidates 4 -> 1516
+[2024-10-28 19:07:27,206][INFO] delta -> 1.2 acceptance proba -> 0.222499 (temperature -> 0.8317637711026712)
+[2024-10-28 19:07:27,207][INFO] max candidates 4 -> 1516
+[2024-10-28 19:07:27,207][INFO] delta -> 38.0 acceptance proba -> 0.000000 (temperature -> 0.8317637711026712)
+[2024-10-28 19:07:27,211][INFO] max candidates 4 -> 1522
+[2024-10-28 19:07:27,211][INFO] delta -> 198.5 acceptance proba -> 0.000000 (temperature -> 0.8317637711026712)
+[2024-10-28 19:07:27,214][INFO] max candidates 4 -> 1522
+[2024-10-28 19:07:27,214][INFO] delta -> 32.2 acceptance proba -> 0.000000 (temperature -> 0.8317637711026712)
+[2024-10-28 19:07:27,219][INFO] max candidates 4 -> 1522
+[2024-10-28 19:07:27,219][INFO] delta -> 58.2 acceptance proba -> 0.000000 (temperature -> 0.8317637711026712)
+[2024-10-28 19:07:27,222][INFO] max candidates 4 -> 1522
+[2024-10-28 19:07:27,222][INFO] delta -> 43.2 acceptance proba -> 0.000000 (temperature -> 0.8317637711026712)
+[2024-10-28 19:07:27,225][INFO] max candidates 4 -> 1522
+[2024-10-28 19:07:27,225][INFO] delta -> 1.2 acceptance proba -> 0.222499 (temperature -> 0.8317637711026712)
+[2024-10-28 19:07:27,228][INFO] max candidates 4 -> 1522
+[2024-10-28 19:07:27,228][INFO] delta -> 94.2 acceptance proba -> 0.000000 (temperature -> 0.8317637711026712)
+[2024-10-28 19:07:27,230][INFO] max candidates 4 -> 1522
+[2024-10-28 19:07:27,230][INFO] delta -> 108.2 acceptance proba -> 0.000000 (temperature -> 0.8317637711026712)
+[2024-10-28 19:07:27,233][INFO] max candidates 4 -> 1522
+[2024-10-28 19:07:27,233][INFO] delta -> 105.2 acceptance proba -> 0.000000 (temperature -> 0.8317637711026712)
+[2024-10-28 19:07:27,236][INFO] max candidates 4 -> 1522
+[2024-10-28 19:07:27,236][INFO] delta -> 50.2 acceptance proba -> 0.000000 (temperature -> 0.8317637711026712)
+[2024-10-28 19:07:27,239][INFO] max candidates 4 -> 1522
+[2024-10-28 19:07:27,239][INFO] delta -> 40.2 acceptance proba -> 0.000000 (temperature -> 0.8317637711026712)
+[2024-10-28 19:07:27,242][INFO] max candidates 4 -> 1522
+[2024-10-28 19:07:27,242][INFO] delta -> 2.5 acceptance proba -> 0.049506 (temperature -> 0.8317637711026712)
+[2024-10-28 19:07:27,245][INFO] max candidates 4 -> 1522
+[2024-10-28 19:07:27,245][INFO] delta -> 42.2 acceptance proba -> 0.000000 (temperature -> 0.8317637711026712)
+[2024-10-28 19:07:27,248][INFO] max candidates 4 -> 1522
+[2024-10-28 19:07:27,248][INFO] delta -> 2.5 acceptance proba -> 0.049506 (temperature -> 0.8317637711026712)
+[2024-10-28 19:07:27,251][INFO] max candidates 4 -> 1522
+[2024-10-28 19:07:27,251][INFO] delta -> 1.2 acceptance proba -> 0.222499 (temperature -> 0.8317637711026712)
+[2024-10-28 19:07:27,253][INFO] max candidates 5 -> 1031
+[2024-10-28 19:07:27,253][INFO] delta -> -2.2 acceptance proba -> 16.989274 (temperature -> 0.7943282347242817)
+[2024-10-28 19:07:27,256][INFO] max candidates 6 -> 1017
+[2024-10-28 19:07:27,256][INFO] delta -> 1.2 acceptance proba -> 0.192469 (temperature -> 0.758577575029184)
+[2024-10-28 19:07:27,258][INFO] max candidates 6 -> 1505
+[2024-10-28 19:07:27,258][INFO] delta -> 164.2 acceptance proba -> 0.000000 (temperature -> 0.758577575029184)
+[2024-10-28 19:07:27,261][INFO] max candidates 6 -> 1505
+[2024-10-28 19:07:27,261][INFO] delta -> 68.2 acceptance proba -> 0.000000 (temperature -> 0.758577575029184)
+[2024-10-28 19:07:27,263][INFO] max candidates 6 -> 1505
+[2024-10-28 19:07:27,263][INFO] delta -> 1.2 acceptance proba -> 0.192469 (temperature -> 0.758577575029184)
+[2024-10-28 19:07:27,266][INFO] max candidates 6 -> 1515
+[2024-10-28 19:07:27,266][INFO] delta -> 181.2 acceptance proba -> 0.000000 (temperature -> 0.758577575029184)
+[2024-10-28 19:07:27,268][INFO] max candidates 6 -> 1515
+[2024-10-28 19:07:27,268][INFO] delta -> 139.0 acceptance proba -> 0.000000 (temperature -> 0.758577575029184)
+[2024-10-28 19:07:27,271][INFO] max candidates 6 -> 1515
+[2024-10-28 19:07:27,271][INFO] delta -> 1.2 acceptance proba -> 0.192469 (temperature -> 0.758577575029184)
+[2024-10-28 19:07:27,274][INFO] max candidates 6 -> 1515
+[2024-10-28 19:07:27,274][INFO] delta -> 48.2 acceptance proba -> 0.000000 (temperature -> 0.758577575029184)
+[2024-10-28 19:07:27,277][INFO] max candidates 6 -> 1515
+[2024-10-28 19:07:27,277][INFO] delta -> 48.2 acceptance proba -> 0.000000 (temperature -> 0.758577575029184)
+[2024-10-28 19:07:27,280][INFO] max candidates 6 -> 1515
+[2024-10-28 19:07:27,280][INFO] delta -> 1.2 acceptance proba -> 0.192469 (temperature -> 0.758577575029184)
+[2024-10-28 19:07:27,282][INFO] max candidates 7 -> 1000
+[2024-10-28 19:07:27,282][INFO] delta -> 0.0 acceptance proba -> 1.000000 (temperature -> 0.7244359600749903)
+[2024-10-28 19:07:27,286][INFO] max candidates 8 -> 1428
+[2024-10-28 19:07:27,286][INFO] delta -> 89.5 acceptance proba -> 0.000000 (temperature -> 0.6918309709189367)
+[2024-10-28 19:07:27,291][INFO] max candidates 8 -> 1428
+[2024-10-28 19:07:27,291][INFO] delta -> 1.2 acceptance proba -> 0.164179 (temperature -> 0.6918309709189367)
+[2024-10-28 19:07:27,294][INFO] max candidates 9 -> 1182
+[2024-10-28 19:07:27,295][INFO] delta -> 18.0 acceptance proba -> 0.000000 (temperature -> 0.6606934480075963)
+[2024-10-28 19:07:27,297][INFO] max candidates 9 -> 1182
+[2024-10-28 19:07:27,297][INFO] delta -> 1.0 acceptance proba -> 0.220125 (temperature -> 0.6606934480075963)
+[2024-10-28 19:07:27,299][INFO] max candidates 9 -> 1323
+[2024-10-28 19:07:27,299][INFO] delta -> 45.8 acceptance proba -> 0.000000 (temperature -> 0.6606934480075963)
+[2024-10-28 19:07:27,303][INFO] max candidates 9 -> 1323
+[2024-10-28 19:07:27,303][INFO] delta -> 13.0 acceptance proba -> 0.000000 (temperature -> 0.6606934480075963)
+[2024-10-28 19:07:27,306][INFO] max candidates 9 -> 1323
+[2024-10-28 19:07:27,306][INFO] delta -> 1.0 acceptance proba -> 0.220125 (temperature -> 0.6606934480075963)
+[2024-10-28 19:07:27,309][INFO] max candidates 9 -> 1391
+[2024-10-28 19:07:27,309][INFO] delta -> 70.8 acceptance proba -> 0.000000 (temperature -> 0.6606934480075963)
+[2024-10-28 19:07:27,312][INFO] max candidates 9 -> 1391
+[2024-10-28 19:07:27,312][INFO] delta -> 25.0 acceptance proba -> 0.000000 (temperature -> 0.6606934480075963)
+[2024-10-28 19:07:27,314][INFO] max candidates 9 -> 1397
+[2024-10-28 19:07:27,314][INFO] delta -> -1.2 acceptance proba -> 6.632299 (temperature -> 0.6606934480075963)
+[2024-10-28 19:07:27,318][INFO] max candidates 10 -> 1337
+[2024-10-28 19:07:27,318][INFO] delta -> 49.2 acceptance proba -> 0.000000 (temperature -> 0.6309573444801936)
+[2024-10-28 19:07:27,321][INFO] max candidates 10 -> 1337
+[2024-10-28 19:07:27,321][INFO] delta -> 0.0 acceptance proba -> 1.000000 (temperature -> 0.6309573444801936)
+[2024-10-28 19:07:27,325][INFO] max candidates 11 -> 1513
+[2024-10-28 19:07:27,325][INFO] delta -> 180.2 acceptance proba -> 0.000000 (temperature -> 0.6025595860743581)
+[2024-10-28 19:07:27,327][INFO] max candidates 11 -> 1513
+[2024-10-28 19:07:27,327][INFO] delta -> 5.0 acceptance proba -> 0.000249 (temperature -> 0.6025595860743581)
+[2024-10-28 19:07:27,333][INFO] max candidates 11 -> 1513
+[2024-10-28 19:07:27,333][INFO] delta -> 65.2 acceptance proba -> 0.000000 (temperature -> 0.6025595860743581)
+[2024-10-28 19:07:27,336][INFO] max candidates 11 -> 1513
+[2024-10-28 19:07:27,336][INFO] delta -> 20.0 acceptance proba -> 0.000000 (temperature -> 0.6025595860743581)
+[2024-10-28 19:07:27,338][INFO] max candidates 11 -> 1513
+[2024-10-28 19:07:27,338][INFO] delta -> 102.0 acceptance proba -> 0.000000 (temperature -> 0.6025595860743581)
+[2024-10-28 19:07:27,341][INFO] max candidates 11 -> 1513
+[2024-10-28 19:07:27,341][INFO] delta -> 106.0 acceptance proba -> 0.000000 (temperature -> 0.6025595860743581)
+[2024-10-28 19:07:27,345][INFO] max candidates 11 -> 1513
+[2024-10-28 19:07:27,345][INFO] delta -> 28.2 acceptance proba -> 0.000000 (temperature -> 0.6025595860743581)
+[2024-10-28 19:07:27,347][INFO] max candidates 11 -> 1513
+[2024-10-28 19:07:27,347][INFO] delta -> 110.8 acceptance proba -> 0.000000 (temperature -> 0.6025595860743581)
+[2024-10-28 19:07:27,352][INFO] max candidates 11 -> 1513
+[2024-10-28 19:07:27,352][INFO] delta -> 27.5 acceptance proba -> 0.000000 (temperature -> 0.6025595860743581)
+[2024-10-28 19:07:27,355][INFO] max candidates 11 -> 1513
+[2024-10-28 19:07:27,355][INFO] delta -> 40.5 acceptance proba -> 0.000000 (temperature -> 0.6025595860743581)
+[2024-10-28 19:07:27,358][INFO] max candidates 11 -> 1513
+[2024-10-28 19:07:27,358][INFO] delta -> 82.0 acceptance proba -> 0.000000 (temperature -> 0.6025595860743581)
+[2024-10-28 19:07:27,361][INFO] max candidates 11 -> 1521
+[2024-10-28 19:07:27,361][INFO] delta -> 197.0 acceptance proba -> 0.000000 (temperature -> 0.6025595860743581)
+[2024-10-28 19:07:27,366][INFO] max candidates 11 -> 1521
+[2024-10-28 19:07:27,366][INFO] delta -> 90.0 acceptance proba -> 0.000000 (temperature -> 0.6025595860743581)
+[2024-10-28 19:07:27,369][INFO] max candidates 11 -> 1521
+[2024-10-28 19:07:27,369][INFO] delta -> 0.0 acceptance proba -> 1.000000 (temperature -> 0.6025595860743581)
+[2024-10-28 19:07:27,372][INFO] max candidates 12 -> 1439
+[2024-10-28 19:07:27,372][INFO] delta -> 96.2 acceptance proba -> 0.000000 (temperature -> 0.5754399373371573)
+[2024-10-28 19:07:27,376][INFO] max candidates 12 -> 1439
+[2024-10-28 19:07:27,376][INFO] delta -> 36.2 acceptance proba -> 0.000000 (temperature -> 0.5754399373371573)
+[2024-10-28 19:07:27,381][INFO] max candidates 12 -> 1478
+[2024-10-28 19:07:27,381][INFO] delta -> 131.0 acceptance proba -> 0.000000 (temperature -> 0.5754399373371573)
+[2024-10-28 19:07:27,384][INFO] max candidates 12 -> 1478
+[2024-10-28 19:07:27,384][INFO] delta -> 74.0 acceptance proba -> 0.000000 (temperature -> 0.5754399373371573)
+[2024-10-28 19:07:27,386][INFO] max candidates 12 -> 1478
+[2024-10-28 19:07:27,386][INFO] delta -> 48.0 acceptance proba -> 0.000000 (temperature -> 0.5754399373371573)
+[2024-10-28 19:07:27,388][INFO] max candidates 12 -> 1478
+[2024-10-28 19:07:27,388][INFO] delta -> 87.8 acceptance proba -> 0.000000 (temperature -> 0.5754399373371573)
+[2024-10-28 19:07:27,391][INFO] max candidates 12 -> 1478
+[2024-10-28 19:07:27,391][INFO] delta -> 0.0 acceptance proba -> 1.000000 (temperature -> 0.5754399373371573)
+[2024-10-28 19:07:27,395][INFO] max candidates 13 -> 1067
+[2024-10-28 19:07:27,395][INFO] delta -> 5.2 acceptance proba -> 0.000071 (temperature -> 0.5495408738576248)
+[2024-10-28 19:07:27,399][INFO] max candidates 13 -> 1067
+[2024-10-28 19:07:27,399][INFO] delta -> 3.5 acceptance proba -> 0.001714 (temperature -> 0.5495408738576248)
+[2024-10-28 19:07:27,402][INFO] max candidates 13 -> 1067
+[2024-10-28 19:07:27,402][INFO] delta -> 0.0 acceptance proba -> 1.000000 (temperature -> 0.5495408738576248)
+[2024-10-28 19:07:27,404][INFO] max candidates 14 -> 1376
+[2024-10-28 19:07:27,404][INFO] delta -> 63.0 acceptance proba -> 0.000000 (temperature -> 0.5248074602497729)
+[2024-10-28 19:07:27,406][INFO] max candidates 14 -> 1376
+[2024-10-28 19:07:27,406][INFO] delta -> 21.0 acceptance proba -> 0.000000 (temperature -> 0.5248074602497729)
+[2024-10-28 19:07:27,411][INFO] max candidates 14 -> 1446
+[2024-10-28 19:07:27,411][INFO] delta -> 101.5 acceptance proba -> 0.000000 (temperature -> 0.5248074602497729)
+[2024-10-28 19:07:27,413][INFO] max candidates 14 -> 1446
+[2024-10-28 19:07:27,413][INFO] delta -> 0.0 acceptance proba -> 1.000000 (temperature -> 0.5248074602497729)
+[2024-10-28 19:07:27,416][INFO] max candidates 15 -> 1504
+[2024-10-28 19:07:27,416][INFO] delta -> 165.0 acceptance proba -> 0.000000 (temperature -> 0.5011872336272726)
+[2024-10-28 19:07:27,418][INFO] max candidates 15 -> 1504
+[2024-10-28 19:07:27,418][INFO] delta -> 109.0 acceptance proba -> 0.000000 (temperature -> 0.5011872336272726)
+[2024-10-28 19:07:27,421][INFO] max candidates 15 -> 1504
+[2024-10-28 19:07:27,421][INFO] delta -> 65.2 acceptance proba -> 0.000000 (temperature -> 0.5011872336272726)
+[2024-10-28 19:07:27,424][INFO] max candidates 15 -> 1504
+[2024-10-28 19:07:27,424][INFO] delta -> 0.0 acceptance proba -> 1.000000 (temperature -> 0.5011872336272726)
+[2024-10-28 19:07:27,427][INFO] max candidates 16 -> 1386
+[2024-10-28 19:07:27,427][INFO] delta -> 67.2 acceptance proba -> 0.000000 (temperature -> 0.47863009232263865)
+[2024-10-28 19:07:27,429][INFO] max candidates 16 -> 1386
+[2024-10-28 19:07:27,429][INFO] delta -> 0.0 acceptance proba -> 1.000000 (temperature -> 0.47863009232263865)
+[2024-10-28 19:07:27,433][INFO] max candidates 17 -> 1445
+[2024-10-28 19:07:27,433][INFO] delta -> 101.0 acceptance proba -> 0.000000 (temperature -> 0.45708818961487535)
+[2024-10-28 19:07:27,438][INFO] max candidates 17 -> 1445
+[2024-10-28 19:07:27,438][INFO] delta -> 59.5 acceptance proba -> 0.000000 (temperature -> 0.45708818961487535)
+[2024-10-28 19:07:27,441][INFO] max candidates 17 -> 1445
+[2024-10-28 19:07:27,441][INFO] delta -> 6.0 acceptance proba -> 0.000002 (temperature -> 0.45708818961487535)
+[2024-10-28 19:07:27,444][INFO] max candidates 17 -> 1445
+[2024-10-28 19:07:27,444][INFO] delta -> 72.2 acceptance proba -> 0.000000 (temperature -> 0.45708818961487535)
+[2024-10-28 19:07:27,447][INFO] max candidates 17 -> 1445
+[2024-10-28 19:07:27,447][INFO] delta -> 95.0 acceptance proba -> 0.000000 (temperature -> 0.45708818961487535)
+[2024-10-28 19:07:27,450][INFO] max candidates 17 -> 1445
+[2024-10-28 19:07:27,450][INFO] delta -> 0.0 acceptance proba -> 1.000000 (temperature -> 0.45708818961487535)
+[2024-10-28 19:07:27,452][INFO] max candidates 18 -> 1438
+[2024-10-28 19:07:27,452][INFO] delta -> 96.0 acceptance proba -> 0.000000 (temperature -> 0.4365158322401663)
+[2024-10-28 19:07:27,457][INFO] max candidates 18 -> 1438
+[2024-10-28 19:07:27,457][INFO] delta -> 77.5 acceptance proba -> 0.000000 (temperature -> 0.4365158322401663)
+[2024-10-28 19:07:27,461][INFO] max candidates 18 -> 1438
+[2024-10-28 19:07:27,461][INFO] delta -> 83.2 acceptance proba -> 0.000000 (temperature -> 0.4365158322401663)
+[2024-10-28 19:07:27,463][INFO] max candidates 18 -> 1438
+[2024-10-28 19:07:27,463][INFO] delta -> 0.0 acceptance proba -> 1.000000 (temperature -> 0.4365158322401663)
+[2024-10-28 19:07:27,466][INFO] max candidates 19 -> 1463
+[2024-10-28 19:07:27,466][INFO] delta -> 116.0 acceptance proba -> 0.000000 (temperature -> 0.41686938347033575)
+[2024-10-28 19:07:27,468][INFO] max candidates 19 -> 1463
+[2024-10-28 19:07:27,468][INFO] delta -> 0.0 acceptance proba -> 1.000000 (temperature -> 0.41686938347033575)
+[2024-10-28 19:07:27,471][INFO] max candidates 20 -> 1000
+[2024-10-28 19:07:27,471][INFO] delta -> 0.0 acceptance proba -> 1.000000 (temperature -> 0.3981071705534976)
+[2024-10-28 19:07:27,473][INFO] max candidates 21 -> 1000
+[2024-10-28 19:07:27,473][INFO] delta -> 0.0 acceptance proba -> 1.000000 (temperature -> 0.38018939632056153)
+[2024-10-28 19:07:27,476][INFO] max candidates 22 -> 1184
+[2024-10-28 19:07:27,476][INFO] delta -> 18.0 acceptance proba -> 0.000000 (temperature -> 0.3630780547701017)
+[2024-10-28 19:07:27,478][INFO] max candidates 22 -> 1388
+[2024-10-28 19:07:27,478][INFO] delta -> 68.0 acceptance proba -> 0.000000 (temperature -> 0.3630780547701017)
+[2024-10-28 19:07:27,480][INFO] max candidates 22 -> 1469
+[2024-10-28 19:07:27,480][INFO] delta -> 121.8 acceptance proba -> 0.000000 (temperature -> 0.3630780547701017)
+[2024-10-28 19:07:27,482][INFO] max candidates 22 -> 1469
+[2024-10-28 19:07:27,482][INFO] delta -> 0.0 acceptance proba -> 1.000000 (temperature -> 0.3630780547701017)
+[2024-10-28 19:07:27,485][INFO] max candidates 23 -> 1205
+[2024-10-28 19:07:27,485][INFO] delta -> 21.0 acceptance proba -> 0.000000 (temperature -> 0.346736850452532)
+[2024-10-28 19:07:27,487][INFO] max candidates 23 -> 1205
+[2024-10-28 19:07:27,487][INFO] delta -> 0.0 acceptance proba -> 1.000000 (temperature -> 0.346736850452532)
+[2024-10-28 19:07:27,490][INFO] max candidates 24 -> 1446
+[2024-10-28 19:07:27,490][INFO] delta -> 102.0 acceptance proba -> 0.000000 (temperature -> 0.33113112148259144)
+[2024-10-28 19:07:27,492][INFO] max candidates 24 -> 1446
+[2024-10-28 19:07:27,492][INFO] delta -> 48.0 acceptance proba -> 0.000000 (temperature -> 0.33113112148259144)
+[2024-10-28 19:07:27,495][INFO] max candidates 24 -> 1446
+[2024-10-28 19:07:27,495][INFO] delta -> 0.0 acceptance proba -> 1.000000 (temperature -> 0.33113112148259144)
+[2024-10-28 19:07:27,498][INFO] max candidates 25 -> 1117
+[2024-10-28 19:07:27,498][INFO] delta -> 10.0 acceptance proba -> 0.000000 (temperature -> 0.3162277660168383)
+[2024-10-28 19:07:27,501][INFO] max candidates 25 -> 1117
+[2024-10-28 19:07:27,501][INFO] delta -> 0.0 acceptance proba -> 1.000000 (temperature -> 0.3162277660168383)
+[2024-10-28 19:07:27,504][INFO] max candidates 26 -> 1000
+[2024-10-28 19:07:27,504][INFO] delta -> 0.0 acceptance proba -> 1.000000 (temperature -> 0.301995172040202)
+[2024-10-28 19:07:27,507][INFO] max candidates 27 -> 1502
+[2024-10-28 19:07:27,507][INFO] delta -> 162.2 acceptance proba -> 0.000000 (temperature -> 0.28840315031266095)
+[2024-10-28 19:07:27,510][INFO] max candidates 27 -> 1502
+[2024-10-28 19:07:27,510][INFO] delta -> 0.0 acceptance proba -> 1.000000 (temperature -> 0.28840315031266095)
+[2024-10-28 19:07:27,512][INFO] max candidates 28 -> 1126
+[2024-10-28 19:07:27,512][INFO] delta -> 11.0 acceptance proba -> 0.000000 (temperature -> 0.275422870333817)
+[2024-10-28 19:07:27,515][INFO] max candidates 28 -> 1126
+[2024-10-28 19:07:27,515][INFO] delta -> 0.0 acceptance proba -> 1.000000 (temperature -> 0.275422870333817)
+[2024-10-28 19:07:27,518][INFO] max candidates 29 -> 1414
+[2024-10-28 19:07:27,518][INFO] delta -> 81.0 acceptance proba -> 0.000000 (temperature -> 0.2630267991895386)
+[2024-10-28 19:07:27,606][INFO] max candidates 29 -> 1423
+[2024-10-28 19:07:27,606][INFO] delta -> -2.2 acceptance proba -> 5188.819103 (temperature -> 0.2630267991895386)
+[2024-10-28 19:07:27,611][INFO] max candidates 30 -> 1482
+[2024-10-28 19:07:27,611][INFO] delta -> 131.2 acceptance proba -> 0.000000 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:27,701][INFO] max candidates 30 -> 1482
+[2024-10-28 19:07:27,701][INFO] delta -> 2.5 acceptance proba -> 0.000048 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:27,791][INFO] max candidates 30 -> 1482
+[2024-10-28 19:07:27,791][INFO] delta -> 1.2 acceptance proba -> 0.006899 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:27,880][INFO] max candidates 30 -> 1482
+[2024-10-28 19:07:27,880][INFO] delta -> 1.2 acceptance proba -> 0.006899 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:27,968][INFO] max candidates 30 -> 1482
+[2024-10-28 19:07:27,968][INFO] delta -> 1.2 acceptance proba -> 0.006899 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:28,058][INFO] max candidates 30 -> 1482
+[2024-10-28 19:07:28,058][INFO] delta -> 1.2 acceptance proba -> 0.006899 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:28,146][INFO] max candidates 30 -> 1482
+[2024-10-28 19:07:28,146][INFO] delta -> 1.2 acceptance proba -> 0.006899 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:28,149][INFO] max candidates 30 -> 1482
+[2024-10-28 19:07:28,149][INFO] delta -> 82.2 acceptance proba -> 0.000000 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:28,153][INFO] max candidates 30 -> 1482
+[2024-10-28 19:07:28,153][INFO] delta -> 114.8 acceptance proba -> 0.000000 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:28,155][INFO] max candidates 30 -> 1482
+[2024-10-28 19:07:28,155][INFO] delta -> 64.2 acceptance proba -> 0.000000 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:28,244][INFO] max candidates 30 -> 1482
+[2024-10-28 19:07:28,244][INFO] delta -> 1.2 acceptance proba -> 0.006899 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:28,247][INFO] max candidates 30 -> 1482
+[2024-10-28 19:07:28,247][INFO] delta -> 77.2 acceptance proba -> 0.000000 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:28,336][INFO] max candidates 30 -> 1482
+[2024-10-28 19:07:28,336][INFO] delta -> 1.2 acceptance proba -> 0.006899 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:28,339][INFO] max candidates 30 -> 1482
+[2024-10-28 19:07:28,339][INFO] delta -> 4.2 acceptance proba -> 0.000000 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:28,341][INFO] max candidates 30 -> 1499
+[2024-10-28 19:07:28,341][INFO] delta -> 152.2 acceptance proba -> 0.000000 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:28,345][INFO] max candidates 30 -> 1499
+[2024-10-28 19:07:28,345][INFO] delta -> 37.5 acceptance proba -> 0.000000 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:28,434][INFO] max candidates 30 -> 1499
+[2024-10-28 19:07:28,434][INFO] delta -> 1.2 acceptance proba -> 0.006899 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:28,436][INFO] max candidates 30 -> 1499
+[2024-10-28 19:07:28,436][INFO] delta -> 33.2 acceptance proba -> 0.000000 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:28,439][INFO] max candidates 30 -> 1499
+[2024-10-28 19:07:28,439][INFO] delta -> 66.5 acceptance proba -> 0.000000 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:28,442][INFO] max candidates 30 -> 1499
+[2024-10-28 19:07:28,442][INFO] delta -> 27.2 acceptance proba -> 0.000000 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:28,446][INFO] max candidates 30 -> 1499
+[2024-10-28 19:07:28,446][INFO] delta -> 104.5 acceptance proba -> 0.000000 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:28,448][INFO] max candidates 30 -> 1499
+[2024-10-28 19:07:28,448][INFO] delta -> 45.2 acceptance proba -> 0.000000 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:28,537][INFO] max candidates 30 -> 1499
+[2024-10-28 19:07:28,537][INFO] delta -> 1.2 acceptance proba -> 0.006899 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:28,540][INFO] max candidates 30 -> 1499
+[2024-10-28 19:07:28,540][INFO] delta -> 3.5 acceptance proba -> 0.000001 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:28,543][INFO] max candidates 30 -> 1499
+[2024-10-28 19:07:28,543][INFO] delta -> 47.2 acceptance proba -> 0.000000 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:28,546][INFO] max candidates 30 -> 1499
+[2024-10-28 19:07:28,546][INFO] delta -> 120.2 acceptance proba -> 0.000000 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:28,634][INFO] max candidates 30 -> 1499
+[2024-10-28 19:07:28,634][INFO] delta -> 1.2 acceptance proba -> 0.006899 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:28,724][INFO] max candidates 30 -> 1499
+[2024-10-28 19:07:28,724][INFO] delta -> 1.2 acceptance proba -> 0.006899 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:28,812][INFO] max candidates 30 -> 1499
+[2024-10-28 19:07:28,812][INFO] delta -> 1.2 acceptance proba -> 0.006899 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:28,815][INFO] max candidates 30 -> 1499
+[2024-10-28 19:07:28,815][INFO] delta -> 3.5 acceptance proba -> 0.000001 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:28,819][INFO] max candidates 30 -> 1499
+[2024-10-28 19:07:28,819][INFO] delta -> 35.5 acceptance proba -> 0.000000 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:28,822][INFO] max candidates 30 -> 1499
+[2024-10-28 19:07:28,822][INFO] delta -> 87.2 acceptance proba -> 0.000000 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:28,826][INFO] max candidates 30 -> 1499
+[2024-10-28 19:07:28,826][INFO] delta -> 40.5 acceptance proba -> 0.000000 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:28,829][INFO] max candidates 30 -> 1499
+[2024-10-28 19:07:28,829][INFO] delta -> 68.2 acceptance proba -> 0.000000 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:28,831][INFO] max candidates 30 -> 1499
+[2024-10-28 19:07:28,831][INFO] delta -> 64.2 acceptance proba -> 0.000000 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:28,834][INFO] max candidates 30 -> 1499
+[2024-10-28 19:07:28,834][INFO] delta -> 73.2 acceptance proba -> 0.000000 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:28,922][INFO] max candidates 30 -> 1499
+[2024-10-28 19:07:28,922][INFO] delta -> 1.2 acceptance proba -> 0.006899 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:28,925][INFO] max candidates 30 -> 1499
+[2024-10-28 19:07:28,925][INFO] delta -> 99.2 acceptance proba -> 0.000000 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:28,928][INFO] max candidates 30 -> 1499
+[2024-10-28 19:07:28,928][INFO] delta -> 148.2 acceptance proba -> 0.000000 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:29,017][INFO] max candidates 30 -> 1499
+[2024-10-28 19:07:29,017][INFO] delta -> 1.2 acceptance proba -> 0.006899 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:29,107][INFO] max candidates 30 -> 1499
+[2024-10-28 19:07:29,107][INFO] delta -> 1.2 acceptance proba -> 0.006899 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:29,110][INFO] max candidates 30 -> 1499
+[2024-10-28 19:07:29,110][INFO] delta -> 98.2 acceptance proba -> 0.000000 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:29,112][INFO] max candidates 30 -> 1499
+[2024-10-28 19:07:29,112][INFO] delta -> 18.2 acceptance proba -> 0.000000 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:29,116][INFO] max candidates 30 -> 1499
+[2024-10-28 19:07:29,116][INFO] delta -> 106.8 acceptance proba -> 0.000000 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:29,205][INFO] max candidates 30 -> 1499
+[2024-10-28 19:07:29,205][INFO] delta -> 1.2 acceptance proba -> 0.006899 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:29,294][INFO] max candidates 30 -> 1499
+[2024-10-28 19:07:29,294][INFO] delta -> 1.2 acceptance proba -> 0.006899 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:29,384][INFO] max candidates 30 -> 1499
+[2024-10-28 19:07:29,384][INFO] delta -> 2.5 acceptance proba -> 0.000048 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:29,472][INFO] max candidates 30 -> 1499
+[2024-10-28 19:07:29,472][INFO] delta -> 1.2 acceptance proba -> 0.006899 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:29,476][INFO] max candidates 30 -> 1516
+[2024-10-28 19:07:29,476][INFO] delta -> 180.5 acceptance proba -> 0.000000 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:29,479][INFO] max candidates 30 -> 1516
+[2024-10-28 19:07:29,479][INFO] delta -> 118.5 acceptance proba -> 0.000000 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:29,483][INFO] max candidates 30 -> 1516
+[2024-10-28 19:07:29,483][INFO] delta -> 128.8 acceptance proba -> 0.000000 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:29,571][INFO] max candidates 30 -> 1516
+[2024-10-28 19:07:29,572][INFO] delta -> 1.2 acceptance proba -> 0.006899 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:29,576][INFO] max candidates 30 -> 1516
+[2024-10-28 19:07:29,576][INFO] delta -> 127.5 acceptance proba -> 0.000000 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:29,578][INFO] max candidates 30 -> 1516
+[2024-10-28 19:07:29,578][INFO] delta -> 45.2 acceptance proba -> 0.000000 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:29,668][INFO] max candidates 30 -> 1516
+[2024-10-28 19:07:29,668][INFO] delta -> 2.5 acceptance proba -> 0.000048 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:29,757][INFO] max candidates 30 -> 1516
+[2024-10-28 19:07:29,757][INFO] delta -> 1.2 acceptance proba -> 0.006899 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:29,760][INFO] max candidates 30 -> 1516
+[2024-10-28 19:07:29,760][INFO] delta -> 5.8 acceptance proba -> 0.000000 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:29,762][INFO] max candidates 30 -> 1516
+[2024-10-28 19:07:29,762][INFO] delta -> 45.2 acceptance proba -> 0.000000 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:29,765][INFO] max candidates 30 -> 1516
+[2024-10-28 19:07:29,765][INFO] delta -> 36.2 acceptance proba -> 0.000000 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:29,767][INFO] max candidates 30 -> 1516
+[2024-10-28 19:07:29,767][INFO] delta -> 101.2 acceptance proba -> 0.000000 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:29,770][INFO] max candidates 30 -> 1516
+[2024-10-28 19:07:29,770][INFO] delta -> 7.2 acceptance proba -> 0.000000 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:29,858][INFO] max candidates 30 -> 1516
+[2024-10-28 19:07:29,859][INFO] delta -> 1.2 acceptance proba -> 0.006899 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:29,862][INFO] max candidates 30 -> 1516
+[2024-10-28 19:07:29,862][INFO] delta -> 42.5 acceptance proba -> 0.000000 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:29,868][INFO] max candidates 30 -> 1516
+[2024-10-28 19:07:29,868][INFO] delta -> 64.5 acceptance proba -> 0.000000 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:29,956][INFO] max candidates 30 -> 1516
+[2024-10-28 19:07:29,956][INFO] delta -> 1.2 acceptance proba -> 0.006899 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:30,045][INFO] max candidates 30 -> 1516
+[2024-10-28 19:07:30,045][INFO] delta -> 1.2 acceptance proba -> 0.006899 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:30,048][INFO] max candidates 30 -> 1516
+[2024-10-28 19:07:30,052][INFO] delta -> 11.2 acceptance proba -> 0.000000 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:30,055][INFO] max candidates 30 -> 1516
+[2024-10-28 19:07:30,055][INFO] delta -> 91.5 acceptance proba -> 0.000000 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:30,058][INFO] max candidates 30 -> 1516
+[2024-10-28 19:07:30,058][INFO] delta -> 5.8 acceptance proba -> 0.000000 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:30,060][INFO] max candidates 30 -> 1516
+[2024-10-28 19:07:30,060][INFO] delta -> 43.2 acceptance proba -> 0.000000 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:30,063][INFO] max candidates 30 -> 1516
+[2024-10-28 19:07:30,063][INFO] delta -> 49.2 acceptance proba -> 0.000000 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:30,066][INFO] max candidates 30 -> 1516
+[2024-10-28 19:07:30,066][INFO] delta -> 88.5 acceptance proba -> 0.000000 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:30,069][INFO] max candidates 30 -> 1516
+[2024-10-28 19:07:30,069][INFO] delta -> 84.2 acceptance proba -> 0.000000 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:30,072][INFO] max candidates 30 -> 1516
+[2024-10-28 19:07:30,072][INFO] delta -> 148.2 acceptance proba -> 0.000000 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:30,074][INFO] max candidates 30 -> 1516
+[2024-10-28 19:07:30,074][INFO] delta -> 56.0 acceptance proba -> 0.000000 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:30,077][INFO] max candidates 30 -> 1516
+[2024-10-28 19:07:30,077][INFO] delta -> 38.2 acceptance proba -> 0.000000 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:30,079][INFO] max candidates 30 -> 1516
+[2024-10-28 19:07:30,079][INFO] delta -> 89.2 acceptance proba -> 0.000000 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:30,081][INFO] max candidates 30 -> 1516
+[2024-10-28 19:07:30,081][INFO] delta -> 80.0 acceptance proba -> 0.000000 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:30,084][INFO] max candidates 30 -> 1516
+[2024-10-28 19:07:30,084][INFO] delta -> 113.2 acceptance proba -> 0.000000 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:30,089][INFO] max candidates 30 -> 1516
+[2024-10-28 19:07:30,089][INFO] delta -> 42.2 acceptance proba -> 0.000000 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:30,091][INFO] max candidates 30 -> 1516
+[2024-10-28 19:07:30,091][INFO] delta -> 54.2 acceptance proba -> 0.000000 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:30,096][INFO] max candidates 30 -> 1516
+[2024-10-28 19:07:30,096][INFO] delta -> 82.8 acceptance proba -> 0.000000 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:30,100][INFO] max candidates 30 -> 1516
+[2024-10-28 19:07:30,100][INFO] delta -> 96.5 acceptance proba -> 0.000000 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:30,190][INFO] max candidates 30 -> 1516
+[2024-10-28 19:07:30,190][INFO] delta -> 1.2 acceptance proba -> 0.006899 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:30,279][INFO] max candidates 30 -> 1516
+[2024-10-28 19:07:30,279][INFO] delta -> 1.2 acceptance proba -> 0.006899 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:30,281][INFO] max candidates 30 -> 1516
+[2024-10-28 19:07:30,281][INFO] delta -> 100.2 acceptance proba -> 0.000000 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:30,283][INFO] max candidates 30 -> 1516
+[2024-10-28 19:07:30,283][INFO] delta -> 169.2 acceptance proba -> 0.000000 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:30,374][INFO] max candidates 30 -> 1516
+[2024-10-28 19:07:30,374][INFO] delta -> 2.5 acceptance proba -> 0.000048 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:30,377][INFO] max candidates 30 -> 1516
+[2024-10-28 19:07:30,377][INFO] delta -> 86.5 acceptance proba -> 0.000000 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:30,467][INFO] max candidates 30 -> 1516
+[2024-10-28 19:07:30,467][INFO] delta -> 1.2 acceptance proba -> 0.006899 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:30,556][INFO] max candidates 30 -> 1516
+[2024-10-28 19:07:30,556][INFO] delta -> 1.2 acceptance proba -> 0.006899 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:30,559][INFO] max candidates 30 -> 1516
+[2024-10-28 19:07:30,559][INFO] delta -> 76.2 acceptance proba -> 0.000000 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:30,561][INFO] max candidates 30 -> 1516
+[2024-10-28 19:07:30,561][INFO] delta -> 89.2 acceptance proba -> 0.000000 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:30,564][INFO] max candidates 30 -> 1516
+[2024-10-28 19:07:30,564][INFO] delta -> 122.2 acceptance proba -> 0.000000 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:30,568][INFO] max candidates 30 -> 1516
+[2024-10-28 19:07:30,568][INFO] delta -> 4.8 acceptance proba -> 0.000000 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:30,571][INFO] max candidates 30 -> 1516
+[2024-10-28 19:07:30,571][INFO] delta -> 92.8 acceptance proba -> 0.000000 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:30,573][INFO] max candidates 30 -> 1516
+[2024-10-28 19:07:30,573][INFO] delta -> 67.0 acceptance proba -> 0.000000 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:30,662][INFO] max candidates 30 -> 1516
+[2024-10-28 19:07:30,662][INFO] delta -> 1.2 acceptance proba -> 0.006899 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:30,665][INFO] max candidates 30 -> 1516
+[2024-10-28 19:07:30,665][INFO] delta -> 3.5 acceptance proba -> 0.000001 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:30,668][INFO] max candidates 30 -> 1516
+[2024-10-28 19:07:30,668][INFO] delta -> 32.2 acceptance proba -> 0.000000 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:30,757][INFO] max candidates 30 -> 1516
+[2024-10-28 19:07:30,757][INFO] delta -> 1.2 acceptance proba -> 0.006899 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:30,759][INFO] max candidates 30 -> 1516
+[2024-10-28 19:07:30,759][INFO] delta -> 55.2 acceptance proba -> 0.000000 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:30,762][INFO] max candidates 30 -> 1516
+[2024-10-28 19:07:30,762][INFO] delta -> 123.2 acceptance proba -> 0.000000 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:30,851][INFO] max candidates 30 -> 1516
+[2024-10-28 19:07:30,851][INFO] delta -> 1.2 acceptance proba -> 0.006899 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:30,855][INFO] max candidates 30 -> 1516
+[2024-10-28 19:07:30,855][INFO] delta -> 97.8 acceptance proba -> 0.000000 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:30,859][INFO] max candidates 30 -> 1516
+[2024-10-28 19:07:30,859][INFO] delta -> 70.5 acceptance proba -> 0.000000 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:30,863][INFO] max candidates 30 -> 1516
+[2024-10-28 19:07:30,863][INFO] delta -> 134.5 acceptance proba -> 0.000000 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:30,868][INFO] max candidates 30 -> 1516
+[2024-10-28 19:07:30,868][INFO] delta -> 8.2 acceptance proba -> 0.000000 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:30,871][INFO] max candidates 30 -> 1516
+[2024-10-28 19:07:30,871][INFO] delta -> 49.5 acceptance proba -> 0.000000 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:30,873][INFO] max candidates 30 -> 1516
+[2024-10-28 19:07:30,873][INFO] delta -> 139.2 acceptance proba -> 0.000000 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:30,879][INFO] max candidates 30 -> 1516
+[2024-10-28 19:07:30,879][INFO] delta -> 10.5 acceptance proba -> 0.000000 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:30,881][INFO] max candidates 30 -> 1516
+[2024-10-28 19:07:30,881][INFO] delta -> 90.2 acceptance proba -> 0.000000 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:30,883][INFO] max candidates 30 -> 1516
+[2024-10-28 19:07:30,883][INFO] delta -> 29.2 acceptance proba -> 0.000000 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:30,887][INFO] max candidates 30 -> 1516
+[2024-10-28 19:07:30,887][INFO] delta -> 175.5 acceptance proba -> 0.000000 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:30,889][INFO] max candidates 30 -> 1516
+[2024-10-28 19:07:30,889][INFO] delta -> 29.2 acceptance proba -> 0.000000 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:30,978][INFO] max candidates 30 -> 1516
+[2024-10-28 19:07:30,978][INFO] delta -> 1.2 acceptance proba -> 0.006899 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:30,982][INFO] max candidates 30 -> 1516
+[2024-10-28 19:07:30,982][INFO] delta -> 7.5 acceptance proba -> 0.000000 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:30,985][INFO] max candidates 30 -> 1516
+[2024-10-28 19:07:30,985][INFO] delta -> 130.2 acceptance proba -> 0.000000 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:30,989][INFO] max candidates 30 -> 1516
+[2024-10-28 19:07:30,989][INFO] delta -> 152.5 acceptance proba -> 0.000000 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:30,992][INFO] max candidates 30 -> 1516
+[2024-10-28 19:07:30,992][INFO] delta -> 84.5 acceptance proba -> 0.000000 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:30,995][INFO] max candidates 30 -> 1516
+[2024-10-28 19:07:30,995][INFO] delta -> 170.5 acceptance proba -> 0.000000 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:30,998][INFO] max candidates 30 -> 1516
+[2024-10-28 19:07:30,998][INFO] delta -> 50.2 acceptance proba -> 0.000000 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:31,000][INFO] max candidates 30 -> 1524
+[2024-10-28 19:07:31,000][INFO] delta -> 197.2 acceptance proba -> 0.000000 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:31,002][INFO] max candidates 30 -> 1524
+[2024-10-28 19:07:31,002][INFO] delta -> 83.2 acceptance proba -> 0.000000 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:31,092][INFO] max candidates 30 -> 1524
+[2024-10-28 19:07:31,092][INFO] delta -> 1.2 acceptance proba -> 0.006899 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:31,095][INFO] max candidates 30 -> 1524
+[2024-10-28 19:07:31,095][INFO] delta -> 123.2 acceptance proba -> 0.000000 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:31,184][INFO] max candidates 30 -> 1524
+[2024-10-28 19:07:31,184][INFO] delta -> 1.2 acceptance proba -> 0.006899 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:31,186][INFO] max candidates 30 -> 1524
+[2024-10-28 19:07:31,186][INFO] delta -> 105.2 acceptance proba -> 0.000000 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:31,190][INFO] max candidates 30 -> 1524
+[2024-10-28 19:07:31,190][INFO] delta -> 61.5 acceptance proba -> 0.000000 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:31,280][INFO] max candidates 30 -> 1524
+[2024-10-28 19:07:31,280][INFO] delta -> 1.2 acceptance proba -> 0.006899 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:31,282][INFO] max candidates 30 -> 1524
+[2024-10-28 19:07:31,282][INFO] delta -> 21.2 acceptance proba -> 0.000000 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:31,286][INFO] max candidates 30 -> 1524
+[2024-10-28 19:07:31,286][INFO] delta -> 12.5 acceptance proba -> 0.000000 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:31,375][INFO] max candidates 30 -> 1524
+[2024-10-28 19:07:31,375][INFO] delta -> 1.2 acceptance proba -> 0.006899 (temperature -> 0.2511886431509584)
+[2024-10-28 19:07:31,378][INFO] max candidates 31 -> 1332
+[2024-10-28 19:07:31,379][INFO] delta -> 47.0 acceptance proba -> 0.000000 (temperature -> 0.23988329190194943)
+[2024-10-28 19:07:31,381][INFO] max candidates 31 -> 1332
+[2024-10-28 19:07:31,381][INFO] delta -> 24.0 acceptance proba -> 0.000000 (temperature -> 0.23988329190194943)
+[2024-10-28 19:07:31,470][INFO] max candidates 31 -> 1332
+[2024-10-28 19:07:31,470][INFO] delta -> 0.0 acceptance proba -> 1.000000 (temperature -> 0.23988329190194943)
+[2024-10-28 19:07:31,473][INFO] max candidates 32 -> 1030
+[2024-10-28 19:07:31,473][INFO] delta -> 2.2 acceptance proba -> 0.000054 (temperature -> 0.22908676527677768)
+[2024-10-28 19:07:31,563][INFO] max candidates 32 -> 1030
+[2024-10-28 19:07:31,563][INFO] delta -> 0.0 acceptance proba -> 1.000000 (temperature -> 0.22908676527677768)
+[2024-10-28 19:07:31,569][INFO] max candidates 33 -> 1111
+[2024-10-28 19:07:31,569][INFO] delta -> 9.2 acceptance proba -> 0.000000 (temperature -> 0.21877616239495562)
+[2024-10-28 19:07:31,659][INFO] max candidates 33 -> 1111
+[2024-10-28 19:07:31,659][INFO] delta -> 0.0 acceptance proba -> 1.000000 (temperature -> 0.21877616239495562)
+[2024-10-28 19:07:31,662][INFO] max candidates 34 -> 1519
+[2024-10-28 19:07:31,662][INFO] delta -> 190.0 acceptance proba -> 0.000000 (temperature -> 0.2089296130854043)
+[2024-10-28 19:07:31,664][INFO] max candidates 34 -> 1519
+[2024-10-28 19:07:31,664][INFO] delta -> 96.0 acceptance proba -> 0.000000 (temperature -> 0.2089296130854043)
+[2024-10-28 19:07:31,667][INFO] max candidates 34 -> 1519
+[2024-10-28 19:07:31,667][INFO] delta -> 2.2 acceptance proba -> 0.000021 (temperature -> 0.2089296130854043)
+[2024-10-28 19:07:31,670][INFO] max candidates 34 -> 1519
+[2024-10-28 19:07:31,670][INFO] delta -> 141.0 acceptance proba -> 0.000000 (temperature -> 0.2089296130854043)
+[2024-10-28 19:07:31,760][INFO] max candidates 34 -> 1519
+[2024-10-28 19:07:31,760][INFO] delta -> 0.0 acceptance proba -> 1.000000 (temperature -> 0.2089296130854043)
+[2024-10-28 19:07:31,852][INFO] max candidates 35 -> 1034
+[2024-10-28 19:07:31,852][INFO] delta -> 2.5 acceptance proba -> 0.000004 (temperature -> 0.1995262314968883)
+[2024-10-28 19:07:31,855][INFO] max candidates 35 -> 1234
+[2024-10-28 19:07:31,855][INFO] delta -> 25.2 acceptance proba -> 0.000000 (temperature -> 0.1995262314968883)
+[2024-10-28 19:07:31,857][INFO] max candidates 35 -> 1238
+[2024-10-28 19:07:31,857][INFO] delta -> 26.0 acceptance proba -> 0.000000 (temperature -> 0.1995262314968883)
+[2024-10-28 19:07:31,946][INFO] max candidates 35 -> 1238
+[2024-10-28 19:07:31,947][INFO] delta -> 0.0 acceptance proba -> 1.000000 (temperature -> 0.1995262314968883)
+[2024-10-28 19:07:31,950][INFO] max candidates 36 -> 1056
+[2024-10-28 19:07:31,950][INFO] delta -> 4.2 acceptance proba -> 0.000000 (temperature -> 0.19054607179632504)
+[2024-10-28 19:07:31,953][INFO] max candidates 36 -> 1222
+[2024-10-28 19:07:31,953][INFO] delta -> 23.2 acceptance proba -> 0.000000 (temperature -> 0.19054607179632504)
+[2024-10-28 19:07:31,957][INFO] max candidates 36 -> 1252
+[2024-10-28 19:07:31,957][INFO] delta -> 28.5 acceptance proba -> 0.000000 (temperature -> 0.19054607179632504)
+[2024-10-28 19:07:31,959][INFO] max candidates 36 -> 1306
+[2024-10-28 19:07:31,959][INFO] delta -> 40.0 acceptance proba -> 0.000000 (temperature -> 0.19054607179632504)
+[2024-10-28 19:07:32,050][INFO] max candidates 36 -> 1306
+[2024-10-28 19:07:32,050][INFO] delta -> 1.2 acceptance proba -> 0.001416 (temperature -> 0.19054607179632504)
+[2024-10-28 19:07:32,053][INFO] max candidates 36 -> 1501
+[2024-10-28 19:07:32,053][INFO] delta -> 158.0 acceptance proba -> 0.000000 (temperature -> 0.19054607179632504)
+[2024-10-28 19:07:32,055][INFO] max candidates 36 -> 1501
+[2024-10-28 19:07:32,055][INFO] delta -> 46.0 acceptance proba -> 0.000000 (temperature -> 0.19054607179632504)
+[2024-10-28 19:07:32,059][INFO] max candidates 36 -> 1501
+[2024-10-28 19:07:32,059][INFO] delta -> 77.5 acceptance proba -> 0.000000 (temperature -> 0.19054607179632504)
+[2024-10-28 19:07:32,065][INFO] max candidates 36 -> 1501
+[2024-10-28 19:07:32,065][INFO] delta -> 9.2 acceptance proba -> 0.000000 (temperature -> 0.19054607179632504)
+[2024-10-28 19:07:32,154][INFO] max candidates 36 -> 1501
+[2024-10-28 19:07:32,154][INFO] delta -> 0.0 acceptance proba -> 1.000000 (temperature -> 0.19054607179632504)
+[2024-10-28 19:07:32,157][INFO] max candidates 37 -> 1505
+[2024-10-28 19:07:32,157][INFO] delta -> 164.2 acceptance proba -> 0.000000 (temperature -> 0.18197008586099866)
+[2024-10-28 19:07:32,160][INFO] max candidates 37 -> 1505
+[2024-10-28 19:07:32,160][INFO] delta -> 2.2 acceptance proba -> 0.000004 (temperature -> 0.18197008586099866)
+[2024-10-28 19:07:32,165][INFO] max candidates 37 -> 1505
+[2024-10-28 19:07:32,165][INFO] delta -> 72.5 acceptance proba -> 0.000000 (temperature -> 0.18197008586099866)
+[2024-10-28 19:07:32,170][INFO] max candidates 37 -> 1505
+[2024-10-28 19:07:32,170][INFO] delta -> 83.0 acceptance proba -> 0.000000 (temperature -> 0.18197008586099866)
+[2024-10-28 19:07:32,176][INFO] max candidates 37 -> 1505
+[2024-10-28 19:07:32,176][INFO] delta -> 150.5 acceptance proba -> 0.000000 (temperature -> 0.18197008586099866)
+[2024-10-28 19:07:32,179][INFO] max candidates 37 -> 1505
+[2024-10-28 19:07:32,179][INFO] delta -> 25.0 acceptance proba -> 0.000000 (temperature -> 0.18197008586099866)
+[2024-10-28 19:07:32,181][INFO] max candidates 37 -> 1505
+[2024-10-28 19:07:32,181][INFO] delta -> 97.0 acceptance proba -> 0.000000 (temperature -> 0.18197008586099866)
+[2024-10-28 19:07:32,183][INFO] max candidates 37 -> 1505
+[2024-10-28 19:07:32,183][INFO] delta -> 59.0 acceptance proba -> 0.000000 (temperature -> 0.18197008586099866)
+[2024-10-28 19:07:32,187][INFO] max candidates 37 -> 1505
+[2024-10-28 19:07:32,187][INFO] delta -> 2.2 acceptance proba -> 0.000004 (temperature -> 0.18197008586099866)
+[2024-10-28 19:07:32,192][INFO] max candidates 37 -> 1505
+[2024-10-28 19:07:32,192][INFO] delta -> 7.0 acceptance proba -> 0.000000 (temperature -> 0.18197008586099866)
+[2024-10-28 19:07:32,194][INFO] max candidates 37 -> 1505
+[2024-10-28 19:07:32,194][INFO] delta -> 103.0 acceptance proba -> 0.000000 (temperature -> 0.18197008586099866)
+[2024-10-28 19:07:32,197][INFO] max candidates 37 -> 1505
+[2024-10-28 19:07:32,197][INFO] delta -> 59.0 acceptance proba -> 0.000000 (temperature -> 0.18197008586099866)
+[2024-10-28 19:07:32,287][INFO] max candidates 37 -> 1505
+[2024-10-28 19:07:32,287][INFO] delta -> 0.0 acceptance proba -> 1.000000 (temperature -> 0.18197008586099866)
+[2024-10-28 19:07:32,290][INFO] max candidates 38 -> 1442
+[2024-10-28 19:07:32,290][INFO] delta -> 97.0 acceptance proba -> 0.000000 (temperature -> 0.17378008287493787)
+[2024-10-28 19:07:32,295][INFO] max candidates 38 -> 1488
+[2024-10-28 19:07:32,295][INFO] delta -> 141.0 acceptance proba -> 0.000000 (temperature -> 0.17378008287493787)
+[2024-10-28 19:07:32,298][INFO] max candidates 38 -> 1488
+[2024-10-28 19:07:32,298][INFO] delta -> 57.0 acceptance proba -> 0.000000 (temperature -> 0.17378008287493787)
+[2024-10-28 19:07:32,388][INFO] max candidates 38 -> 1488
+[2024-10-28 19:07:32,388][INFO] delta -> 1.2 acceptance proba -> 0.000752 (temperature -> 0.17378008287493787)
+[2024-10-28 19:07:32,391][INFO] max candidates 38 -> 1488
+[2024-10-28 19:07:32,391][INFO] delta -> 3.5 acceptance proba -> 0.000000 (temperature -> 0.17378008287493787)
+[2024-10-28 19:07:32,394][INFO] max candidates 38 -> 1488
+[2024-10-28 19:07:32,394][INFO] delta -> 125.0 acceptance proba -> 0.000000 (temperature -> 0.17378008287493787)
+[2024-10-28 19:07:32,397][INFO] max candidates 38 -> 1488
+[2024-10-28 19:07:32,397][INFO] delta -> 76.0 acceptance proba -> 0.000000 (temperature -> 0.17378008287493787)
+[2024-10-28 19:07:32,487][INFO] max candidates 38 -> 1488
+[2024-10-28 19:07:32,487][INFO] delta -> 0.0 acceptance proba -> 1.000000 (temperature -> 0.17378008287493787)
+[2024-10-28 19:07:32,575][INFO] max candidates 39 -> 1000
+[2024-10-28 19:07:32,575][INFO] delta -> 0.0 acceptance proba -> 1.000000 (temperature -> 0.16595869074375638)
+[2024-10-28 19:07:32,578][INFO] max candidates 40 -> 1280
+[2024-10-28 19:07:32,578][INFO] delta -> 34.0 acceptance proba -> 0.000000 (temperature -> 0.15848931924611165)
+[2024-10-28 19:07:32,580][INFO] max candidates 40 -> 1378
+[2024-10-28 19:07:32,581][INFO] delta -> 63.0 acceptance proba -> 0.000000 (temperature -> 0.15848931924611165)
+[2024-10-28 19:07:32,583][INFO] max candidates 40 -> 1378
+[2024-10-28 19:07:32,583][INFO] delta -> 8.0 acceptance proba -> 0.000000 (temperature -> 0.15848931924611165)
+[2024-10-28 19:07:32,673][INFO] max candidates 40 -> 1378
+[2024-10-28 19:07:32,673][INFO] delta -> 1.2 acceptance proba -> 0.000376 (temperature -> 0.15848931924611165)
+[2024-10-28 19:07:32,676][INFO] max candidates 40 -> 1470
+[2024-10-28 19:07:32,676][INFO] delta -> 121.0 acceptance proba -> 0.000000 (temperature -> 0.15848931924611165)
+[2024-10-28 19:07:32,765][INFO] max candidates 40 -> 1470
+[2024-10-28 19:07:32,765][INFO] delta -> 0.0 acceptance proba -> 1.000000 (temperature -> 0.15848931924611165)
+[2024-10-28 19:07:32,854][INFO] max candidates 41 -> 1000
+[2024-10-28 19:07:32,854][INFO] delta -> 0.0 acceptance proba -> 1.000000 (temperature -> 0.1513561248436211)
+[2024-10-28 19:07:32,857][INFO] max candidates 42 -> 1386
+[2024-10-28 19:07:32,857][INFO] delta -> 66.2 acceptance proba -> 0.000000 (temperature -> 0.14454397707459302)
+[2024-10-28 19:07:32,862][INFO] max candidates 42 -> 1445
+[2024-10-28 19:07:32,862][INFO] delta -> 99.2 acceptance proba -> 0.000000 (temperature -> 0.14454397707459302)
+[2024-10-28 19:07:32,864][INFO] max candidates 42 -> 1445
+[2024-10-28 19:07:32,864][INFO] delta -> 90.0 acceptance proba -> 0.000000 (temperature -> 0.14454397707459302)
+[2024-10-28 19:07:32,867][INFO] max candidates 42 -> 1477
+[2024-10-28 19:07:32,867][INFO] delta -> 128.0 acceptance proba -> 0.000000 (temperature -> 0.14454397707459302)
+[2024-10-28 19:07:32,957][INFO] max candidates 42 -> 1477
+[2024-10-28 19:07:32,957][INFO] delta -> 1.2 acceptance proba -> 0.000175 (temperature -> 0.14454397707459302)
+[2024-10-28 19:07:33,046][INFO] max candidates 42 -> 1477
+[2024-10-28 19:07:33,046][INFO] delta -> 0.0 acceptance proba -> 1.000000 (temperature -> 0.14454397707459302)
+[2024-10-28 19:07:33,050][INFO] max candidates 43 -> 1481
+[2024-10-28 19:07:33,050][INFO] delta -> 132.5 acceptance proba -> 0.000000 (temperature -> 0.13803842646028874)
+[2024-10-28 19:07:33,053][INFO] max candidates 43 -> 1481
+[2024-10-28 19:07:33,053][INFO] delta -> 2.2 acceptance proba -> 0.000000 (temperature -> 0.13803842646028874)
+[2024-10-28 19:07:33,055][INFO] max candidates 43 -> 1481
+[2024-10-28 19:07:33,055][INFO] delta -> 126.0 acceptance proba -> 0.000000 (temperature -> 0.13803842646028874)
+[2024-10-28 19:07:33,058][INFO] max candidates 43 -> 1481
+[2024-10-28 19:07:33,058][INFO] delta -> 105.0 acceptance proba -> 0.000000 (temperature -> 0.13803842646028874)
+[2024-10-28 19:07:33,061][INFO] max candidates 43 -> 1481
+[2024-10-28 19:07:33,061][INFO] delta -> 87.0 acceptance proba -> 0.000000 (temperature -> 0.13803842646028874)
+[2024-10-28 19:07:33,064][INFO] max candidates 43 -> 1481
+[2024-10-28 19:07:33,064][INFO] delta -> 118.0 acceptance proba -> 0.000000 (temperature -> 0.13803842646028874)
+[2024-10-28 19:07:33,069][INFO] max candidates 43 -> 1481
+[2024-10-28 19:07:33,069][INFO] delta -> 112.0 acceptance proba -> 0.000000 (temperature -> 0.13803842646028874)
+[2024-10-28 19:07:33,072][INFO] max candidates 43 -> 1513
+[2024-10-28 19:07:33,072][INFO] delta -> 178.2 acceptance proba -> 0.000000 (temperature -> 0.13803842646028874)
+[2024-10-28 19:07:33,075][INFO] max candidates 43 -> 1513
+[2024-10-28 19:07:33,075][INFO] delta -> 133.0 acceptance proba -> 0.000000 (temperature -> 0.13803842646028874)
+[2024-10-28 19:07:33,164][INFO] max candidates 43 -> 1513
+[2024-10-28 19:07:33,164][INFO] delta -> 0.0 acceptance proba -> 1.000000 (temperature -> 0.13803842646028874)
+[2024-10-28 19:07:33,168][INFO] max candidates 44 -> 1430
+[2024-10-28 19:07:33,168][INFO] delta -> 89.2 acceptance proba -> 0.000000 (temperature -> 0.13182567385564095)
+[2024-10-28 19:07:33,171][INFO] max candidates 44 -> 1430
+[2024-10-28 19:07:33,171][INFO] delta -> 75.0 acceptance proba -> 0.000000 (temperature -> 0.13182567385564095)
+[2024-10-28 19:07:33,173][INFO] max candidates 44 -> 1430
+[2024-10-28 19:07:33,173][INFO] delta -> 79.0 acceptance proba -> 0.000000 (temperature -> 0.13182567385564095)
+[2024-10-28 19:07:33,177][INFO] max candidates 44 -> 1430
+[2024-10-28 19:07:33,177][INFO] delta -> 40.5 acceptance proba -> 0.000000 (temperature -> 0.13182567385564095)
+[2024-10-28 19:07:33,180][INFO] max candidates 44 -> 1430
+[2024-10-28 19:07:33,180][INFO] delta -> 24.5 acceptance proba -> 0.000000 (temperature -> 0.13182567385564095)
+[2024-10-28 19:07:33,269][INFO] max candidates 44 -> 1430
+[2024-10-28 19:07:33,270][INFO] delta -> 0.0 acceptance proba -> 1.000000 (temperature -> 0.13182567385564095)
+[2024-10-28 19:07:33,359][INFO] max candidates 45 -> 1000
+[2024-10-28 19:07:33,359][INFO] delta -> 0.0 acceptance proba -> 1.000000 (temperature -> 0.12589254117941695)
+[2024-10-28 19:07:33,363][INFO] max candidates 46 -> 1508
+[2024-10-28 19:07:33,363][INFO] delta -> 169.5 acceptance proba -> 0.000000 (temperature -> 0.12022644346174151)
+[2024-10-28 19:07:33,365][INFO] max candidates 46 -> 1508
+[2024-10-28 19:07:33,365][INFO] delta -> 61.0 acceptance proba -> 0.000000 (temperature -> 0.12022644346174151)
+[2024-10-28 19:07:33,454][INFO] max candidates 46 -> 1508
+[2024-10-28 19:07:33,454][INFO] delta -> 0.0 acceptance proba -> 1.000000 (temperature -> 0.12022644346174151)
+[2024-10-28 19:07:33,457][INFO] max candidates 47 -> 1421
+[2024-10-28 19:07:33,457][INFO] delta -> 84.0 acceptance proba -> 0.000000 (temperature -> 0.11481536214968849)
+[2024-10-28 19:07:33,460][INFO] max candidates 47 -> 1501
+[2024-10-28 19:07:33,460][INFO] delta -> 158.0 acceptance proba -> 0.000000 (temperature -> 0.11481536214968849)
+[2024-10-28 19:07:33,462][INFO] max candidates 47 -> 1501
+[2024-10-28 19:07:33,462][INFO] delta -> 30.0 acceptance proba -> 0.000000 (temperature -> 0.11481536214968849)
+[2024-10-28 19:07:33,465][INFO] max candidates 47 -> 1514
+[2024-10-28 19:07:33,465][INFO] delta -> 180.0 acceptance proba -> 0.000000 (temperature -> 0.11481536214968849)
+[2024-10-28 19:07:33,467][INFO] max candidates 47 -> 1514
+[2024-10-28 19:07:33,468][INFO] delta -> 9.0 acceptance proba -> 0.000000 (temperature -> 0.11481536214968849)
+[2024-10-28 19:07:33,470][INFO] max candidates 47 -> 1514
+[2024-10-28 19:07:33,470][INFO] delta -> 95.0 acceptance proba -> 0.000000 (temperature -> 0.11481536214968849)
+[2024-10-28 19:07:33,473][INFO] max candidates 47 -> 1514
+[2024-10-28 19:07:33,473][INFO] delta -> 3.0 acceptance proba -> 0.000000 (temperature -> 0.11481536214968849)
+[2024-10-28 19:07:33,476][INFO] max candidates 47 -> 1514
+[2024-10-28 19:07:33,476][INFO] delta -> 2.2 acceptance proba -> 0.000000 (temperature -> 0.11481536214968849)
+[2024-10-28 19:07:33,478][INFO] max candidates 47 -> 1514
+[2024-10-28 19:07:33,479][INFO] delta -> 77.0 acceptance proba -> 0.000000 (temperature -> 0.11481536214968849)
+[2024-10-28 19:07:33,481][INFO] max candidates 47 -> 1514
+[2024-10-28 19:07:33,481][INFO] delta -> 59.0 acceptance proba -> 0.000000 (temperature -> 0.11481536214968849)
+[2024-10-28 19:07:33,487][INFO] max candidates 47 -> 1514
+[2024-10-28 19:07:33,487][INFO] delta -> 68.2 acceptance proba -> 0.000000 (temperature -> 0.11481536214968849)
+[2024-10-28 19:07:33,489][INFO] max candidates 47 -> 1514
+[2024-10-28 19:07:33,489][INFO] delta -> 167.0 acceptance proba -> 0.000000 (temperature -> 0.11481536214968849)
+[2024-10-28 19:07:33,493][INFO] max candidates 47 -> 1514
+[2024-10-28 19:07:33,493][INFO] delta -> 54.2 acceptance proba -> 0.000000 (temperature -> 0.11481536214968849)
+[2024-10-28 19:07:33,495][INFO] max candidates 47 -> 1514
+[2024-10-28 19:07:33,495][INFO] delta -> 11.0 acceptance proba -> 0.000000 (temperature -> 0.11481536214968849)
+[2024-10-28 19:07:33,498][INFO] max candidates 47 -> 1514
+[2024-10-28 19:07:33,498][INFO] delta -> 58.2 acceptance proba -> 0.000000 (temperature -> 0.11481536214968849)
+[2024-10-28 19:07:33,501][INFO] max candidates 47 -> 1514
+[2024-10-28 19:07:33,501][INFO] delta -> 33.2 acceptance proba -> 0.000000 (temperature -> 0.11481536214968849)
+[2024-10-28 19:07:33,504][INFO] max candidates 47 -> 1514
+[2024-10-28 19:07:33,504][INFO] delta -> 12.2 acceptance proba -> 0.000000 (temperature -> 0.11481536214968849)
+[2024-10-28 19:07:33,507][INFO] max candidates 47 -> 1514
+[2024-10-28 19:07:33,507][INFO] delta -> 75.0 acceptance proba -> 0.000000 (temperature -> 0.11481536214968849)
+[2024-10-28 19:07:33,510][INFO] max candidates 47 -> 1514
+[2024-10-28 19:07:33,510][INFO] delta -> 19.0 acceptance proba -> 0.000000 (temperature -> 0.11481536214968849)
+[2024-10-28 19:07:33,599][INFO] max candidates 47 -> 1514
+[2024-10-28 19:07:33,599][INFO] delta -> 0.0 acceptance proba -> 1.000000 (temperature -> 0.11481536214968849)
+[2024-10-28 19:07:33,602][INFO] max candidates 48 -> 1481
+[2024-10-28 19:07:33,602][INFO] delta -> 133.0 acceptance proba -> 0.000000 (temperature -> 0.10964781961431871)
+[2024-10-28 19:07:33,605][INFO] max candidates 48 -> 1481
+[2024-10-28 19:07:33,605][INFO] delta -> 93.0 acceptance proba -> 0.000000 (temperature -> 0.10964781961431871)
+[2024-10-28 19:07:33,608][INFO] max candidates 48 -> 1481
+[2024-10-28 19:07:33,608][INFO] delta -> 9.0 acceptance proba -> 0.000000 (temperature -> 0.10964781961431871)
+[2024-10-28 19:07:33,611][INFO] max candidates 48 -> 1481
+[2024-10-28 19:07:33,611][INFO] delta -> 85.5 acceptance proba -> 0.000000 (temperature -> 0.10964781961431871)
+[2024-10-28 19:07:33,613][INFO] max candidates 48 -> 1481
+[2024-10-28 19:07:33,613][INFO] delta -> 63.0 acceptance proba -> 0.000000 (temperature -> 0.10964781961431871)
+[2024-10-28 19:07:33,703][INFO] max candidates 48 -> 1481
+[2024-10-28 19:07:33,703][INFO] delta -> 0.0 acceptance proba -> 1.000000 (temperature -> 0.10964781961431871)
+[2024-10-28 19:07:33,706][INFO] max candidates 49 -> 1285
+[2024-10-28 19:07:33,706][INFO] delta -> 35.0 acceptance proba -> 0.000000 (temperature -> 0.10471285480509016)
+[2024-10-28 19:07:33,794][INFO] max candidates 49 -> 1359
+[2024-10-28 19:07:33,794][INFO] delta -> 55.8 acceptance proba -> 0.000000 (temperature -> 0.10471285480509016)
+[2024-10-28 19:07:33,884][INFO] max candidates 49 -> 1359
+[2024-10-28 19:07:33,884][INFO] delta -> 0.0 acceptance proba -> 1.000000 (temperature -> 0.10471285480509016)
+[2024-10-28 19:07:33,886][INFO] max candidates 50 -> 1390
+[2024-10-28 19:07:33,886][INFO] delta -> 68.0 acceptance proba -> 0.000000 (temperature -> 0.1000000000000002)
+[2024-10-28 19:07:33,889][INFO] max candidates 50 -> 1390
+[2024-10-28 19:07:33,889][INFO] delta -> 35.2 acceptance proba -> 0.000000 (temperature -> 0.1000000000000002)
+[2024-10-28 19:07:33,891][INFO] max candidates 50 -> 1411
+[2024-10-28 19:07:33,891][INFO] delta -> 78.0 acceptance proba -> 0.000000 (temperature -> 0.1000000000000002)
+[2024-10-28 19:07:33,981][INFO] max candidates 50 -> 1411
+[2024-10-28 19:07:33,981][INFO] delta -> 0.0 acceptance proba -> 1.000000 (temperature -> 0.1000000000000002)
+[2024-10-28 19:07:33,984][INFO] max candidates 51 -> 1434
+[2024-10-28 19:07:33,984][INFO] delta -> 92.0 acceptance proba -> 0.000000 (temperature -> 0.0954992586021438)
+[2024-10-28 19:07:33,986][INFO] max candidates 51 -> 1434
+[2024-10-28 19:07:33,986][INFO] delta -> 24.0 acceptance proba -> 0.000000 (temperature -> 0.0954992586021438)
+[2024-10-28 19:07:33,991][INFO] max candidates 51 -> 1468
+[2024-10-28 19:07:33,991][INFO] delta -> 118.5 acceptance proba -> 0.000000 (temperature -> 0.0954992586021438)
+[2024-10-28 19:07:33,997][INFO] max candidates 51 -> 1468
+[2024-10-28 19:07:33,997][INFO] delta -> 4.8 acceptance proba -> 0.000000 (temperature -> 0.0954992586021438)
+[2024-10-28 19:07:33,999][INFO] max candidates 51 -> 1476
+[2024-10-28 19:07:33,999][INFO] delta -> 127.0 acceptance proba -> 0.000000 (temperature -> 0.0954992586021438)
+[2024-10-28 19:07:34,001][INFO] max candidates 51 -> 1476
+[2024-10-28 19:07:34,001][INFO] delta -> 16.0 acceptance proba -> 0.000000 (temperature -> 0.0954992586021438)
+[2024-10-28 19:07:34,004][INFO] max candidates 51 -> 1476
+[2024-10-28 19:07:34,004][INFO] delta -> 100.0 acceptance proba -> 0.000000 (temperature -> 0.0954992586021438)
+[2024-10-28 19:07:34,007][INFO] max candidates 51 -> 1496
+[2024-10-28 19:07:34,007][INFO] delta -> 151.0 acceptance proba -> 0.000000 (temperature -> 0.0954992586021438)
+[2024-10-28 19:07:34,097][INFO] max candidates 51 -> 1496
+[2024-10-28 19:07:34,097][INFO] delta -> 0.0 acceptance proba -> 1.000000 (temperature -> 0.0954992586021438)
+[2024-10-28 19:07:34,099][INFO] max candidates 52 -> 1442
+[2024-10-28 19:07:34,100][INFO] delta -> 97.0 acceptance proba -> 0.000000 (temperature -> 0.09120108393559118)
+[2024-10-28 19:07:34,190][INFO] max candidates 52 -> 1442
+[2024-10-28 19:07:34,190][INFO] delta -> 1.2 acceptance proba -> 0.000001 (temperature -> 0.09120108393559118)
+[2024-10-28 19:07:34,279][INFO] max candidates 52 -> 1442
+[2024-10-28 19:07:34,280][INFO] delta -> 0.0 acceptance proba -> 1.000000 (temperature -> 0.09120108393559118)
+[2024-10-28 19:07:34,283][INFO] max candidates 53 -> 1502
+[2024-10-28 19:07:34,283][INFO] delta -> 160.0 acceptance proba -> 0.000000 (temperature -> 0.08709635899560826)
+[2024-10-28 19:07:34,288][INFO] max candidates 53 -> 1502
+[2024-10-28 19:07:34,288][INFO] delta -> 4.8 acceptance proba -> 0.000000 (temperature -> 0.08709635899560826)
+[2024-10-28 19:07:34,377][INFO] max candidates 53 -> 1502
+[2024-10-28 19:07:34,377][INFO] delta -> 0.0 acceptance proba -> 1.000000 (temperature -> 0.08709635899560826)
+[2024-10-28 19:07:34,381][INFO] max candidates 54 -> 1030
+[2024-10-28 19:07:34,381][INFO] delta -> 2.2 acceptance proba -> 0.000000 (temperature -> 0.08317637711026729)
+[2024-10-28 19:07:34,384][INFO] max candidates 54 -> 1491
+[2024-10-28 19:07:34,384][INFO] delta -> 144.5 acceptance proba -> 0.000000 (temperature -> 0.08317637711026729)
+[2024-10-28 19:07:34,386][INFO] max candidates 54 -> 1491
+[2024-10-28 19:07:34,386][INFO] delta -> 115.0 acceptance proba -> 0.000000 (temperature -> 0.08317637711026729)
+[2024-10-28 19:07:34,391][INFO] max candidates 54 -> 1491
+[2024-10-28 19:07:34,391][INFO] delta -> 96.0 acceptance proba -> 0.000000 (temperature -> 0.08317637711026729)
+[2024-10-28 19:07:34,394][INFO] max candidates 54 -> 1491
+[2024-10-28 19:07:34,394][INFO] delta -> 88.0 acceptance proba -> 0.000000 (temperature -> 0.08317637711026729)
+[2024-10-28 19:07:34,397][INFO] max candidates 54 -> 1519
+[2024-10-28 19:07:34,397][INFO] delta -> 189.2 acceptance proba -> 0.000000 (temperature -> 0.08317637711026729)
+[2024-10-28 19:07:34,399][INFO] max candidates 54 -> 1519
+[2024-10-28 19:07:34,399][INFO] delta -> 50.0 acceptance proba -> 0.000000 (temperature -> 0.08317637711026729)
+[2024-10-28 19:07:34,403][INFO] max candidates 54 -> 1519
+[2024-10-28 19:07:34,403][INFO] delta -> 6.2 acceptance proba -> 0.000000 (temperature -> 0.08317637711026729)
+[2024-10-28 19:07:34,493][INFO] max candidates 54 -> 1519
+[2024-10-28 19:07:34,493][INFO] delta -> 0.0 acceptance proba -> 1.000000 (temperature -> 0.08317637711026729)
+[2024-10-28 19:07:34,496][INFO] max candidates 55 -> 1392
+[2024-10-28 19:07:34,496][INFO] delta -> 69.0 acceptance proba -> 0.000000 (temperature -> 0.07943282347242833)
+[2024-10-28 19:07:34,498][INFO] max candidates 55 -> 1407
+[2024-10-28 19:07:34,498][INFO] delta -> 76.0 acceptance proba -> 0.000000 (temperature -> 0.07943282347242833)
+[2024-10-28 19:07:34,588][INFO] max candidates 55 -> 1407
+[2024-10-28 19:07:34,588][INFO] delta -> 0.0 acceptance proba -> 1.000000 (temperature -> 0.07943282347242833)
+[2024-10-28 19:07:34,593][INFO] max candidates 56 -> 1451
+[2024-10-28 19:07:34,593][INFO] delta -> 104.0 acceptance proba -> 0.000000 (temperature -> 0.07585775750291855)
+[2024-10-28 19:07:34,597][INFO] max candidates 56 -> 1456
+[2024-10-28 19:07:34,597][INFO] delta -> 108.0 acceptance proba -> 0.000000 (temperature -> 0.07585775750291855)
+[2024-10-28 19:07:34,687][INFO] max candidates 56 -> 1456
+[2024-10-28 19:07:34,687][INFO] delta -> 0.0 acceptance proba -> 1.000000 (temperature -> 0.07585775750291855)
+[2024-10-28 19:07:34,692][INFO] max candidates 57 -> 1502
+[2024-10-28 19:07:34,693][INFO] delta -> 159.5 acceptance proba -> 0.000000 (temperature -> 0.07244359600749918)
+[2024-10-28 19:07:34,782][INFO] max candidates 57 -> 1502
+[2024-10-28 19:07:34,782][INFO] delta -> 0.0 acceptance proba -> 1.000000 (temperature -> 0.07244359600749918)
+[2024-10-28 19:07:34,785][INFO] max candidates 58 -> 1508
+[2024-10-28 19:07:34,785][INFO] delta -> 170.0 acceptance proba -> 0.000000 (temperature -> 0.06918309709189382)
+[2024-10-28 19:07:34,789][INFO] max candidates 58 -> 1508
+[2024-10-28 19:07:34,789][INFO] delta -> 45.0 acceptance proba -> 0.000000 (temperature -> 0.06918309709189382)
+[2024-10-28 19:07:34,879][INFO] max candidates 58 -> 1508
+[2024-10-28 19:07:34,879][INFO] delta -> 0.0 acceptance proba -> 1.000000 (temperature -> 0.06918309709189382)
+[2024-10-28 19:07:34,882][INFO] max candidates 59 -> 1287
+[2024-10-28 19:07:34,882][INFO] delta -> 35.5 acceptance proba -> 0.000000 (temperature -> 0.06606934480075977)
+[2024-10-28 19:07:34,888][INFO] max candidates 59 -> 1421
+[2024-10-28 19:07:34,888][INFO] delta -> 83.8 acceptance proba -> 0.000000 (temperature -> 0.06606934480075977)
+[2024-10-28 19:07:34,978][INFO] max candidates 59 -> 1421
+[2024-10-28 19:07:34,978][INFO] delta -> 0.0 acceptance proba -> 1.000000 (temperature -> 0.06606934480075977)
+[2024-10-28 19:07:34,981][INFO] max candidates 60 -> 1430
+[2024-10-28 19:07:34,981][INFO] delta -> 89.0 acceptance proba -> 0.000000 (temperature -> 0.06309573444801948)
+[2024-10-28 19:07:34,983][INFO] max candidates 60 -> 1455
+[2024-10-28 19:07:34,983][INFO] delta -> 107.0 acceptance proba -> 0.000000 (temperature -> 0.06309573444801948)
+[2024-10-28 19:07:34,986][INFO] max candidates 60 -> 1455
+[2024-10-28 19:07:34,986][INFO] delta -> 52.0 acceptance proba -> 0.000000 (temperature -> 0.06309573444801948)
+[2024-10-28 19:07:34,989][INFO] max candidates 60 -> 1455
+[2024-10-28 19:07:34,989][INFO] delta -> 53.2 acceptance proba -> 0.000000 (temperature -> 0.06309573444801948)
+[2024-10-28 19:07:34,993][INFO] max candidates 60 -> 1455
+[2024-10-28 19:07:34,993][INFO] delta -> 85.0 acceptance proba -> 0.000000 (temperature -> 0.06309573444801948)
+[2024-10-28 19:07:34,997][INFO] max candidates 60 -> 1455
+[2024-10-28 19:07:34,997][INFO] delta -> 7.5 acceptance proba -> 0.000000 (temperature -> 0.06309573444801948)
+[2024-10-28 19:07:34,999][INFO] max candidates 60 -> 1455
+[2024-10-28 19:07:34,999][INFO] delta -> 98.8 acceptance proba -> 0.000000 (temperature -> 0.06309573444801948)
+[2024-10-28 19:07:35,002][INFO] max candidates 60 -> 1476
+[2024-10-28 19:07:35,002][INFO] delta -> 127.0 acceptance proba -> 0.000000 (temperature -> 0.06309573444801948)
+[2024-10-28 19:07:35,006][INFO] max candidates 60 -> 1476
+[2024-10-28 19:07:35,006][INFO] delta -> 60.5 acceptance proba -> 0.000000 (temperature -> 0.06309573444801948)
+[2024-10-28 19:07:35,011][INFO] max candidates 60 -> 1476
+[2024-10-28 19:07:35,011][INFO] delta -> 16.5 acceptance proba -> 0.000000 (temperature -> 0.06309573444801948)
+[2024-10-28 19:07:35,013][INFO] max candidates 60 -> 1476
+[2024-10-28 19:07:35,013][INFO] delta -> 73.0 acceptance proba -> 0.000000 (temperature -> 0.06309573444801948)
+[2024-10-28 19:07:35,017][INFO] max candidates 60 -> 1476
+[2024-10-28 19:07:35,017][INFO] delta -> 102.0 acceptance proba -> 0.000000 (temperature -> 0.06309573444801948)
+[2024-10-28 19:07:35,021][INFO] max candidates 60 -> 1504
+[2024-10-28 19:07:35,021][INFO] delta -> 162.5 acceptance proba -> 0.000000 (temperature -> 0.06309573444801948)
+[2024-10-28 19:07:35,024][INFO] max candidates 60 -> 1504
+[2024-10-28 19:07:35,024][INFO] delta -> 3.5 acceptance proba -> 0.000000 (temperature -> 0.06309573444801948)
+[2024-10-28 19:07:35,027][INFO] max candidates 60 -> 1504
+[2024-10-28 19:07:35,027][INFO] delta -> 87.0 acceptance proba -> 0.000000 (temperature -> 0.06309573444801948)
+[2024-10-28 19:07:35,117][INFO] max candidates 60 -> 1504
+[2024-10-28 19:07:35,117][INFO] delta -> 0.0 acceptance proba -> 1.000000 (temperature -> 0.06309573444801948)
+[2024-10-28 19:07:35,207][INFO] max candidates 61 -> 1000
+[2024-10-28 19:07:35,207][INFO] delta -> 0.0 acceptance proba -> 1.000000 (temperature -> 0.060255958607435926)
+[2024-10-28 19:07:35,210][INFO] max candidates 62 -> 1403
+[2024-10-28 19:07:35,210][INFO] delta -> 74.0 acceptance proba -> 0.000000 (temperature -> 0.05754399373371584)
+[2024-10-28 19:07:35,214][INFO] max candidates 62 -> 1403
+[2024-10-28 19:07:35,214][INFO] delta -> 47.2 acceptance proba -> 0.000000 (temperature -> 0.05754399373371584)
+[2024-10-28 19:07:35,303][INFO] max candidates 62 -> 1403
+[2024-10-28 19:07:35,303][INFO] delta -> 0.0 acceptance proba -> 1.000000 (temperature -> 0.05754399373371584)
+[2024-10-28 19:07:35,393][INFO] max candidates 63 -> 1000
+[2024-10-28 19:07:35,393][INFO] delta -> 0.0 acceptance proba -> 1.000000 (temperature -> 0.0549540873857626)
+[2024-10-28 19:07:35,397][INFO] max candidates 64 -> 1443
+[2024-10-28 19:07:35,397][INFO] delta -> 98.2 acceptance proba -> 0.000000 (temperature -> 0.052480746024977404)
+[2024-10-28 19:07:35,401][INFO] max candidates 64 -> 1443
+[2024-10-28 19:07:35,401][INFO] delta -> 21.2 acceptance proba -> 0.000000 (temperature -> 0.052480746024977404)
+[2024-10-28 19:07:35,403][INFO] max candidates 64 -> 1443
+[2024-10-28 19:07:35,403][INFO] delta -> 48.0 acceptance proba -> 0.000000 (temperature -> 0.052480746024977404)
+[2024-10-28 19:07:35,407][INFO] max candidates 64 -> 1443
+[2024-10-28 19:07:35,408][INFO] delta -> 53.5 acceptance proba -> 0.000000 (temperature -> 0.052480746024977404)
+[2024-10-28 19:07:35,498][INFO] max candidates 64 -> 1443
+[2024-10-28 19:07:35,498][INFO] delta -> 0.0 acceptance proba -> 1.000000 (temperature -> 0.052480746024977404)
+[2024-10-28 19:07:35,501][INFO] max candidates 65 -> 1397
+[2024-10-28 19:07:35,501][INFO] delta -> 71.2 acceptance proba -> 0.000000 (temperature -> 0.050118723362727366)
+[2024-10-28 19:07:35,591][INFO] max candidates 65 -> 1397
+[2024-10-28 19:07:35,591][INFO] delta -> 0.0 acceptance proba -> 1.000000 (temperature -> 0.050118723362727366)
+[2024-10-28 19:07:35,683][INFO] max candidates 66 -> 1017
+[2024-10-28 19:07:35,683][INFO] delta -> 1.2 acceptance proba -> 0.000000 (temperature -> 0.04786300923226397)
+[2024-10-28 19:07:35,686][INFO] max candidates 66 -> 1475
+[2024-10-28 19:07:35,686][INFO] delta -> 126.0 acceptance proba -> 0.000000 (temperature -> 0.04786300923226397)
+[2024-10-28 19:07:35,777][INFO] max candidates 66 -> 1475
+[2024-10-28 19:07:35,777][INFO] delta -> 0.0 acceptance proba -> 1.000000 (temperature -> 0.04786300923226397)
+[2024-10-28 19:07:35,780][INFO] max candidates 67 -> 1360
+[2024-10-28 19:07:35,780][INFO] delta -> 56.0 acceptance proba -> 0.000000 (temperature -> 0.04570881896148764)
+[2024-10-28 19:07:35,782][INFO] max candidates 67 -> 1416
+[2024-10-28 19:07:35,782][INFO] delta -> 81.0 acceptance proba -> 0.000000 (temperature -> 0.04570881896148764)
+[2024-10-28 19:07:35,785][INFO] max candidates 67 -> 1416
+[2024-10-28 19:07:35,785][INFO] delta -> 48.0 acceptance proba -> 0.000000 (temperature -> 0.04570881896148764)
+[2024-10-28 19:07:35,875][INFO] max candidates 67 -> 1416
+[2024-10-28 19:07:35,875][INFO] delta -> 0.0 acceptance proba -> 1.000000 (temperature -> 0.04570881896148764)
+[2024-10-28 19:07:35,967][INFO] max candidates 68 -> 1017
+[2024-10-28 19:07:35,967][INFO] delta -> 1.2 acceptance proba -> 0.000000 (temperature -> 0.04365158322401673)
+[2024-10-28 19:07:36,112][INFO] max candidates 68 -> 1017
+[2024-10-28 19:07:36,112][INFO] delta -> 0.0 acceptance proba -> 1.000000 (temperature -> 0.04365158322401673)
+[2024-10-28 19:07:36,117][INFO] max candidates 69 -> 1439
+[2024-10-28 19:07:36,118][INFO] delta -> 95.0 acceptance proba -> 0.000000 (temperature -> 0.04168693834703367)
+[2024-10-28 19:07:36,123][INFO] max candidates 69 -> 1439
+[2024-10-28 19:07:36,123][INFO] delta -> 54.0 acceptance proba -> 0.000000 (temperature -> 0.04168693834703367)
+[2024-10-28 19:07:36,130][INFO] max candidates 69 -> 1439
+[2024-10-28 19:07:36,130][INFO] delta -> 54.0 acceptance proba -> 0.000000 (temperature -> 0.04168693834703367)
+[2024-10-28 19:07:36,137][INFO] max candidates 69 -> 1439
+[2024-10-28 19:07:36,137][INFO] delta -> 60.5 acceptance proba -> 0.000000 (temperature -> 0.04168693834703367)
+[2024-10-28 19:07:36,263][INFO] max candidates 69 -> 1439
+[2024-10-28 19:07:36,263][INFO] delta -> 0.0 acceptance proba -> 1.000000 (temperature -> 0.04168693834703367)
+[2024-10-28 19:07:36,271][INFO] max candidates 70 -> 1474
+[2024-10-28 19:07:36,272][INFO] delta -> 124.5 acceptance proba -> 0.000000 (temperature -> 0.03981071705534985)
+[2024-10-28 19:07:36,279][INFO] max candidates 70 -> 1474
+[2024-10-28 19:07:36,279][INFO] delta -> 2.2 acceptance proba -> 0.000000 (temperature -> 0.03981071705534985)
+[2024-10-28 19:07:36,286][INFO] max candidates 70 -> 1474
+[2024-10-28 19:07:36,287][INFO] delta -> 2.2 acceptance proba -> 0.000000 (temperature -> 0.03981071705534985)
+[2024-10-28 19:07:36,292][INFO] max candidates 70 -> 1474
+[2024-10-28 19:07:36,292][INFO] delta -> 85.0 acceptance proba -> 0.000000 (temperature -> 0.03981071705534985)
+[2024-10-28 19:07:36,304][INFO] max candidates 70 -> 1474
+[2024-10-28 19:07:36,304][INFO] delta -> 9.2 acceptance proba -> 0.000000 (temperature -> 0.03981071705534985)
+[2024-10-28 19:07:36,316][INFO] max candidates 70 -> 1474
+[2024-10-28 19:07:36,316][INFO] delta -> 122.8 acceptance proba -> 0.000000 (temperature -> 0.03981071705534985)
+[2024-10-28 19:07:36,523][INFO] max candidates 70 -> 1474
+[2024-10-28 19:07:36,523][INFO] delta -> 0.0 acceptance proba -> 1.000000 (temperature -> 0.03981071705534985)
+[2024-10-28 19:07:36,528][INFO] max candidates 71 -> 1467
+[2024-10-28 19:07:36,528][INFO] delta -> 118.0 acceptance proba -> 0.000000 (temperature -> 0.03801893963205624)
+[2024-10-28 19:07:36,538][INFO] max candidates 71 -> 1467
+[2024-10-28 19:07:36,538][INFO] delta -> 96.2 acceptance proba -> 0.000000 (temperature -> 0.03801893963205624)
+[2024-10-28 19:07:36,543][INFO] max candidates 71 -> 1467
+[2024-10-28 19:07:36,543][INFO] delta -> 80.0 acceptance proba -> 0.000000 (temperature -> 0.03801893963205624)
+[2024-10-28 19:07:36,548][INFO] max candidates 71 -> 1467
+[2024-10-28 19:07:36,548][INFO] delta -> 73.0 acceptance proba -> 0.000000 (temperature -> 0.03801893963205624)
+[2024-10-28 19:07:36,555][INFO] max candidates 71 -> 1467
+[2024-10-28 19:07:36,555][INFO] delta -> 64.0 acceptance proba -> 0.000000 (temperature -> 0.03801893963205624)
+[2024-10-28 19:07:36,560][INFO] max candidates 71 -> 1467
+[2024-10-28 19:07:36,560][INFO] delta -> 2.2 acceptance proba -> 0.000000 (temperature -> 0.03801893963205624)
+[2024-10-28 19:07:36,567][INFO] max candidates 71 -> 1467
+[2024-10-28 19:07:36,567][INFO] delta -> 2.2 acceptance proba -> 0.000000 (temperature -> 0.03801893963205624)
+[2024-10-28 19:07:36,776][INFO] max candidates 71 -> 1467
+[2024-10-28 19:07:36,776][INFO] delta -> 0.0 acceptance proba -> 1.000000 (temperature -> 0.03801893963205624)
+[2024-10-28 19:07:36,782][INFO] max candidates 72 -> 1463
+[2024-10-28 19:07:36,782][INFO] delta -> 114.0 acceptance proba -> 0.000000 (temperature -> 0.036307805477010256)
+[2024-10-28 19:07:36,923][INFO] max candidates 72 -> 1463
+[2024-10-28 19:07:36,923][INFO] delta -> 0.0 acceptance proba -> 1.000000 (temperature -> 0.036307805477010256)
+[2024-10-28 19:07:36,929][INFO] max candidates 73 -> 1062
+[2024-10-28 19:07:36,929][INFO] delta -> 4.8 acceptance proba -> 0.000000 (temperature -> 0.03467368504525328)
+[2024-10-28 19:07:37,018][INFO] max candidates 73 -> 1062
+[2024-10-28 19:07:37,018][INFO] delta -> 0.0 acceptance proba -> 1.000000 (temperature -> 0.03467368504525328)
+[2024-10-28 19:07:37,021][INFO] max candidates 74 -> 1108
+[2024-10-28 19:07:37,021][INFO] delta -> 9.0 acceptance proba -> 0.000000 (temperature -> 0.033113112148259224)
+[2024-10-28 19:07:37,023][INFO] max candidates 74 -> 1441
+[2024-10-28 19:07:37,023][INFO] delta -> 96.8 acceptance proba -> 0.000000 (temperature -> 0.033113112148259224)
+[2024-10-28 19:07:37,027][INFO] max candidates 74 -> 1441
+[2024-10-28 19:07:37,027][INFO] delta -> 36.2 acceptance proba -> 0.000000 (temperature -> 0.033113112148259224)
+[2024-10-28 19:07:37,029][INFO] max candidates 74 -> 1441
+[2024-10-28 19:07:37,029][INFO] delta -> 90.0 acceptance proba -> 0.000000 (temperature -> 0.033113112148259224)
+[2024-10-28 19:07:37,032][INFO] max candidates 74 -> 1441
+[2024-10-28 19:07:37,032][INFO] delta -> 36.2 acceptance proba -> 0.000000 (temperature -> 0.033113112148259224)
+[2024-10-28 19:07:37,035][INFO] max candidates 74 -> 1441
+[2024-10-28 19:07:37,035][INFO] delta -> 51.2 acceptance proba -> 0.000000 (temperature -> 0.033113112148259224)
+[2024-10-28 19:07:37,037][INFO] max candidates 74 -> 1441
+[2024-10-28 19:07:37,037][INFO] delta -> 80.0 acceptance proba -> 0.000000 (temperature -> 0.033113112148259224)
+[2024-10-28 19:07:37,125][INFO] max candidates 74 -> 1441
+[2024-10-28 19:07:37,125][INFO] delta -> 0.0 acceptance proba -> 1.000000 (temperature -> 0.033113112148259224)
+[2024-10-28 19:07:37,214][INFO] max candidates 75 -> 1000
+[2024-10-28 19:07:37,214][INFO] delta -> 0.0 acceptance proba -> 1.000000 (temperature -> 0.0316227766016839)
+[2024-10-28 19:07:37,219][INFO] max candidates 76 -> 1046
+[2024-10-28 19:07:37,219][INFO] delta -> 3.5 acceptance proba -> 0.000000 (temperature -> 0.030199517204020268)
+[2024-10-28 19:07:37,307][INFO] max candidates 76 -> 1046
+[2024-10-28 19:07:37,307][INFO] delta -> 0.0 acceptance proba -> 1.000000 (temperature -> 0.030199517204020268)
+[2024-10-28 19:07:37,310][INFO] max candidates 77 -> 1444
+[2024-10-28 19:07:37,310][INFO] delta -> 99.0 acceptance proba -> 0.000000 (temperature -> 0.02884031503126616)
+[2024-10-28 19:07:37,313][INFO] max candidates 77 -> 1444
+[2024-10-28 19:07:37,313][INFO] delta -> 38.0 acceptance proba -> 0.000000 (temperature -> 0.02884031503126616)
+[2024-10-28 19:07:37,316][INFO] max candidates 77 -> 1444
+[2024-10-28 19:07:37,316][INFO] delta -> 86.0 acceptance proba -> 0.000000 (temperature -> 0.02884031503126616)
+[2024-10-28 19:07:37,319][INFO] max candidates 77 -> 1444
+[2024-10-28 19:07:37,319][INFO] delta -> 4.5 acceptance proba -> 0.000000 (temperature -> 0.02884031503126616)
+[2024-10-28 19:07:37,409][INFO] max candidates 77 -> 1444
+[2024-10-28 19:07:37,409][INFO] delta -> 0.0 acceptance proba -> 1.000000 (temperature -> 0.02884031503126616)
+[2024-10-28 19:07:37,412][INFO] max candidates 78 -> 1130
+[2024-10-28 19:07:37,412][INFO] delta -> 11.2 acceptance proba -> 0.000000 (temperature -> 0.027542287033381765)
+[2024-10-28 19:07:37,416][INFO] max candidates 78 -> 1423
+[2024-10-28 19:07:37,416][INFO] delta -> 85.0 acceptance proba -> 0.000000 (temperature -> 0.027542287033381765)
+[2024-10-28 19:07:37,420][INFO] max candidates 78 -> 1423
+[2024-10-28 19:07:37,420][INFO] delta -> 65.2 acceptance proba -> 0.000000 (temperature -> 0.027542287033381765)
+[2024-10-28 19:07:37,423][INFO] max candidates 78 -> 1423
+[2024-10-28 19:07:37,423][INFO] delta -> 81.2 acceptance proba -> 0.000000 (temperature -> 0.027542287033381765)
+[2024-10-28 19:07:37,426][INFO] max candidates 78 -> 1447
+[2024-10-28 19:07:37,427][INFO] delta -> 101.2 acceptance proba -> 0.000000 (temperature -> 0.027542287033381765)
+[2024-10-28 19:07:37,430][INFO] max candidates 78 -> 1447
+[2024-10-28 19:07:37,430][INFO] delta -> 26.5 acceptance proba -> 0.000000 (temperature -> 0.027542287033381765)
+[2024-10-28 19:07:37,433][INFO] max candidates 78 -> 1447
+[2024-10-28 19:07:37,433][INFO] delta -> 100.2 acceptance proba -> 0.000000 (temperature -> 0.027542287033381765)
+[2024-10-28 19:07:37,522][INFO] max candidates 78 -> 1447
+[2024-10-28 19:07:37,522][INFO] delta -> 0.0 acceptance proba -> 1.000000 (temperature -> 0.027542287033381765)
+[2024-10-28 19:07:37,525][INFO] max candidates 79 -> 1458
+[2024-10-28 19:07:37,525][INFO] delta -> 110.0 acceptance proba -> 0.000000 (temperature -> 0.026302679918953915)
+[2024-10-28 19:07:37,527][INFO] max candidates 79 -> 1458
+[2024-10-28 19:07:37,527][INFO] delta -> 56.0 acceptance proba -> 0.000000 (temperature -> 0.026302679918953915)
+[2024-10-28 19:07:37,530][INFO] max candidates 79 -> 1458
+[2024-10-28 19:07:37,530][INFO] delta -> 92.0 acceptance proba -> 0.000000 (temperature -> 0.026302679918953915)
+[2024-10-28 19:07:37,534][INFO] max candidates 79 -> 1458
+[2024-10-28 19:07:37,534][INFO] delta -> 3.5 acceptance proba -> 0.000000 (temperature -> 0.026302679918953915)
+[2024-10-28 19:07:37,536][INFO] max candidates 79 -> 1458
+[2024-10-28 19:07:37,536][INFO] delta -> 98.0 acceptance proba -> 0.000000 (temperature -> 0.026302679918953915)
+[2024-10-28 19:07:37,542][INFO] max candidates 79 -> 1458
+[2024-10-28 19:07:37,542][INFO] delta -> 9.2 acceptance proba -> 0.000000 (temperature -> 0.026302679918953915)
+[2024-10-28 19:07:37,632][INFO] max candidates 79 -> 1458
+[2024-10-28 19:07:37,632][INFO] delta -> 1.2 acceptance proba -> 0.000000 (temperature -> 0.026302679918953915)
+[2024-10-28 19:07:37,720][INFO] max candidates 79 -> 1458
+[2024-10-28 19:07:37,720][INFO] delta -> 0.0 acceptance proba -> 1.000000 (temperature -> 0.026302679918953915)
+[2024-10-28 19:07:37,724][INFO] max candidates 80 -> 1361
+[2024-10-28 19:07:37,724][INFO] delta -> 56.5 acceptance proba -> 0.000000 (temperature -> 0.025118864315095895)
+[2024-10-28 19:07:37,727][INFO] max candidates 80 -> 1388
+[2024-10-28 19:07:37,727][INFO] delta -> 67.0 acceptance proba -> 0.000000 (temperature -> 0.025118864315095895)
+[2024-10-28 19:07:37,730][INFO] max candidates 80 -> 1388
+[2024-10-28 19:07:37,730][INFO] delta -> 58.0 acceptance proba -> 0.000000 (temperature -> 0.025118864315095895)
+[2024-10-28 19:07:37,732][INFO] max candidates 80 -> 1388
+[2024-10-28 19:07:37,732][INFO] delta -> 67.0 acceptance proba -> 0.000000 (temperature -> 0.025118864315095895)
+[2024-10-28 19:07:37,734][INFO] max candidates 80 -> 1388
+[2024-10-28 19:07:37,734][INFO] delta -> 65.0 acceptance proba -> 0.000000 (temperature -> 0.025118864315095895)
+[2024-10-28 19:07:37,823][INFO] max candidates 80 -> 1388
+[2024-10-28 19:07:37,823][INFO] delta -> 0.0 acceptance proba -> 1.000000 (temperature -> 0.025118864315095895)
+[2024-10-28 19:07:37,912][INFO] max candidates 81 -> 1000
+[2024-10-28 19:07:37,912][INFO] delta -> 0.0 acceptance proba -> 1.000000 (temperature -> 0.023988329190194994)
+[2024-10-28 19:07:37,916][INFO] max candidates 82 -> 1401
+[2024-10-28 19:07:37,916][INFO] delta -> 73.2 acceptance proba -> 0.000000 (temperature -> 0.022908676527677817)
+[2024-10-28 19:07:37,919][INFO] max candidates 82 -> 1401
+[2024-10-28 19:07:37,919][INFO] delta -> 72.0 acceptance proba -> 0.000000 (temperature -> 0.022908676527677817)
+[2024-10-28 19:07:37,921][INFO] max candidates 82 -> 1482
+[2024-10-28 19:07:37,921][INFO] delta -> 134.0 acceptance proba -> 0.000000 (temperature -> 0.022908676527677817)
+[2024-10-28 19:07:37,924][INFO] max candidates 82 -> 1482
+[2024-10-28 19:07:37,924][INFO] delta -> 77.0 acceptance proba -> 0.000000 (temperature -> 0.022908676527677817)
+[2024-10-28 19:07:37,926][INFO] max candidates 82 -> 1482
+[2024-10-28 19:07:37,926][INFO] delta -> 22.0 acceptance proba -> 0.000000 (temperature -> 0.022908676527677817)
+[2024-10-28 19:07:37,928][INFO] max candidates 82 -> 1482
+[2024-10-28 19:07:37,928][INFO] delta -> 98.0 acceptance proba -> 0.000000 (temperature -> 0.022908676527677817)
+[2024-10-28 19:07:37,931][INFO] max candidates 82 -> 1482
+[2024-10-28 19:07:37,931][INFO] delta -> 40.0 acceptance proba -> 0.000000 (temperature -> 0.022908676527677817)
+[2024-10-28 19:07:37,933][INFO] max candidates 82 -> 1482
+[2024-10-28 19:07:37,933][INFO] delta -> 98.0 acceptance proba -> 0.000000 (temperature -> 0.022908676527677817)
+[2024-10-28 19:07:37,935][INFO] max candidates 82 -> 1482
+[2024-10-28 19:07:37,935][INFO] delta -> 73.0 acceptance proba -> 0.000000 (temperature -> 0.022908676527677817)
+[2024-10-28 19:07:38,024][INFO] max candidates 82 -> 1482
+[2024-10-28 19:07:38,024][INFO] delta -> 0.0 acceptance proba -> 1.000000 (temperature -> 0.022908676527677817)
+[2024-10-28 19:07:38,029][INFO] max candidates 83 -> 1354
+[2024-10-28 19:07:38,029][INFO] delta -> 54.0 acceptance proba -> 0.000000 (temperature -> 0.02187761623949561)
+[2024-10-28 19:07:38,034][INFO] max candidates 83 -> 1354
+[2024-10-28 19:07:38,034][INFO] delta -> 3.5 acceptance proba -> 0.000000 (temperature -> 0.02187761623949561)
+[2024-10-28 19:07:38,122][INFO] max candidates 83 -> 1354
+[2024-10-28 19:07:38,122][INFO] delta -> 0.0 acceptance proba -> 1.000000 (temperature -> 0.02187761623949561)
+[2024-10-28 19:07:38,212][INFO] max candidates 84 -> 1017
+[2024-10-28 19:07:38,212][INFO] delta -> 1.2 acceptance proba -> 0.000000 (temperature -> 0.020892961308540476)
+[2024-10-28 19:07:38,301][INFO] max candidates 84 -> 1017
+[2024-10-28 19:07:38,301][INFO] delta -> 0.0 acceptance proba -> 1.000000 (temperature -> 0.020892961308540476)
+[2024-10-28 19:07:38,303][INFO] max candidates 85 -> 1433
+[2024-10-28 19:07:38,303][INFO] delta -> 91.0 acceptance proba -> 0.000000 (temperature -> 0.019952623149688875)
+[2024-10-28 19:07:38,306][INFO] max candidates 85 -> 1433
+[2024-10-28 19:07:38,306][INFO] delta -> 81.0 acceptance proba -> 0.000000 (temperature -> 0.019952623149688875)
+[2024-10-28 19:07:38,309][INFO] max candidates 85 -> 1433
+[2024-10-28 19:07:38,310][INFO] delta -> 32.0 acceptance proba -> 0.000000 (temperature -> 0.019952623149688875)
+[2024-10-28 19:07:38,398][INFO] max candidates 85 -> 1433
+[2024-10-28 19:07:38,398][INFO] delta -> 0.0 acceptance proba -> 1.000000 (temperature -> 0.019952623149688875)
+[2024-10-28 19:07:38,404][INFO] max candidates 86 -> 1479
+[2024-10-28 19:07:38,404][INFO] delta -> 130.0 acceptance proba -> 0.000000 (temperature -> 0.01905460717963255)
+[2024-10-28 19:07:38,407][INFO] max candidates 86 -> 1479
+[2024-10-28 19:07:38,407][INFO] delta -> 56.5 acceptance proba -> 0.000000 (temperature -> 0.01905460717963255)
+[2024-10-28 19:07:38,411][INFO] max candidates 86 -> 1479
+[2024-10-28 19:07:38,411][INFO] delta -> 3.5 acceptance proba -> 0.000000 (temperature -> 0.01905460717963255)
+[2024-10-28 19:07:38,500][INFO] max candidates 86 -> 1479
+[2024-10-28 19:07:38,500][INFO] delta -> 0.0 acceptance proba -> 1.000000 (temperature -> 0.01905460717963255)
+[2024-10-28 19:07:38,589][INFO] max candidates 87 -> 1000
+[2024-10-28 19:07:38,589][INFO] delta -> 0.0 acceptance proba -> 1.000000 (temperature -> 0.01819700858609991)
+[2024-10-28 19:07:38,591][INFO] max candidates 88 -> 1302
+[2024-10-28 19:07:38,591][INFO] delta -> 39.0 acceptance proba -> 0.000000 (temperature -> 0.017378008287493828)
+[2024-10-28 19:07:38,594][INFO] max candidates 88 -> 1363
+[2024-10-28 19:07:38,594][INFO] delta -> 57.0 acceptance proba -> 0.000000 (temperature -> 0.017378008287493828)
+[2024-10-28 19:07:38,596][INFO] max candidates 88 -> 1363
+[2024-10-28 19:07:38,596][INFO] delta -> 33.0 acceptance proba -> 0.000000 (temperature -> 0.017378008287493828)
+[2024-10-28 19:07:38,685][INFO] max candidates 88 -> 1363
+[2024-10-28 19:07:38,685][INFO] delta -> 0.0 acceptance proba -> 1.000000 (temperature -> 0.017378008287493828)
+[2024-10-28 19:07:38,688][INFO] max candidates 89 -> 1493
+[2024-10-28 19:07:38,688][INFO] delta -> 147.0 acceptance proba -> 0.000000 (temperature -> 0.01659586907437568)
+[2024-10-28 19:07:38,690][INFO] max candidates 89 -> 1493
+[2024-10-28 19:07:38,690][INFO] delta -> 75.0 acceptance proba -> 0.000000 (temperature -> 0.01659586907437568)
+[2024-10-28 19:07:38,694][INFO] max candidates 89 -> 1493
+[2024-10-28 19:07:38,694][INFO] delta -> 34.2 acceptance proba -> 0.000000 (temperature -> 0.01659586907437568)
+[2024-10-28 19:07:38,697][INFO] max candidates 89 -> 1493
+[2024-10-28 19:07:38,697][INFO] delta -> 20.0 acceptance proba -> 0.000000 (temperature -> 0.01659586907437568)
+[2024-10-28 19:07:38,701][INFO] max candidates 89 -> 1493
+[2024-10-28 19:07:38,701][INFO] delta -> 3.5 acceptance proba -> 0.000000 (temperature -> 0.01659586907437568)
+[2024-10-28 19:07:38,703][INFO] max candidates 89 -> 1493
+[2024-10-28 19:07:38,703][INFO] delta -> 43.0 acceptance proba -> 0.000000 (temperature -> 0.01659586907437568)
+[2024-10-28 19:07:38,706][INFO] max candidates 89 -> 1493
+[2024-10-28 19:07:38,706][INFO] delta -> 2.2 acceptance proba -> 0.000000 (temperature -> 0.01659586907437568)
+[2024-10-28 19:07:38,708][INFO] max candidates 89 -> 1493
+[2024-10-28 19:07:38,708][INFO] delta -> 41.0 acceptance proba -> 0.000000 (temperature -> 0.01659586907437568)
+[2024-10-28 19:07:38,797][INFO] max candidates 89 -> 1493
+[2024-10-28 19:07:38,797][INFO] delta -> 0.0 acceptance proba -> 1.000000 (temperature -> 0.01659586907437568)
+[2024-10-28 19:07:38,800][INFO] max candidates 90 -> 1444
+[2024-10-28 19:07:38,800][INFO] delta -> 99.0 acceptance proba -> 0.000000 (temperature -> 0.015848931924611204)
+[2024-10-28 19:07:38,889][INFO] max candidates 90 -> 1444
+[2024-10-28 19:07:38,889][INFO] delta -> 0.0 acceptance proba -> 1.000000 (temperature -> 0.015848931924611204)
+[2024-10-28 19:07:38,978][INFO] max candidates 91 -> 1000
+[2024-10-28 19:07:38,978][INFO] delta -> 0.0 acceptance proba -> 1.000000 (temperature -> 0.015135612484362147)
+[2024-10-28 19:07:39,068][INFO] max candidates 92 -> 1000
+[2024-10-28 19:07:39,068][INFO] delta -> 0.0 acceptance proba -> 1.000000 (temperature -> 0.014454397707459338)
+[2024-10-28 19:07:39,071][INFO] max candidates 93 -> 1030
+[2024-10-28 19:07:39,071][INFO] delta -> 2.2 acceptance proba -> 0.000000 (temperature -> 0.01380384264602891)
+[2024-10-28 19:07:39,074][INFO] max candidates 93 -> 1163
+[2024-10-28 19:07:39,074][INFO] delta -> 15.0 acceptance proba -> 0.000000 (temperature -> 0.01380384264602891)
+[2024-10-28 19:07:39,076][INFO] max candidates 93 -> 1385
+[2024-10-28 19:07:39,076][INFO] delta -> 65.8 acceptance proba -> 0.000000 (temperature -> 0.01380384264602891)
+[2024-10-28 19:07:39,078][INFO] max candidates 93 -> 1385
+[2024-10-28 19:07:39,078][INFO] delta -> 29.0 acceptance proba -> 0.000000 (temperature -> 0.01380384264602891)
+[2024-10-28 19:07:39,080][INFO] max candidates 93 -> 1446
+[2024-10-28 19:07:39,080][INFO] delta -> 100.0 acceptance proba -> 0.000000 (temperature -> 0.01380384264602891)
+[2024-10-28 19:07:39,086][INFO] max candidates 93 -> 1446
+[2024-10-28 19:07:39,086][INFO] delta -> 9.2 acceptance proba -> 0.000000 (temperature -> 0.01380384264602891)
+[2024-10-28 19:07:39,090][INFO] max candidates 93 -> 1482
+[2024-10-28 19:07:39,090][INFO] delta -> 133.2 acceptance proba -> 0.000000 (temperature -> 0.01380384264602891)
+[2024-10-28 19:07:39,093][INFO] max candidates 93 -> 1482
+[2024-10-28 19:07:39,093][INFO] delta -> 4.5 acceptance proba -> 0.000000 (temperature -> 0.01380384264602891)
+[2024-10-28 19:07:39,095][INFO] max candidates 93 -> 1482
+[2024-10-28 19:07:39,096][INFO] delta -> 2.2 acceptance proba -> 0.000000 (temperature -> 0.01380384264602891)
+[2024-10-28 19:07:39,098][INFO] max candidates 93 -> 1482
+[2024-10-28 19:07:39,098][INFO] delta -> 29.0 acceptance proba -> 0.000000 (temperature -> 0.01380384264602891)
+[2024-10-28 19:07:39,103][INFO] max candidates 93 -> 1482
+[2024-10-28 19:07:39,103][INFO] delta -> 57.8 acceptance proba -> 0.000000 (temperature -> 0.01380384264602891)
+[2024-10-28 19:07:39,193][INFO] max candidates 93 -> 1482
+[2024-10-28 19:07:39,193][INFO] delta -> 0.0 acceptance proba -> 1.000000 (temperature -> 0.01380384264602891)
+[2024-10-28 19:07:39,199][INFO] max candidates 94 -> 1479
+[2024-10-28 19:07:39,199][INFO] delta -> 130.5 acceptance proba -> 0.000000 (temperature -> 0.01318256738556413)
+[2024-10-28 19:07:39,202][INFO] max candidates 94 -> 1479
+[2024-10-28 19:07:39,202][INFO] delta -> 73.0 acceptance proba -> 0.000000 (temperature -> 0.01318256738556413)
+[2024-10-28 19:07:39,291][INFO] max candidates 94 -> 1479
+[2024-10-28 19:07:39,291][INFO] delta -> 0.0 acceptance proba -> 1.000000 (temperature -> 0.01318256738556413)
+[2024-10-28 19:07:39,381][INFO] max candidates 95 -> 1017
+[2024-10-28 19:07:39,381][INFO] delta -> 1.2 acceptance proba -> 0.000000 (temperature -> 0.012589254117941729)
+[2024-10-28 19:07:39,384][INFO] max candidates 95 -> 1046
+[2024-10-28 19:07:39,384][INFO] delta -> 3.5 acceptance proba -> 0.000000 (temperature -> 0.012589254117941729)
+[2024-10-28 19:07:39,389][INFO] max candidates 95 -> 1424
+[2024-10-28 19:07:39,389][INFO] delta -> 85.5 acceptance proba -> 0.000000 (temperature -> 0.012589254117941729)
+[2024-10-28 19:07:39,391][INFO] max candidates 95 -> 1424
+[2024-10-28 19:07:39,391][INFO] delta -> 29.0 acceptance proba -> 0.000000 (temperature -> 0.012589254117941729)
+[2024-10-28 19:07:39,481][INFO] max candidates 95 -> 1424
+[2024-10-28 19:07:39,481][INFO] delta -> 0.0 acceptance proba -> 1.000000 (temperature -> 0.012589254117941729)
+[2024-10-28 19:07:39,571][INFO] max candidates 96 -> 1000
+[2024-10-28 19:07:39,571][INFO] delta -> 0.0 acceptance proba -> 1.000000 (temperature -> 0.012022644346174184)
+[2024-10-28 19:07:39,659][INFO] max candidates 97 -> 1000
+[2024-10-28 19:07:39,659][INFO] delta -> 0.0 acceptance proba -> 1.000000 (temperature -> 0.01148153621496888)
+[2024-10-28 19:07:39,663][INFO] max candidates 98 -> 1460
+[2024-10-28 19:07:39,663][INFO] delta -> 112.0 acceptance proba -> 0.000000 (temperature -> 0.010964781961431901)
+[2024-10-28 19:07:39,752][INFO] max candidates 98 -> 1460
+[2024-10-28 19:07:39,752][INFO] delta -> 0.0 acceptance proba -> 1.000000 (temperature -> 0.010964781961431901)
+[2024-10-28 19:07:39,755][INFO] max candidates 99 -> 1030
+[2024-10-28 19:07:39,755][INFO] delta -> 2.2 acceptance proba -> 0.000000 (temperature -> 0.010471285480509044)
+[2024-10-28 19:07:39,845][INFO] max candidates 99 -> 1030
+[2024-10-28 19:07:39,845][INFO] delta -> 1.2 acceptance proba -> 0.000000 (temperature -> 0.010471285480509044)
+[2024-10-28 19:07:39,848][INFO] max candidates 99 -> 1428
+[2024-10-28 19:07:39,848][INFO] delta -> 88.0 acceptance proba -> 0.000000 (temperature -> 0.010471285480509044)
+[2024-10-28 19:07:39,850][INFO] max candidates 99 -> 1428
+[2024-10-28 19:07:39,850][INFO] delta -> 3.0 acceptance proba -> 0.000000 (temperature -> 0.010471285480509044)
+[2024-10-28 19:07:39,852][INFO] max candidates 99 -> 1428
+[2024-10-28 19:07:39,853][INFO] delta -> 83.0 acceptance proba -> 0.000000 (temperature -> 0.010471285480509044)
+[2024-10-28 19:07:39,941][INFO] max candidates 99 -> 1428
+[2024-10-28 19:07:39,941][INFO] delta -> 0.0 acceptance proba -> 1.000000 (temperature -> 0.010471285480509044)
+[2024-10-28 19:07:39,943][INFO] max candidates 100 -> 1399
+[2024-10-28 19:07:39,943][INFO] delta -> 72.0 acceptance proba -> 0.000000 (temperature -> 0.010000000000000047)
+[2024-10-28 19:07:39,945][INFO] max candidates 100 -> 1420
+[2024-10-28 19:07:39,945][INFO] delta -> 83.0 acceptance proba -> 0.000000 (temperature -> 0.010000000000000047)
+[2024-10-28 19:07:40,034][INFO] max candidates 100 -> 1420
+[2024-10-28 19:07:40,034][INFO] delta -> 0.0 acceptance proba -> 1.000000 (temperature -> 0.010000000000000047)
+[2024-10-28 19:07:40,035][INFO] reached stop condition after 100 steps (max steps -> 100)

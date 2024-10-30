@@ -16,11 +16,10 @@ class VariableNeighborhoodSearch:
     SEED = 42
     RNG = np.random.default_rng(seed=SEED)
     ###
-    K_MAX = 3
+    K_MAX = 5
 
     def __init__(self, instance: Instance,
                  max_iter_local_search: dict, max_iterations: int,
-                 max_iter_neighborhood: dict,
                  logger: logging.Logger = None):
 
         self.logger = logger if logger else logging.getLogger()
@@ -44,7 +43,9 @@ class VariableNeighborhoodSearch:
         # hyper-parameters
         self.max_iterations = max_iterations
         self.max_iter_local_search = max_iter_local_search
-        self.max_iter_neighborhood = max_iter_neighborhood
+
+        # components
+        self.frequency = np.zeros(self.n_cols)
 
         # statistics
         self.time = None
@@ -135,13 +136,11 @@ class VariableNeighborhoodSearch:
         cost_current = self.do_compute_cost(current)
         cost_candidate = self.do_compute_cost(candidate)
         cost_best = self.do_compute_cost(best)
-        k = 1  # TODO: demote to k=1 after testing
+
+        k = 1
         # pbar = tqdm(total=self.max_iterations, desc="vns", leave=True)
         while i < self.max_iterations:
-            j = 0
-            while j < self.max_iter_neighborhood.get(k, 1):
-                if  k > VariableNeighborhoodSearch.K_MAX:
-                    break
+            while k <= VariableNeighborhoodSearch.K_MAX:
                 candidate = self.do_shaking(current, k)
                 cost_candidate = self.do_compute_cost(candidate)
                 local_optimum, cost_local_optimum = self.do_local_search(candidate, cost_candidate, k=k)
@@ -150,81 +149,67 @@ class VariableNeighborhoodSearch:
                 self.do_read_clock()  # statistics
                 self.do_write_costs(cost_current, cost_candidate, cost_local_optimum, cost_best)  # statistics
                 self.do_write_sizes(current, candidate, local_optimum, best)  # statistics
-                if cost_local_optimum < cost_current:
-                    self.logger.info(f"found improvement (k {k}) -> cost {cost_current},"
-                                     f" {cost_best / cost_local_optimum}")
 
+                # move or not
+                if cost_local_optimum < cost_current:
                     current = local_optimum.copy()
                     cost_current = cost_local_optimum
+
+                    if cost_current < cost_best:
+                        best = current.copy()
+                        cost_best = cost_current
+
+                    self.frequency += current  # see which columns often appear in local optima
+                    self.logger.info(f"found improvement (i {i}, k {k}) -> "
+                                     f"cost {cost_current}, "
+                                     f"{cost_best} / {self.cost_optimal}")
                     break
                 else:
                     k += 1
-                    continue
             if cost_current < cost_best:
                 best = current.copy()
                 cost_best = cost_current
             k = 1
-
             i += 1
-            # pbar.set_description(f"vns -> cost {cost_current} ({cost_best} / {self.cost_optimal})")
-            # pbar.update()
-        self.logger.info(f"reached stop condition after {i} steps "
-                         f"(max steps -> {self.max_iterations})")
+
+
         assert self.is_complete_solution(best)
         return best, cost_best
+
+    @staticmethod
+    def do_swap_12(x):
+        candidate = x.copy()
+        ones_indices = np.where(x == 1)[0]
+        zeros_indices = np.where(x == 0)[0]
+
+        one_index = VariableNeighborhoodSearch.RNG.choice(ones_indices)
+        candidate[one_index] = 0  # remove 1
+        coin = VariableNeighborhoodSearch.RNG.uniform()
+        if coin < 1 / 3:
+            zero_index = VariableNeighborhoodSearch.RNG.choice(zeros_indices, size=2, replace=False)
+            candidate[zero_index] = 1  # insert 2
+        elif 1 / 3 < coin < 2 / 3:
+            zero_index = VariableNeighborhoodSearch.RNG.choice(zeros_indices)
+            candidate[zero_index] = 1  # insert 1
+        else:
+            pass  # insert 0
+        return candidate
 
     def do_shaking(self, x, k=1):
         # shaking is done with a swap move
         assert isinstance(x, np.ndarray)
         assert x.size == self.n_cols
+
         candidate = x.copy()
-        ones_indices = np.where(x == 1)[0]
-        zeros_indices = np.where(x == 0)[0]
-
-        if k == 1:  # swap(1, 1)
-            one_index = VariableNeighborhoodSearch.RNG.choice(ones_indices)
-            candidate[one_index] = 0  # remove 1
-            coin = VariableNeighborhoodSearch.RNG.uniform()
-            if coin < 0.5:
-                zero_index = VariableNeighborhoodSearch.RNG.choice(zeros_indices)
-                candidate[zero_index] = 1  # insert 1
-        elif k == 2:  # swap(1, 2)
-            one_index = VariableNeighborhoodSearch.RNG.choice(ones_indices)
-            candidate[one_index] = 0  # remove 1
-            coin = VariableNeighborhoodSearch.RNG.uniform()
-            if coin < 1/3:
-                zero_index = VariableNeighborhoodSearch.RNG.choice(zeros_indices, size=2, replace=False)
-                candidate[zero_index] = 1  # insert 2
-            elif 1/3 < coin < 2/3:
-                zero_index = VariableNeighborhoodSearch.RNG.choice(zeros_indices)
-                candidate[zero_index] = 1  # insert 2
-            else:
-                pass
-        elif k == 3:  # swap(2, 2)
-            coin = VariableNeighborhoodSearch.RNG.uniform()
-            if coin < 0.5:
-                one_index = VariableNeighborhoodSearch.RNG.choice(ones_indices, size=2, replace=False)
-                candidate[one_index] = 0  # remove 2
-            else:
-                one_index = VariableNeighborhoodSearch.RNG.choice(ones_indices)
-                candidate[one_index] = 0  # remove 1
-
-            coin = VariableNeighborhoodSearch.RNG.uniform()
-            if coin < 1/3:
-                zero_index = VariableNeighborhoodSearch.RNG.choice(zeros_indices, size=2, replace=False)
-                candidate[zero_index] = 1  # insert 2
-            elif 1/3 < coin < 2/3:
-                zero_index = VariableNeighborhoodSearch.RNG.choice(zeros_indices)
-                candidate[zero_index] = 1  # insert 2
-            else:
-                pass
+        for i in range(k):  # generate nested neighborhood
+            candidate = self.do_swap_12(candidate)
 
         if self.is_complete_solution(candidate):
-            candidate = self.do_redundancy_elimination(candidate)
+            # candidate = self.do_redundancy_elimination(candidate)
             return candidate
         else:
             candidate = self.do_repair(candidate)
-            candidate = self.do_redundancy_elimination(candidate)
+            # candidate = self.do_redundancy_elimination(candidate)
             return candidate
 
     def do_local_search(self, x, cost_x, k):
@@ -234,7 +219,7 @@ class VariableNeighborhoodSearch:
         local_optimum = x.copy()
         cost_local_optimum = cost_x
         total_iter = self.max_iter_local_search.get(k, 1_000)
-        pbar = tqdm(total=total_iter, desc="local search", leave=False)
+        # pbar = tqdm(total=total_iter, desc="local search", leave=False)
         for i in range(total_iter):  # move: 1-flip
             y = x.copy()
             flip_indices = VariableNeighborhoodSearch.RNG.integers(0, self.n_cols, size=1)
@@ -244,12 +229,12 @@ class VariableNeighborhoodSearch:
             y = self.do_redundancy_elimination(y)
             cost_y = self.do_compute_cost(y)
             # self.logger.info(f"local search {k} -> flip {flip_indices[0]}, cost {cost_y}")
-            pbar.set_description(f"local search -> {cost_y} ({self.cost_optimal})")
-            pbar.update()
+            # pbar.set_description(f"local search -> {cost_y} ({self.cost_optimal})")
+            # pbar.update()
             if cost_y < cost_x:
                 local_optimum = y.copy()
                 cost_local_optimum = cost_y
-        pbar.close()
+        # pbar.close()
         return local_optimum, cost_local_optimum
 
     def do_initialize(self):
@@ -336,23 +321,16 @@ if __name__ == "__main__":
 
     # run the VNS
     N = inst.get_cols()
-    frac = 0.8
-    max_iter = 1_000
-
-    max_iter_neighborhood = {
-        1: 10,
-        2: 100,
-        3: 100,
-    }
+    frac = 1
+    max_iter = 100
     max_iter_ls = {
-        1: int(1.5 * N),
-        2: int(1.5 * N),
-        3: int(1.5 * N),
+        1: int(frac * N),
+        2: int(frac * N),
+        3: int(frac * N),
     }
     print(f"max_iter_ls: {max_iter_ls}")
     vns = VariableNeighborhoodSearch(instance=inst,
-                                     max_iter_local_search=max_iter_ls, max_iterations=max_iter,
-                                     max_iter_neighborhood=max_iter_neighborhood
+                                     max_iter_local_search=max_iter_ls, max_iterations=max_iter
                                      )
     vns.configure_logger(log_path)
 
